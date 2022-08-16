@@ -1,4 +1,4 @@
-import {randomBetween, randomColor} from "./util.js";
+import {randomBetween, randomColor} from "../src/util.js";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
