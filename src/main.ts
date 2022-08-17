@@ -2,24 +2,38 @@ const input = document.getElementById("fileInput")! as HTMLInputElement;
 
 
 
-input.addEventListener("change", async () => {
+input.addEventListener("change", main);
+
+
+
+async function main() {
 	const file = input.files![0];
 
-	// if(!file) return; // bruh
-	// if(!file.type.includes("audio/")) return;
+	if(!file || !file.type.includes("audio/")) return;
 
-	const reader = new FileReader();
 
-	reader.addEventListener("error", () => alert("error reading file"));
-	reader.addEventListener("load", event => {
-		const audioContext = new AudioContext();
-		// const buffer = audioContext.createBuffer(2, audioContext.sampleRate * 3, audioContext.sampleRate);
-		// buffer.copyToChannel()
+	const audioContext = new AudioContext();
 
-		const source = audioContext.createBufferSource();
+	const url = URL.createObjectURL(file); // turn the file contents into something accessible
+	const audio = new Audio(url);
 
-		// source.buffer = // AudioBuffer needed?
-	});
+	const source = audioContext.createMediaElementSource(audio);
 
-	reader.readAsArrayBuffer(file);
-});
+
+	const analyzer = audioContext.createAnalyser();
+
+
+	source.connect(analyzer).connect(audioContext.destination);
+
+	audio.play();
+}
+
+
+
+/*
+
+Ideas:
+
+beat detection changes bg (hsl)
+
+*/
