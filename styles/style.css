@@ -11,6 +11,18 @@ button {
 	left: 50%;
 
 	transform: translate(-50%, -50%);
+
+	transition: opacity 150ms, background-color 150ms;
+
+	font-size: 24px;
+	padding: 16px;
+	border-radius: 16px;
+	font-weight: bold;
+}
+
+button.hide {
+	opacity: 0;
+	pointer-events: none;
 }
 
 
