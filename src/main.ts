@@ -37,6 +37,7 @@ async function main() {
 	const audioSource = audioContext.createMediaElementSource(audioElement);
 
 
+
 	// Create offlineContext (this will calculate where beats land in the background)
 	const audioLength = await new Promise(resolve => {
 		audioElement.addEventListener("durationchange", () => {
@@ -52,59 +53,54 @@ async function main() {
 		sampleRate: 44100
 	});
 
-	// hgkjdfkgdkdkdfdfjkgfddfgjkfdgjkffdjkfkjd
-	// offlineContext.buffer =
 
+	const offlineSource = offlineContext.createBufferSource();
+	// offlineSource.buffer!.
+	// audioElement.
 
-	// source.
-
-
-
-
-
-
-
+	// Visualization
 
 	const frequencyAnalyzer = audioContext.createAnalyser();
-	frequencyAnalyzer.fftSize = 512; // default: 2048
+	frequencyAnalyzer.fftSize = 512;
 	// frequencyAnalyzer.smoothingTimeConstant = 0;
 
-	const beatAnalyzer = audioContext.createAnalyser();
-	beatAnalyzer.smoothingTimeConstant = 0; // easier to analyze values
 
-	const filter = audioContext.createBiquadFilter();
-	filter.type = "lowpass";
 
+	// Beat detection
+
+	const audioBeatFilter = audioContext.createBiquadFilter();
+	audioBeatFilter.type = "lowpass";
+
+	const offlineBeatFilter = offlineContext.createBiquadFilter();
+	offlineBeatFilter.type = "lowpass";
+
+
+
+	// Connect things
 
 	audioSource.connect(audioContext.destination);
-	// source.connect(frequencyAnalyzer);
-	audioSource.connect(filter).connect(frequencyAnalyzer);
-	audioSource.connect(filter).connect(beatAnalyzer);
+
+	// audioSource.connect(frequencyAnalyzer);
+	audioSource.connect(audioBeatFilter).connect(frequencyAnalyzer); // debugging
+
+
+	// pain... because whY WOULD I BE ABLE TO CONNECT AN ONLINE NODE TO AN OFFLINE NODE? :)
+	// audioSource.connect(offlineBeatFilter).connect(offlineContext.destination);
+
 
 	audioElement.play();
 
 
+	const processedBuffer = await offlineContext.startRendering();
 
 
+	ctx.translate(0, height);
+	ctx.transform(1, 0, 0, -1, 0, height);
 
-	// ctx.translate(0, height);
-	// ctx.transform(1, 0, 0, -1, 0, height);
-	// requestAnimationFrame(() => processAudio(audioContext, frequencyAnalyzer, beatAnalyzer));
+
+	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, frequencyAnalyzer));
 }
 
-
-
-// function processAudio(audioContext: AudioContext, frequencyAnalzyer: AnalyserNode, beatAnalyzer: AnalyserNode) {
-// 	// drawCanvasBg();
-// 	visualizeAudio(audioContext, frequencyAnalzyer);
-// }
-
-
-
-function drawCanvasBg() {
-	// ctx.fillStyle = `hsl(${randomBetween(0, 360)}, 58%, 53%)`;
-
-}
 
 
 
