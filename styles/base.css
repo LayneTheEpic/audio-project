@@ -27,7 +27,7 @@ input[type="text"] {
 	outline: none;
 	border: none;
 
-	background-color: var(--accent-3);
+	background-color: var(--accent-4);
 
 	border-radius: 8px;
 	padding: 8px;
@@ -40,7 +40,7 @@ input[type="text"] {
 button {
 	border: none;
 
-	background-color: var(--accent-3);
+	background-color: var(--accent-4);
 	transition: background-color 150ms;
 
 	border-radius: 8px;
@@ -52,7 +52,7 @@ button {
 }
 
 button:hover {
-	background-color: var(--accent-5);
+	background-color: var(--accent-6);
 }
 
 button:active {

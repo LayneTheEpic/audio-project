@@ -34,6 +34,22 @@ async function main() {
 	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
 	const audioElement = new Audio(audioUrl);
 
+
+
+	const fileReader = new FileReader();
+
+	const dataBuffer: ArrayBuffer = await new Promise(resolve => {
+		fileReader.addEventListener("load", () => {
+			resolve(fileReader.result as ArrayBuffer);
+		});
+
+		fileReader.readAsArrayBuffer(file);
+	});
+
+	const float32Buffer = new Float32Array(dataBuffer);
+
+
+
 	const audioSource = audioContext.createMediaElementSource(audioElement);
 
 
@@ -55,16 +71,19 @@ async function main() {
 
 
 	const offlineSource = offlineContext.createBufferSource();
-	// offlineSource.buffer!.
-	// audioElement.
+	const offlineBuffer = offlineContext.createBuffer(2, Math.ceil(audioLength * 44100), 44100);
+
+	// what am I even writing anymore
+	offlineBuffer.copyToChannel(float32Buffer, 2, 0);
+	offlineSource.buffer = offlineBuffer;
+
+
 
 	// Visualization
 
 	const frequencyAnalyzer = audioContext.createAnalyser();
 	frequencyAnalyzer.fftSize = 512;
 	// frequencyAnalyzer.smoothingTimeConstant = 0;
-
-
 
 	// Beat detection
 
@@ -80,27 +99,23 @@ async function main() {
 
 	audioSource.connect(audioContext.destination);
 
-	// audioSource.connect(frequencyAnalyzer);
-	audioSource.connect(audioBeatFilter).connect(frequencyAnalyzer); // debugging
+	audioSource.connect(frequencyAnalyzer);
+	// audioSource.connect(audioBeatFilter).connect(frequencyAnalyzer); // debugging
 
+	offlineSource.connect(offlineBeatFilter).connect(offlineContext.destination);
 
-	// pain... because whY WOULD I BE ABLE TO CONNECT AN ONLINE NODE TO AN OFFLINE NODE? :)
-	// audioSource.connect(offlineBeatFilter).connect(offlineContext.destination);
 
 
 	audioElement.play();
 
-
 	const processedBuffer = await offlineContext.startRendering();
 
 
-	ctx.translate(0, height);
-	ctx.transform(1, 0, 0, -1, 0, height);
 
+	ctx.transform(1, 0, 0, -1, 0, height);
 
 	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, frequencyAnalyzer));
 }
-
 
 
 
