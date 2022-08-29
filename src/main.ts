@@ -1,4 +1,6 @@
 import visualizeAudio from "./audioVisualizer.js";
+import {createAudioContext, createOfflineAudioContext} from "./createAudioContexts.js";
+import type {AudioData} from "./types.js";
 
 
 
@@ -6,7 +8,7 @@ const fileButton = document.getElementById("fileButton")! as HTMLButtonElement;
 const input = document.getElementById("fileInput")! as HTMLInputElement;
 
 fileButton.addEventListener("click", () => {input.click()});
-input.addEventListener("change", main);
+input.addEventListener("change", handleAudioFile);
 
 
 const canvas = document.getElementById("canvas")! as HTMLCanvasElement;
@@ -19,7 +21,7 @@ const {width, height} = canvas;
 
 
 
-async function main() {
+async function handleAudioFile() {
 	const file = input.files![0];
 
 	if(!file || !file.type.includes("audio/")) return;
@@ -28,81 +30,17 @@ async function main() {
 
 
 
-	const audioContext = new AudioContext();
-
-	// Create audioSource
-	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
-	const audioElement = new Audio(audioUrl);
+	const {audioElement, audioLength, dataBuffer} = await processAudioFile(file);
 
 
+	const {audioContext, audioFrequencyAnalyzer} = createAudioContext(audioElement);
 
-	const fileReader = new FileReader();
 
-	const dataBuffer: ArrayBuffer = await new Promise(resolve => {
-		fileReader.addEventListener("load", () => {
-			resolve(fileReader.result as ArrayBuffer);
-		});
-
-		fileReader.readAsArrayBuffer(file);
-	});
-
-	const float32Buffer = new Float32Array(dataBuffer);
+	const {offlineContext} = createOfflineAudioContext(dataBuffer, audioLength);
 
 
 
-	const audioSource = audioContext.createMediaElementSource(audioElement);
 
-
-
-	// Create offlineContext (this will calculate where beats land in the background)
-	const audioLength = await new Promise(resolve => {
-		audioElement.addEventListener("durationchange", () => {
-			resolve(audioElement.duration);
-		}, {once: true});
-	}) as number;
-
-	// alert(Math.round(audio.duration * 44100));
-
-	const offlineContext = new OfflineAudioContext({
-		numberOfChannels: 2,
-		length: Math.ceil(audioLength * 44100),
-		sampleRate: 44100
-	});
-
-
-	const offlineSource = offlineContext.createBufferSource();
-	const offlineBuffer = offlineContext.createBuffer(2, Math.ceil(audioLength * 44100), 44100);
-
-	// what am I even writing anymore
-	offlineBuffer.copyToChannel(float32Buffer, 2, 0);
-	offlineSource.buffer = offlineBuffer;
-
-
-
-	// Visualization
-
-	const frequencyAnalyzer = audioContext.createAnalyser();
-	frequencyAnalyzer.fftSize = 512;
-	// frequencyAnalyzer.smoothingTimeConstant = 0;
-
-	// Beat detection
-
-	const audioBeatFilter = audioContext.createBiquadFilter();
-	audioBeatFilter.type = "lowpass";
-
-	const offlineBeatFilter = offlineContext.createBiquadFilter();
-	offlineBeatFilter.type = "lowpass";
-
-
-
-	// Connect things
-
-	audioSource.connect(audioContext.destination);
-
-	audioSource.connect(frequencyAnalyzer);
-	// audioSource.connect(audioBeatFilter).connect(frequencyAnalyzer); // debugging
-
-	offlineSource.connect(offlineBeatFilter).connect(offlineContext.destination);
 
 
 
@@ -114,7 +52,41 @@ async function main() {
 
 	ctx.transform(1, 0, 0, -1, 0, height);
 
-	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, frequencyAnalyzer));
+	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, audioFrequencyAnalyzer));
+}
+
+
+
+async function processAudioFile(file: File): Promise<AudioData> {
+	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
+	const audioElement = new Audio(audioUrl);
+
+
+	const audioLength = await new Promise(resolve => {
+		audioElement.addEventListener("durationchange", () => {
+			resolve(audioElement.duration);
+		}, {once: true});
+	}) as number;
+
+
+
+	const fileReader = new FileReader();
+
+	const dataBuffer = await new Promise(resolve => {
+		fileReader.addEventListener("load", () => { // I hate how condensed this is but I can't do much about it
+			resolve(new Float32Array(fileReader.result as ArrayBuffer));
+		}, {once: true});
+
+		fileReader.readAsArrayBuffer(file);
+	}) as Float32Array;
+
+
+
+	return {
+		audioLength,
+		audioElement,
+		dataBuffer
+	};
 }
 
 
