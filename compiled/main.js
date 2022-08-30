@@ -1,5 +1,6 @@
 import visualizeAudio from "./audioVisualizer.js";
 import { createAudioContext, createOfflineAudioContext } from "./createAudioContexts.js";
+import processAudioFile from "./processAudioFile.js";
 const fileButton = document.getElementById("fileButton");
 const input = document.getElementById("fileInput");
 fileButton.addEventListener("click", () => { input.click(); });
@@ -15,33 +16,13 @@ async function handleAudioFile() {
         return;
     fileButton.classList.add("hide");
     const { audioElement, audioLength, dataBuffer } = await processAudioFile(file);
+    alert("we made it out!");
     const { audioContext, audioFrequencyAnalyzer } = createAudioContext(audioElement);
     const { offlineContext } = createOfflineAudioContext(dataBuffer, audioLength);
     audioElement.play();
-    const processedBuffer = await offlineContext.startRendering();
+    // const processedBuffer = await offlineContext.startRendering();
     ctx.transform(1, 0, 0, -1, 0, height);
     requestAnimationFrame(() => visualizeAudio(ctx, audioContext, audioFrequencyAnalyzer));
-}
-async function processAudioFile(file) {
-    const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
-    const audioElement = new Audio(audioUrl);
-    const audioLength = await new Promise(resolve => {
-        audioElement.addEventListener("durationchange", () => {
-            resolve(audioElement.duration);
-        }, { once: true });
-    });
-    const fileReader = new FileReader();
-    const dataBuffer = await new Promise(resolve => {
-        fileReader.addEventListener("load", () => {
-            resolve(new Float32Array(fileReader.result));
-        }, { once: true });
-        fileReader.readAsArrayBuffer(file);
-    });
-    return {
-        audioLength,
-        audioElement,
-        dataBuffer
-    };
 }
 /*
 
