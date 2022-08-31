@@ -4,8 +4,8 @@ export function createAudioContext(audioElement) {
     const audioFrequencyAnalyzer = audioContext.createAnalyser();
     audioFrequencyAnalyzer.fftSize = 512;
     // audioFrequencyAnalyzer.smoothingTimeConstant = 0;
-    const audioBeatFilter = audioContext.createBiquadFilter();
-    audioBeatFilter.type = "lowpass";
+    // const audioBeatFilter = audioContext.createBiquadFilter();
+    // audioBeatFilter.type = "lowpass";
     audioSource.connect(audioContext.destination);
     // audioSource.connect(audioBeatFilter).connect(audioFrequencyAnalyzer); // visualize beat-processed audio
     audioSource.connect(audioFrequencyAnalyzer);

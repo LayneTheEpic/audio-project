@@ -31,7 +31,6 @@ async function handleAudioFile() {
 
 
 	const {audioElement, audioLength, dataBuffer} = await processAudioFile(file);
-	alert("we made it out!")
 
 	const {audioContext, audioFrequencyAnalyzer} = createAudioContext(audioElement);
 	const {offlineContext} = createOfflineAudioContext(dataBuffer, audioLength);

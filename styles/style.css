@@ -18,6 +18,8 @@ button {
 	padding: 16px;
 	border-radius: 16px;
 	font-weight: bold;
+
+	border: 1px solid var(--accent-0);
 }
 
 button.hide {

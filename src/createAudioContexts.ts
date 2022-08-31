@@ -14,8 +14,8 @@ export function createAudioContext(audioElement: HTMLAudioElement): AudioContext
 	// audioFrequencyAnalyzer.smoothingTimeConstant = 0;
 
 
-	const audioBeatFilter = audioContext.createBiquadFilter();
-	audioBeatFilter.type = "lowpass";
+	// const audioBeatFilter = audioContext.createBiquadFilter();
+	// audioBeatFilter.type = "lowpass";
 
 	audioSource.connect(audioContext.destination);
 

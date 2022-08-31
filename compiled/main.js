@@ -16,7 +16,6 @@ async function handleAudioFile() {
         return;
     fileButton.classList.add("hide");
     const { audioElement, audioLength, dataBuffer } = await processAudioFile(file);
-    alert("we made it out!");
     const { audioContext, audioFrequencyAnalyzer } = createAudioContext(audioElement);
     const { offlineContext } = createOfflineAudioContext(dataBuffer, audioLength);
     audioElement.play();
