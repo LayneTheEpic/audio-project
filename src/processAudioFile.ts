@@ -20,8 +20,6 @@ export default async function processAudioFile(file: File): Promise<AudioData> {
 
 	const tempContext = new AudioContext();
 	const decoded = await tempContext.decodeAudioData(rawBuffer, (audioBuffer) => {return audioBuffer});
-	alert(decoded.duration)
-	alert(audioLength)
 
 	const dataBuffer = new Float32Array();
 	decoded.copyFromChannel(dataBuffer, 0, 0); // I want both buffers... jkfdskjfkjskfjsdkj
