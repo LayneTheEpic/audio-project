@@ -1,37 +1,21 @@
-import type {AudioData} from "./types.js";
+import type {ProcessedAudioFileData} from "./types.js";
 
 
 
-export default async function processAudioFile(file: File): Promise<AudioData> {
+export default async function processAudioFile(file: File): Promise<ProcessedAudioFileData> {
 	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
 	const audioElement = new Audio(audioUrl);
-
-
-
-	const audioLength = await new Promise(resolve => {
-		audioElement.addEventListener("durationchange", () => {
-			resolve(audioElement.duration);
-		}, {once: true});
-	}) as number;
-
 
 
 	const rawBuffer = await (await fetch(audioUrl)).arrayBuffer();
 
 	const tempContext = new AudioContext();
-	const decoded = await tempContext.decodeAudioData(rawBuffer, (audioBuffer) => {return audioBuffer});
-
-	const dataBuffer = new Float32Array();
-	decoded.copyFromChannel(dataBuffer, 0, 0); // I want both buffers... jkfdskjfkjskfjsdkj
-
-
-	// decoded.
+	const audioBuffer = await tempContext.decodeAudioData(rawBuffer);
 
 
 
 	return {
-		audioLength,
 		audioElement,
-		dataBuffer
+		audioBuffer
 	};
 }

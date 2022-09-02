@@ -17,7 +17,10 @@ const ctx = canvas.getContext("2d")!;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const {width, height} = canvas;
+const {height} = canvas;
+
+// power of 2 in range 16-16384
+const frequencyCount = 512;
 
 
 
@@ -30,17 +33,16 @@ async function handleAudioFile() {
 
 
 
-	const {audioElement, audioLength, dataBuffer} = await processAudioFile(file);
+	const {audioElement, audioBuffer} = await processAudioFile(file);
 
-	const {audioContext, audioFrequencyAnalyzer} = createAudioContext(audioElement);
-	const {offlineContext} = createOfflineAudioContext(dataBuffer, audioLength);
+	const {audioContext, audioFrequencyAnalyzer} = createAudioContext(audioElement, frequencyCount);
+	const offlineContext = createOfflineAudioContext(audioBuffer);
 
+
+	const processedBuffer = await offlineContext.startRendering();
 
 
 	audioElement.play();
-
-	// const processedBuffer = await offlineContext.startRendering();
-
 
 
 	ctx.transform(1, 0, 0, -1, 0, height);

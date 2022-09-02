@@ -5,28 +5,23 @@ import {scale} from "./util.js";
 export default function visualizeAudio(ctx: CanvasRenderingContext2D, audioContext: AudioContext, analyzer: AnalyserNode) {
 	const {width, height} = ctx.canvas;
 
-	const bars = analyzer.fftSize / 2; // 256 * (44100 / 512) = 22050; > max of human hearing
-	// equivalent to analyzer.frequencyBinCount
-
-	const bufferLength = analyzer.frequencyBinCount;
+	const frequencyCount = analyzer.frequencyBinCount;
 
 	// data[n] = n * 44100/fftSize (in Hz)
-	const rawData = new Uint8Array(bufferLength);
-	const data = rawData.subarray(0, bars);
-
+	const data = new Uint8Array(frequencyCount);
 	analyzer.getByteFrequencyData(data); // this is more like a "copyByteDataToArray"
 
 
 	ctx.fillStyle = "#000";
 	ctx.fillRect(0, 0, width, height);
 
-	const barWidth = Math.floor(width / bars);
+	const barWidth = Math.floor(width / frequencyCount);
 	ctx.fillStyle = "#eee";
 	ctx.strokeStyle = "#eee";
 	ctx.lineWidth = 2;
 
 
-	for(let i = 0; i < bars; i++) {
+	for(let i = 0; i < frequencyCount; i++) {
 		const scaledBar = Math.round(scale(data[i], 0, 255, 0, height));
 
 		if(i === 0) {
@@ -44,7 +39,7 @@ export default function visualizeAudio(ctx: CanvasRenderingContext2D, audioConte
 		ctx.lineTo((i + 1) * barWidth - 1, scaledBar);
 
 
-		if(i === bars - 1) {
+		if(i === frequencyCount - 1) {
 			ctx.stroke();
 		}
 	}

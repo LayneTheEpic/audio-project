@@ -1,8 +1,8 @@
-import type {AudioContextCapsule, OfflineContextCapsule} from "./types";
+import type {AudioContextCapsule} from "./types";
 
 
 
-export function createAudioContext(audioElement: HTMLAudioElement): AudioContextCapsule {
+export function createAudioContext(audioElement: HTMLAudioElement, frequencyCount: number): AudioContextCapsule {
 	const audioContext = new AudioContext();
 
 	const audioSource = audioContext.createMediaElementSource(audioElement);
@@ -10,7 +10,7 @@ export function createAudioContext(audioElement: HTMLAudioElement): AudioContext
 
 
 	const audioFrequencyAnalyzer = audioContext.createAnalyser();
-	audioFrequencyAnalyzer.fftSize = 512;
+	audioFrequencyAnalyzer.fftSize = frequencyCount * 2; // frequencyBinCount * 2 = fftSize
 	// audioFrequencyAnalyzer.smoothingTimeConstant = 0;
 
 
@@ -29,19 +29,17 @@ export function createAudioContext(audioElement: HTMLAudioElement): AudioContext
 
 
 
-export function createOfflineAudioContext(dataBuffer: Float32Array, audioLength: number): OfflineContextCapsule {
+export function createOfflineAudioContext(audioBuffer: AudioBuffer): OfflineAudioContext {
 	const offlineContext = new OfflineAudioContext({
-		numberOfChannels: 2,
-		length: Math.ceil(audioLength * 44100),
-		sampleRate: 44100
+		numberOfChannels: 1,
+		length: audioBuffer.length,
+		sampleRate: audioBuffer.sampleRate
 	});
 
 
-	const offlineSource = offlineContext.createBufferSource();
-	const offlineBuffer = offlineContext.createBuffer(2, Math.ceil(audioLength * 44100), 44100);
-
-	offlineBuffer.copyToChannel(dataBuffer, 2, 0);
-	offlineSource.buffer = offlineBuffer;
+	const offlineSource = new AudioBufferSourceNode(offlineContext, {
+		buffer: audioBuffer
+	});
 
 
 
@@ -53,7 +51,5 @@ export function createOfflineAudioContext(dataBuffer: Float32Array, audioLength:
 
 
 
-	return {
-		offlineContext
-	};
+	return offlineContext;
 }

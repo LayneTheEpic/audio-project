@@ -1,7 +1,6 @@
-export type AudioData = {
-	audioLength: number;
+export type ProcessedAudioFileData = {
 	audioElement: HTMLAudioElement;
-	dataBuffer: Float32Array;
+	audioBuffer: AudioBuffer;
 };
 
 
@@ -9,10 +8,4 @@ export type AudioData = {
 export type AudioContextCapsule = {
 	audioContext: AudioContext;
 	audioFrequencyAnalyzer: AnalyserNode;
-};
-
-
-
-export type OfflineContextCapsule = {
-	offlineContext: OfflineAudioContext;
 };
