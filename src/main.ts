@@ -1,4 +1,5 @@
 import visualizeAudio from "./audioVisualizer.js";
+import computeBeats from "./beatDetector.js";
 import {createAudioContext, createOfflineAudioContext} from "./createAudioContexts.js";
 import processAudioFile from "./processAudioFile.js";
 
@@ -39,7 +40,10 @@ async function handleAudioFile() {
 	const offlineContext = createOfflineAudioContext(audioBuffer);
 
 
+	// console.log(audioBuffer.getChannelData(0))
+
 	const processedBuffer = await offlineContext.startRendering();
+	const beats = computeBeats(processedBuffer);
 
 
 	audioElement.play();

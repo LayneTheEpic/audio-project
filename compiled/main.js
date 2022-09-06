@@ -1,4 +1,5 @@
 import visualizeAudio from "./audioVisualizer.js";
+import computeBeats from "./beatDetector.js";
 import { createAudioContext, createOfflineAudioContext } from "./createAudioContexts.js";
 import processAudioFile from "./processAudioFile.js";
 const fileButton = document.getElementById("fileButton");
@@ -20,7 +21,9 @@ async function handleAudioFile() {
     const { audioElement, audioBuffer } = await processAudioFile(file);
     const { audioContext, audioFrequencyAnalyzer } = createAudioContext(audioElement, frequencyCount);
     const offlineContext = createOfflineAudioContext(audioBuffer);
+    // console.log(audioBuffer.getChannelData(0))
     const processedBuffer = await offlineContext.startRendering();
+    const beats = computeBeats(processedBuffer);
     audioElement.play();
     ctx.transform(1, 0, 0, -1, 0, height);
     requestAnimationFrame(() => visualizeAudio(ctx, audioContext, audioFrequencyAnalyzer));

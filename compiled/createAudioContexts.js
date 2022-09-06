@@ -17,11 +17,12 @@ export function createOfflineAudioContext(audioBuffer) {
         length: audioBuffer.length,
         sampleRate: audioBuffer.sampleRate
     });
-    const offlineSource = new AudioBufferSourceNode(offlineContext, {
-        buffer: audioBuffer
-    });
+    const offlineSource = offlineContext.createBufferSource();
+    offlineSource.buffer = audioBuffer;
     const offlineBeatFilter = offlineContext.createBiquadFilter();
     offlineBeatFilter.type = "lowpass";
     offlineSource.connect(offlineBeatFilter).connect(offlineContext.destination);
+    // offlineSource.connect(offlineContext.destination);
+    offlineSource.start();
     return offlineContext;
 }

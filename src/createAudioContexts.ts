@@ -37,10 +37,8 @@ export function createOfflineAudioContext(audioBuffer: AudioBuffer): OfflineAudi
 	});
 
 
-	const offlineSource = new AudioBufferSourceNode(offlineContext, {
-		buffer: audioBuffer
-	});
-
+	const offlineSource = offlineContext.createBufferSource();
+	offlineSource.buffer = audioBuffer;
 
 
 	const offlineBeatFilter = offlineContext.createBiquadFilter();
@@ -48,6 +46,9 @@ export function createOfflineAudioContext(audioBuffer: AudioBuffer): OfflineAudi
 
 
 	offlineSource.connect(offlineBeatFilter).connect(offlineContext.destination);
+	// offlineSource.connect(offlineContext.destination);
+
+	offlineSource.start();
 
 
 
