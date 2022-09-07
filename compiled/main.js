@@ -1,11 +1,11 @@
 import visualizeAudio from "./audioVisualizer.js";
-import computeBeats from "./beatDetector.js";
+import computeBeats from "./beat-detection/beatDetector.js";
 import { createAudioContext, createOfflineAudioContext } from "./createAudioContexts.js";
 import processAudioFile from "./processAudioFile.js";
 const fileButton = document.getElementById("fileButton");
 const input = document.getElementById("fileInput");
-fileButton.addEventListener("click", () => { input.click(); });
-input.addEventListener("change", handleAudioFile);
+fileButton.addEventListener("click", () => { input.click(); }, { once: true });
+input.addEventListener("change", handleAudioFile, { once: true });
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -32,10 +32,6 @@ async function handleAudioFile() {
 
 Ideas:
 
-beat detection changes bg (hsl)
-
-
-implementation:
-    - preload audio into offlinecontext, process, identify peak
+- beat detection (in progress)
 
 */

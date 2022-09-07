@@ -13,7 +13,6 @@ export default async function processAudioFile(file: File): Promise<ProcessedAud
 	const audioBuffer = await tempContext.decodeAudioData(rawBuffer);
 
 
-
 	return {
 		audioElement,
 		audioBuffer

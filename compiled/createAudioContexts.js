@@ -4,11 +4,8 @@ export function createAudioContext(audioElement, frequencyCount) {
     const audioFrequencyAnalyzer = audioContext.createAnalyser();
     audioFrequencyAnalyzer.fftSize = frequencyCount * 2; // frequencyBinCount * 2 = fftSize
     // audioFrequencyAnalyzer.smoothingTimeConstant = 0;
-    // const audioBeatFilter = audioContext.createBiquadFilter();
-    // audioBeatFilter.type = "lowpass";
-    audioSource.connect(audioContext.destination);
-    // audioSource.connect(audioBeatFilter).connect(audioFrequencyAnalyzer); // visualize beat-processed audio
     audioSource.connect(audioFrequencyAnalyzer);
+    audioSource.connect(audioContext.destination);
     return { audioContext, audioFrequencyAnalyzer };
 }
 export function createOfflineAudioContext(audioBuffer) {
@@ -22,7 +19,6 @@ export function createOfflineAudioContext(audioBuffer) {
     const offlineBeatFilter = offlineContext.createBiquadFilter();
     offlineBeatFilter.type = "lowpass";
     offlineSource.connect(offlineBeatFilter).connect(offlineContext.destination);
-    // offlineSource.connect(offlineContext.destination);
     offlineSource.start();
     return offlineContext;
 }

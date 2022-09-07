@@ -9,3 +9,10 @@ export type AudioContextCapsule = {
 	audioContext: AudioContext;
 	audioFrequencyAnalyzer: AnalyserNode;
 };
+
+
+
+export type IntervalData = {
+	interval: number;
+	peaks: number[];
+};
