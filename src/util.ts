@@ -17,3 +17,26 @@ export function randomColor(lower = "000000", upper = "ffffff") {
 	const color = randomBetween(lowerDecimal, upperDecimal);
 	return color.toString(16);
 }
+
+
+
+export function isPlusOrMinus(baseline: number, delta: number, comparison: number) {
+	return ( // This took way too long to write
+		(comparison > baseline && comparison <= (baseline + delta)) ||
+		(comparison < baseline && comparison >= (baseline - delta)) ||
+		comparison === baseline
+	);
+}
+
+
+
+export function averageArray(array: number[]) {
+	const sum = array.reduce((acc, curr) => acc += curr);
+	return sum / array.length;
+}
+
+
+
+export function toPlaces(value: number, places: number) {
+	return parseFloat(value.toFixed(places));
+}

@@ -12,7 +12,14 @@ export type AudioContextCapsule = {
 
 
 
-export type IntervalData = {
+export type IntervalBucket = {
 	interval: number;
 	peaks: number[];
+};
+
+
+
+export type AveragingBucket = {
+	values: number[],
+	display: number
 };
