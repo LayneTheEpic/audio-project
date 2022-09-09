@@ -46,7 +46,7 @@ function countPeakIntervals(peaks, maxDelta) {
             });
         }
     }
-    // Todo: simplify buckets
+    // Todo: simplify buckets here
     // A delta too sensitive may mean that a slightly off-beat interval that makes a new bucket will mess with the average;
     // and could prevent beats processed immediately after it from filtering into that bucket
     return peakBuckets.sort((a, b) => b.occurrences - a.occurrences);

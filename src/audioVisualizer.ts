@@ -1,8 +1,25 @@
+import type {BeatData} from "./types.js";
 import {scale} from "./util.js";
 
 
 
-export default function visualizeAudio(ctx: CanvasRenderingContext2D, audioContext: AudioContext, analyzer: AnalyserNode) {
+let analyzer: AnalyserNode;
+let beatData: BeatData;
+let ctx: CanvasRenderingContext2D;
+
+let frame: number;
+
+export function initializeVisualization(_analyzer: AnalyserNode, _beatData: BeatData, _ctx: CanvasRenderingContext2D) {
+	analyzer = _analyzer;
+	beatData = _beatData;
+	ctx = _ctx;
+
+	frame = -(60 / beatData.offset);
+}
+
+// frame++;
+
+export default function visualizeAudio() {
 	const {width, height} = ctx.canvas;
 
 	const frequencyCount = analyzer.frequencyBinCount;
@@ -45,5 +62,5 @@ export default function visualizeAudio(ctx: CanvasRenderingContext2D, audioConte
 	}
 
 
-	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, analyzer));
+	requestAnimationFrame(visualizeAudio);
 }

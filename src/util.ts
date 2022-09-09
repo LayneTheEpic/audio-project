@@ -1,6 +1,25 @@
-export function scale(value: number, min: number, max: number, newMin: number, newMax: number) {
-	return ((value - min) / (max - min)) * (newMax - newMin + 1) + newMin;
+export function averageArray(array: number[]) {
+	const sum = array.reduce((acc, curr) => acc += curr);
+	return sum / array.length;
 }
+
+
+
+export function isPlusOrMinus(baseline: number, delta: number, comparison: number) {
+	return ( // This took way too long to write
+		(comparison > baseline && comparison <= (baseline + delta)) ||
+		(comparison < baseline && comparison >= (baseline - delta)) ||
+		comparison === baseline
+	);
+}
+
+
+
+// export function neatIterate<T>(array: T[], callback: (value: T, index: number) => void) {
+// 	for(let i = 0; i < array.length; i++) {
+// 		callback(array[i], i);
+// 	}
+// }
 
 
 
@@ -20,19 +39,8 @@ export function randomColor(lower = "000000", upper = "ffffff") {
 
 
 
-export function isPlusOrMinus(baseline: number, delta: number, comparison: number) {
-	return ( // This took way too long to write
-		(comparison > baseline && comparison <= (baseline + delta)) ||
-		(comparison < baseline && comparison >= (baseline - delta)) ||
-		comparison === baseline
-	);
-}
-
-
-
-export function averageArray(array: number[]) {
-	const sum = array.reduce((acc, curr) => acc += curr);
-	return sum / array.length;
+export function scale(value: number, min: number, max: number, newMin: number, newMax: number) {
+	return ((value - min) / (max - min)) * (newMax - newMin + 1) + newMin;
 }
 
 

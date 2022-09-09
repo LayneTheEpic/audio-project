@@ -1,7 +1,8 @@
-import visualizeAudio from "./audioVisualizer.js";
-import computeBeats from "./beat-detection/beatDetector.js";
 import {createAudioContext, createOfflineAudioContext} from "./createAudioContexts.js";
+import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
+import visualizeAudio, { initializeVisualization } from "./audioVisualizer.js";
+import calculateBPM from "./beat-detection/calculateBPM.js";
 
 
 
@@ -45,15 +46,18 @@ async function handleAudioFile() {
 	// console.log(audioBuffer.getChannelData(0))
 
 	const processedBuffer = await offlineContext.startRendering();
-	const beats = computeBeats(processedBuffer);
+	const mostCommonInterval = getMostCommonInterval(processedBuffer);
+	const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 55, 180, true);
 
-
-	audioElement.play();
 
 
 	ctx.transform(1, 0, 0, -1, 0, height);
 
-	requestAnimationFrame(() => visualizeAudio(ctx, audioContext, audioFrequencyAnalyzer));
+
+	initializeVisualization(audioFrequencyAnalyzer, beatData, ctx);
+
+	audioElement.play();
+	requestAnimationFrame(visualizeAudio);
 }
 
 

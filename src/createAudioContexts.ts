@@ -1,4 +1,4 @@
-import type {AudioContextCapsule} from "./types";
+import type {AudioContextCapsule} from "./types.js";
 
 
 
@@ -21,7 +21,7 @@ export function createAudioContext(audioElement: HTMLAudioElement, frequencyCoun
 
 
 
-export function createOfflineAudioContext(audioBuffer: AudioBuffer): OfflineAudioContext {
+export function createOfflineAudioContext(audioBuffer: AudioBuffer) {
 	const offlineContext = new OfflineAudioContext({
 		numberOfChannels: 1,
 		length: audioBuffer.length,

@@ -1,5 +1,16 @@
 import { scale } from "./util.js";
-export default function visualizeAudio(ctx, audioContext, analyzer) {
+let analyzer;
+let beatData;
+let ctx;
+let frame;
+export function initializeVisualization(_analyzer, _beatData, _ctx) {
+    analyzer = _analyzer;
+    beatData = _beatData;
+    ctx = _ctx;
+    frame = -(60 / beatData.offset);
+}
+// frame++;
+export default function visualizeAudio() {
     const { width, height } = ctx.canvas;
     const frequencyCount = analyzer.frequencyBinCount;
     // data[n] = n * 44100/fftSize (in Hz)
@@ -26,5 +37,5 @@ export default function visualizeAudio(ctx, audioContext, analyzer) {
             ctx.stroke();
         }
     }
-    requestAnimationFrame(() => visualizeAudio(ctx, audioContext, analyzer));
+    requestAnimationFrame(visualizeAudio);
 }

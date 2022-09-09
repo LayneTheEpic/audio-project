@@ -1,10 +1,3 @@
-export type ProcessedAudioFileData = {
-	audioElement: HTMLAudioElement;
-	audioBuffer: AudioBuffer;
-};
-
-
-
 export type AudioContextCapsule = {
 	audioContext: AudioContext;
 	audioFrequencyAnalyzer: AnalyserNode;
@@ -12,14 +5,24 @@ export type AudioContextCapsule = {
 
 
 
-export type IntervalBucket = {
-	interval: number;
-	peaks: number[];
+export type AveragingBucket = {
+	occurrences: number;
+	offset: number;
+	value: number;
+	values: number[];
 };
 
 
 
-export type AveragingBucket = {
-	values: number[],
-	display: number
+export type BeatData = {
+	beatDistance: number;
+	offset: number;
+	tempo: number;
+};
+
+
+
+export type ProcessedAudioFileData = {
+	audioBuffer: AudioBuffer;
+	audioElement: HTMLAudioElement;
 };
