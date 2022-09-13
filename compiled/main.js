@@ -20,12 +20,12 @@ async function handleAudioFile() {
         return;
     fileButton.classList.add("hide");
     const { audioElement, audioBuffer } = await processAudioFile(file);
-    const { audioContext, audioFrequencyAnalyzer } = createAudioContext(audioElement, frequencyCount);
+    const audioFrequencyAnalyzer = createAudioContext(audioElement, frequencyCount);
     const offlineContext = createOfflineAudioContext(audioBuffer);
     // console.log(audioBuffer.getChannelData(0))
     const processedBuffer = await offlineContext.startRendering();
     const mostCommonInterval = getMostCommonInterval(processedBuffer);
-    const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 55, 180, true);
+    const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
     ctx.transform(1, 0, 0, -1, 0, height);
     initializeVisualization(audioFrequencyAnalyzer, beatData, ctx);
     audioElement.play();

@@ -39,7 +39,7 @@ async function handleAudioFile() {
 
 	const {audioElement, audioBuffer} = await processAudioFile(file);
 
-	const {audioContext, audioFrequencyAnalyzer} = createAudioContext(audioElement, frequencyCount);
+	const audioFrequencyAnalyzer = createAudioContext(audioElement, frequencyCount);
 	const offlineContext = createOfflineAudioContext(audioBuffer);
 
 
@@ -47,7 +47,7 @@ async function handleAudioFile() {
 
 	const processedBuffer = await offlineContext.startRendering();
 	const mostCommonInterval = getMostCommonInterval(processedBuffer);
-	const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 55, 180, true);
+	const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
 
 
 

@@ -1,22 +1,31 @@
-import { scale } from "./util.js";
+import { randomBetween, scale } from "./util.js";
 let analyzer;
 let beatData;
 let ctx;
 let frame;
+let framesPerBeat;
+let baseHue = 0; // values in animation
+let lightness = 0;
+const lightnessJump = 15;
+let lightnessStep;
+const rampUpFrames = 5;
+let bgColor = "hsl(0, 100%, 0%)";
 export function initializeVisualization(_analyzer, _beatData, _ctx) {
     analyzer = _analyzer;
     beatData = _beatData;
     ctx = _ctx;
-    frame = -(60 / beatData.offset);
+    frame = -(60 * beatData.offset); // convert seconds to frames; offset
+    framesPerBeat = 3600 / beatData.tempo; // equivalent to 60 / (tempo / 60)
+    lightnessStep = lightnessJump / framesPerBeat;
 }
-// frame++;
 export default function visualizeAudio() {
     const { width, height } = ctx.canvas;
     const frequencyCount = analyzer.frequencyBinCount;
     // data[n] = n * 44100/fftSize (in Hz)
     const data = new Uint8Array(frequencyCount);
     analyzer.getByteFrequencyData(data); // this is more like a "copyByteDataToArray"
-    ctx.fillStyle = "#000";
+    animateBg();
+    ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, width, height);
     const barWidth = Math.floor(width / frequencyCount);
     ctx.fillStyle = "#eee";
@@ -38,4 +47,22 @@ export default function visualizeAudio() {
         }
     }
     requestAnimationFrame(visualizeAudio);
+}
+function animateBg() {
+    frame++;
+    // ramp-up: from 5 frames before the beat, fade the color in
+    if (frame < framesPerBeat && (frame + rampUpFrames) > framesPerBeat) {
+        lightness += (lightnessJump / rampUpFrames);
+    }
+    if (frame < framesPerBeat && (frame + rampUpFrames) > framesPerBeat && (frame + rampUpFrames - 1) < framesPerBeat) {
+        baseHue = randomBetween(0, 360);
+    }
+    if (frame >= framesPerBeat) {
+        frame -= framesPerBeat;
+        lightness = lightnessJump;
+    }
+    lightness -= lightnessStep;
+    if (lightness < 0)
+        lightness = 0;
+    bgColor = `hsl(${baseHue}, 100%, ${lightness}%)`;
 }

@@ -6,7 +6,7 @@ export function createAudioContext(audioElement, frequencyCount) {
     // audioFrequencyAnalyzer.smoothingTimeConstant = 0;
     audioSource.connect(audioFrequencyAnalyzer);
     audioSource.connect(audioContext.destination);
-    return { audioContext, audioFrequencyAnalyzer };
+    return audioFrequencyAnalyzer;
 }
 export function createOfflineAudioContext(audioBuffer) {
     const offlineContext = new OfflineAudioContext({

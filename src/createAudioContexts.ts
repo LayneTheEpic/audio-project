@@ -1,8 +1,4 @@
-import type {AudioContextCapsule} from "./types.js";
-
-
-
-export function createAudioContext(audioElement: HTMLAudioElement, frequencyCount: number): AudioContextCapsule {
+export function createAudioContext(audioElement: HTMLAudioElement, frequencyCount: number) {
 	const audioContext = new AudioContext();
 	const audioSource = audioContext.createMediaElementSource(audioElement);
 
@@ -16,7 +12,7 @@ export function createAudioContext(audioElement: HTMLAudioElement, frequencyCoun
 	audioSource.connect(audioContext.destination);
 
 
-	return {audioContext, audioFrequencyAnalyzer};
+	return audioFrequencyAnalyzer;
 }
 
 

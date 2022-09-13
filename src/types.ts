@@ -1,10 +1,3 @@
-export type AudioContextCapsule = {
-	audioContext: AudioContext;
-	audioFrequencyAnalyzer: AnalyserNode;
-};
-
-
-
 export type AveragingBucket = {
 	occurrences: number;
 	offset: number;
