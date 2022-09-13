@@ -1,7 +1,7 @@
 import {createAudioContext, createOfflineAudioContext} from "./createAudioContexts.js";
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
-import visualizeAudio, { initializeVisualization } from "./audioVisualizer.js";
+import {visualizeAudio, initializeVisualization} from "./audioVisualizer.js";
 import calculateBPM from "./beat-detection/calculateBPM.js";
 
 

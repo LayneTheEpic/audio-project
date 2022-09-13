@@ -39,7 +39,7 @@ export function initializeVisualization(_analyzer: AnalyserNode, _beatData: Beat
 
 
 
-export default function visualizeAudio() {
+export function visualizeAudio() {
 	const {width, height} = ctx.canvas;
 
 	const frequencyCount = analyzer.frequencyBinCount;

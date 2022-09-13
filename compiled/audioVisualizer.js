@@ -18,7 +18,7 @@ export function initializeVisualization(_analyzer, _beatData, _ctx) {
     framesPerBeat = 3600 / beatData.tempo; // equivalent to 60 / (tempo / 60)
     lightnessStep = lightnessJump / framesPerBeat;
 }
-export default function visualizeAudio() {
+export function visualizeAudio() {
     const { width, height } = ctx.canvas;
     const frequencyCount = analyzer.frequencyBinCount;
     // data[n] = n * 44100/fftSize (in Hz)
