@@ -31,10 +31,3 @@ async function handleAudioFile() {
     audioElement.play();
     requestAnimationFrame(visualizeAudio);
 }
-/*
-
-Ideas:
-
-- beat detection (in progress)
-
-*/
