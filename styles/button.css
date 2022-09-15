@@ -1,0 +1,27 @@
+#fileButton {
+	padding: var(--document-unit);
+	width: 100%;
+
+	border: 1px solid var(--accent-1);
+	border-radius: 16px;
+	box-sizing: border-box;
+
+	font-size: calc(1.5 * var(--document-unit));
+	font-weight: bold;
+	text-align: center;
+
+	background-color: var(--accent-5);
+
+	transition: opacity var(--button-time), background-color var(--button-time), box-shadow var(--button-time);
+}
+
+
+
+#fileButton:hover {
+	background-color: var(--accent-6);
+}
+
+#fileButton:active {
+	background-color: var(--accent-7);
+}
+

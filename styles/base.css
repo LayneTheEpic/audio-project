@@ -6,9 +6,13 @@
 	--accent-4: #363636;
 	--accent-5: #3b3b3b;
 	--accent-6: #424242;
-	--accent-7: #6c6c6c;
-
+	--accent-7: #595959;
+	--accent-8: #6c6c6c;
 	--text-color: #eeeeee;
+
+	--button-time: 150ms;
+
+	--document-unit: calc(calc(2vh + 1vw) / 2);
 }
 
 
@@ -41,7 +45,7 @@ button {
 	border: none;
 
 	background-color: var(--accent-4);
-	transition: background-color 150ms;
+	transition: background-color var(--button-time);
 
 	border-radius: 8px;
 	padding: 8px;

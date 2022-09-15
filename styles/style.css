@@ -2,26 +2,13 @@
 @import url(fonts.css);
 
 @import url(sidebar.css);
+@import url(button.css);
 
 
 
 body {
 	overflow: hidden;
-}
-
-
-
-button {
-	z-index: 100;
-
-	transition: opacity 150ms, background-color 150ms;
-
-	font-size: 24px;
-	padding: 16px;
-	border-radius: 16px;
-	font-weight: bold;
-
-	border: 1px solid var(--accent-0);
+	background-color: #000;
 }
 
 
