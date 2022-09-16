@@ -19,3 +19,18 @@ export type ProcessedAudioFileData = {
 	audioBuffer: AudioBuffer;
 	audioElement: HTMLAudioElement;
 };
+
+
+
+export type RenderCallback = (progress: number) => any;
+
+
+
+type ProcessCallback = () => Promise<AudioBuffer>;
+
+
+
+export type RenderFactory = {
+	onprogress: RenderCallback;
+	render: ProcessCallback;
+};

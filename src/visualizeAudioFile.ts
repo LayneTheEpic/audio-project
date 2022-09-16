@@ -3,6 +3,8 @@ import {createAudioContext, createOfflineAudioContext} from "./createAudioContex
 import {getCurrentRequestId,  initializeVisualization, visualizeAudio} from "./visualization/visualizeAudio.js";
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
+import createOACRenderer from "./createOACRenderer.js";
+
 
 
 
@@ -26,7 +28,16 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 
 	// console.log(audioBuffer.getChannelData(0))
 
-	const processedBuffer = await offlineContext.startRendering();
+	// const processedBuffer = await offlineContext.startRendering();
+
+	const renderFactory = createOACRenderer(offlineContext);
+
+	renderFactory.onprogress = (value: number) => {console.log(value)};
+
+	const processedBuffer = await renderFactory.render();
+
+
+
 	const mostCommonInterval = getMostCommonInterval(processedBuffer);
 	const beatData = calculateBPM(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
 
