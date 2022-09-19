@@ -12,9 +12,18 @@
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
 	<body>
-		<canvas id="canvas"></canvas>
+		<div id="main">
+			<div id="render-container" class="hide">
+				<p id="render-label">Rendering...</p>
+				<div id="render-bar-container">
+					<div id="render-bar-progress"></div>
+				</div>
+			</div>
 
-		<div id="sidebar">
+			<canvas id="canvas"></canvas>
+		</div>
+
+		<div id="sidebar" class="show">
 			<button id="fileButton">Upload</button>
 			<input type="file" id="fileInput" accept="audio/*">
 		</div>

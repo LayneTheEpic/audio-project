@@ -1,4 +1,4 @@
-import initDOM from "./dom.js";
+import {initDOM} from "./dom.js";
 
 
 

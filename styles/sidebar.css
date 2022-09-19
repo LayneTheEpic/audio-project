@@ -1,6 +1,6 @@
 #sidebar {
 	--width: 18%;
-	--grabber: 2%;
+	--grabber: 2.5%;
 
 	--transition-time: 300ms;
 	--transition-curve: cubic-bezier(0.8, 0.1, 0.25, 1);
@@ -13,6 +13,7 @@
 
 #sidebar {
 	position: absolute;
+	top: 0;
 
 	width: var(--width);
 	height: 100%;

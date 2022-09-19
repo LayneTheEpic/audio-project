@@ -1,3 +1,4 @@
+import { toPlaces } from "./util.js";
 import {stopVisualization, visualizeAudioFile} from "./visualizeAudioFile.js";
 
 
@@ -11,8 +12,12 @@ const fileButton = document.getElementById("fileButton")! as HTMLButtonElement;
 const input = document.getElementById("fileInput")! as HTMLInputElement;
 
 
+const renderContainer = document.getElementById("render-container")! as HTMLDivElement;
+const renderProgress = document.getElementById("render-bar-progress")! as HTMLDivElement;
 
-export default function initDOM() {
+
+
+export function initDOM() {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
@@ -41,6 +46,22 @@ export default function initDOM() {
 		if(!file || !file.type.includes("audio/")) return;
 
 		stopVisualization();
+		sidebar.classList.remove("show");
+		renderContainer.classList.remove("hide");
+		renderProgress.style.width = "0";
+
 		visualizeAudioFile(file, ctx);
 	});
+}
+
+
+
+export function updateProgressMeter(value: number) {
+	const width = `${value * 100}%`;
+
+	renderProgress.style.width = width;
+
+	if(value === 1) {
+		renderContainer.classList.add("hide");
+	}
 }

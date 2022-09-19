@@ -4,6 +4,7 @@ import {getCurrentRequestId,  initializeVisualization, visualizeAudio} from "./v
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
 import createOACRenderer from "./createOACRenderer.js";
+import {updateProgressMeter} from "./dom.js";
 
 
 
@@ -32,7 +33,7 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 
 	const renderFactory = createOACRenderer(offlineContext);
 
-	renderFactory.onprogress = (value: number) => {console.log(value)};
+	renderFactory.onprogress = updateProgressMeter;
 
 	const processedBuffer = await renderFactory.render();
 
