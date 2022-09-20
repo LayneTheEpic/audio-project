@@ -1,0 +1,24 @@
+#frequency-label {
+	font-size: 1.25rem;
+	margin-bottom: 0.25rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+
+#computed-frequencies {
+	font-size: 1.1rem;
+	color: var(--accent-10);
+
+	margin-left: 0.8ch;
+}
+
+
+#frequency-input {
+	font-size: 1.1rem;
+
+	width: 100%;
+}
