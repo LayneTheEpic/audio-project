@@ -3,19 +3,14 @@
 
 @import url(sidebar.css);
 @import url(button.css);
-@import url(renderer.css);
+@import url(renderProgress.css);
+@import url(frequencyInput.css);
 
 
 
 body {
 	overflow: hidden;
 	background-color: #000;
-}
-
-
-
-input {
-	display: none;
 }
 
 

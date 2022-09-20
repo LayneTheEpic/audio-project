@@ -8,11 +8,13 @@
 	--accent-6: #424242;
 	--accent-7: #595959;
 	--accent-8: #6c6c6c;
+	--accent-9: #828282;
+	--accent-10: #9d9d9d;
 	--text-color: #eeeeee;
 
 	--button-time: 150ms;
 
-	--document-unit: calc(calc(2vh + 1vw) / 2);
+	font-size: calc(calc(2vh + 1vw) / 2);
 }
 
 
@@ -26,16 +28,16 @@ body {
 
 
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
 	outline: none;
 	border: none;
 
 	background-color: var(--accent-4);
 
-	border-radius: 8px;
-	padding: 8px;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
 
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 
@@ -46,10 +48,10 @@ button {
 	background-color: var(--accent-4);
 	transition: background-color var(--button-time);
 
-	border-radius: 8px;
-	padding: 8px;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
 
-	font-size: 16px;
+	font-size: 1rem;
 
 	cursor: pointer;
 }
@@ -60,4 +62,10 @@ button:hover {
 
 button:active {
 	background-color: var(--accent-7);
+}
+
+
+
+.nowrap {
+	white-space: nowrap;
 }

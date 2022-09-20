@@ -1,12 +1,13 @@
-#fileButton {
-	padding: var(--document-unit);
+#upload-button {
+	padding: 1em;
 	width: 100%;
 
 	border: 1px solid var(--accent-1);
 	border-radius: 16px;
 	box-sizing: border-box;
+	margin-bottom: 2rem;
 
-	font-size: calc(1.5 * var(--document-unit));
+	font-size: 1.5rem;
 	font-weight: bold;
 	text-align: center;
 
@@ -17,11 +18,16 @@
 
 
 
-#fileButton:hover {
+#upload-button:hover {
 	background-color: var(--accent-6);
 }
 
-#fileButton:active {
+#upload-button:active {
 	background-color: var(--accent-7);
 }
 
+
+
+#file-input {
+	display: none;
+}

@@ -4,8 +4,7 @@ import {getCurrentRequestId,  initializeVisualization, visualizeAudio} from "./v
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
 import createOACRenderer from "./createOACRenderer.js";
-import {updateProgressMeter} from "./dom.js";
-
+import {updateProgressMeter} from "./dom/renderProgress.js";
 
 
 

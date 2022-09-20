@@ -19,7 +19,7 @@
 	height: 100%;
 
 
-	padding: var(--grabber);
+	padding: calc(1.05 * var(--grabber));
 	box-sizing: border-box;
 
 	background-color: var(--bg);

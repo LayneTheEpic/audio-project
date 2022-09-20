@@ -4,7 +4,7 @@ import { getCurrentRequestId, initializeVisualization, visualizeAudio } from "./
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import processAudioFile from "./processAudioFile.js";
 import createOACRenderer from "./createOACRenderer.js";
-import { updateProgressMeter } from "./dom.js";
+import { updateProgressMeter } from "./dom/renderProgress.js";
 // power of 2 in range 16-16384
 const frequencyCount = 512;
 let currentAudioElement;
