@@ -8,11 +8,6 @@ import {updateProgressMeter} from "./dom/renderProgress.js";
 
 
 
-// power of 2 in range 16-16384
-const frequencyCount = 512;
-
-
-
 let currentAudioElement: HTMLAudioElement;
 
 
@@ -22,14 +17,9 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 	currentAudioElement = audioElement;
 
 
-	const audioFrequencyAnalyzer = createAudioContext(currentAudioElement, frequencyCount);
+	const audioFrequencyAnalyzer = createAudioContext(currentAudioElement, 512);
+
 	const offlineContext = createOfflineAudioContext(audioBuffer);
-
-
-	// console.log(audioBuffer.getChannelData(0))
-
-	// const processedBuffer = await offlineContext.startRendering();
-
 	const renderFactory = createOACRenderer(offlineContext);
 
 	renderFactory.onprogress = updateProgressMeter;

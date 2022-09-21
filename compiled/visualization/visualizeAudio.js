@@ -8,6 +8,9 @@ export function initializeVisualization(_analyzer, beatData, _ctx) {
     ctx = _ctx;
     initializeBgAnimation(beatData);
 }
+export function changeFrequencyCount(value) {
+    analyzer.fftSize = value * 2;
+}
 export function visualizeAudio() {
     const { width, height } = ctx.canvas;
     const frequencyCount = analyzer.frequencyBinCount;
@@ -16,7 +19,7 @@ export function visualizeAudio() {
     analyzer.getByteFrequencyData(data); // this is more like a "copyByteDataToArray"
     ctx.fillStyle = animateBg();
     ctx.fillRect(0, 0, width, height);
-    const barWidth = Math.floor(width / frequencyCount);
+    const barWidth = Math.floor(width / frequencyCount) || 1;
     ctx.fillStyle = "#eee";
     ctx.strokeStyle = "#eee";
     ctx.lineWidth = 2;

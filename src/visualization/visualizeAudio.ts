@@ -20,6 +20,12 @@ export function initializeVisualization(_analyzer: AnalyserNode, beatData: BeatD
 
 
 
+export function changeFrequencyCount(value: number) {
+	analyzer.fftSize = value * 2;
+}
+
+
+
 export function visualizeAudio() {
 	const {width, height} = ctx.canvas;
 
@@ -34,7 +40,7 @@ export function visualizeAudio() {
 	ctx.fillStyle = animateBg();
 	ctx.fillRect(0, 0, width, height);
 
-	const barWidth = Math.floor(width / frequencyCount);
+	const barWidth = Math.floor(width / frequencyCount) || 1;
 	ctx.fillStyle = "#eee";
 	ctx.strokeStyle = "#eee";
 	ctx.lineWidth = 2;

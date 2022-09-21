@@ -1,5 +1,6 @@
 import {showRenderProgress} from "./renderProgress.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
+import addFrequencyInputListener from "./frequencyInput.js";
 
 
 
@@ -9,7 +10,7 @@ const ctx = canvas.getContext("2d")!;
 const sidebar = document.getElementById("sidebar")! as HTMLDivElement;
 
 const uploadButton = document.getElementById("upload-button")! as HTMLButtonElement;
-const input = document.getElementById("file-input")! as HTMLInputElement;
+const fileInput = document.getElementById("file-input")! as HTMLInputElement;
 
 
 
@@ -33,11 +34,11 @@ export default function initDOM() {
 
 
 
-	uploadButton.addEventListener("click", () => {input.click()});
+	uploadButton.addEventListener("click", () => {fileInput.click()});
 
 
-	input.addEventListener("change", () => {
-		const file = input.files![0];
+	fileInput.addEventListener("change", () => {
+		const file = fileInput.files![0];
 
 		if(!file || !file.type.includes("audio/")) return;
 
@@ -49,4 +50,8 @@ export default function initDOM() {
 
 		visualizeAudioFile(file, ctx);
 	});
+
+
+
+	addFrequencyInputListener();
 }
