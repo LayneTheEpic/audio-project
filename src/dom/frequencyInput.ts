@@ -8,34 +8,42 @@ const frequenciesLabel = document.getElementById("computed-frequencies")! as HTM
 
 
 export default function addFrequencyInputListener() {
-	frequencyInput.addEventListener("change", () => {
-		const value = parseFloat(frequencyInput.value);
+	frequencyInput.addEventListener("change", frequencyChangeListener);
+}
 
 
-		if(isNaN(value) ||
-			Math.floor(value) !== value
-		) {
-			frequenciesLabel.innerText = "(Error: Not valid!)";
-			return;
-		}
+
+function frequencyChangeListener() {
+	const value = parseFloat(frequencyInput.value);
 
 
-		const computedFrequencies = 2 ** value;
+	if(isNaN(value)) {
+		frequenciesLabel.innerText = "(Error: Not valid!)";
+		return;
+	}
 
-		if(computedFrequencies > 16384) {
-			frequenciesLabel.innerText = "(Error: >14!)";
-			return;
-		}
-
-		if(computedFrequencies < 16) {
-			frequenciesLabel.innerText = "(Error: <4!)";
-			return;
-		}
+	if(Math.floor(value) !== value) {
+		frequenciesLabel.innerText = "(Error: Not an integer!)";
+		return;
+	}
 
 
-		frequenciesLabel.innerText = `(${computedFrequencies})`;
+	const computedFrequencies = 2 ** value;
 
 
-		changeFrequencyCount(computedFrequencies);
-	});
+	if(computedFrequencies > 16384) {
+		frequenciesLabel.innerText = "(Error: >14!)";
+		return;
+	}
+
+	if(computedFrequencies < 16) {
+		frequenciesLabel.innerText = "(Error: <4!)";
+		return;
+	}
+
+
+	frequenciesLabel.innerText = `(${computedFrequencies})`;
+
+
+	changeFrequencyCount(computedFrequencies);
 }
