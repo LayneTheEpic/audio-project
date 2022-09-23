@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="An audio visualizer.">
 
-		<link rel="stylesheet" href="styles/style.css">
+		<link rel="stylesheet" href="styles/main.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
@@ -32,6 +32,18 @@
 			<p id="computed-frequencies">(512)</p>
 
 			<input type="number" id="frequency-input" value="9" min="4" max="14">
+		</div>
+
+		<div id="cache-modal">
+			<p id="cache-header">File data cached</p>
+			<p id="cache-text">It looks like this file has been processed before. <br/> Do you want to use the cached data?</p>
+
+			<div id="cache-button-container">
+				<button class="cache-button" id="cache-yes">Yes</button>
+				<button class="cache-button" id="cache-no">No</button>
+			</div>
+
+			<!-- put a checkbox here for "remember my decision" -->
 		</div>
 	</body>
 </html>

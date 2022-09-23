@@ -1,8 +1,8 @@
-import type {ProcessedAudioFileData} from "./types.js";
+import type {ProcessedAudioFile} from "./types.js";
 
 
 
-export default async function processAudioFile(file: File): Promise<ProcessedAudioFileData> {
+export default async function processAudioFile(file: File): Promise<ProcessedAudioFile> {
 	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
 	const audioElement = new Audio(audioUrl);
 

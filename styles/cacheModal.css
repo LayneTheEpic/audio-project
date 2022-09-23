@@ -1,0 +1,73 @@
+#cache-modal {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+
+
+	background-color: var(--accent-2);
+
+	padding: 3rem;
+	border-radius: 1.5rem;
+
+	max-width: 25rem;
+
+	transition: opacity 300ms;
+}
+
+
+
+#cache-modal.hide {
+	opacity: 0;
+
+	pointer-events: none;
+}
+
+
+
+#cache-header {
+	font: 2rem Lato;
+	font-weight: bold;
+
+	text-align: center;
+
+	margin: 2rem 0;
+}
+
+#cache-text {
+	font-size: 1rem;
+
+	text-align: center;
+
+	word-wrap: normal;
+
+	margin: 0 0 1.25rem 0;
+}
+
+
+
+#cache-button-container {
+	display: flex;
+
+	justify-content: space-around;
+
+	margin-bottom: 2rem;
+}
+
+.cache-button {
+	font-size: 1.25rem;
+	font-weight: bold;
+
+	padding: 1rem 3rem;
+	border-radius: 1rem;
+
+	background-color: var(--accent-5);
+}
+
+.cache-button:hover {
+	background-color: var(--accent-7);
+}
+
+.cache-button:active {
+	background-color: var(--accent-10);
+}

@@ -15,7 +15,14 @@ export type BeatData = {
 
 
 
-export type ProcessedAudioFileData = {
+export type FileData = BeatData & {
+	fileName: string;
+	version: string;
+};
+
+
+
+export type ProcessedAudioFile = {
 	audioBuffer: AudioBuffer;
 	audioElement: HTMLAudioElement;
 };
