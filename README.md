@@ -41,3 +41,5 @@ Batch files are for my teacher
 - more object oriented
 	- wil need: an interface for the audio file, one for bg animation, one for line visualization
 	- stop beat animation after audio file stops
+	- yeah no like actually though I'm going to have to restructure the entire codebase (again) if I want to go OOP which I think I absolutely have to
+	- functional really just does not work here, or maybe I just suck at functional programming

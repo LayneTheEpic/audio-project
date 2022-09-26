@@ -32,9 +32,11 @@
 			<p id="computed-frequencies">(512)</p>
 
 			<input type="number" id="frequency-input" value="9" min="4" max="14">
+
+			<!-- add a checkbox somewhere for "always used cached data where available" -->
 		</div>
 
-		<div id="cache-modal">
+		<div id="cache-modal" class="hide">
 			<p id="cache-header">File data cached</p>
 			<p id="cache-text">It looks like this file has been processed before. <br/> Do you want to use the cached data?</p>
 
@@ -42,8 +44,6 @@
 				<button class="cache-button" id="cache-yes">Yes</button>
 				<button class="cache-button" id="cache-no">No</button>
 			</div>
-
-			<!-- put a checkbox here for "remember my decision" -->
 		</div>
 	</body>
 </html>

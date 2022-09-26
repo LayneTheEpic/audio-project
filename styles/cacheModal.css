@@ -31,7 +31,7 @@
 
 	text-align: center;
 
-	margin: 2rem 0;
+	margin: 1rem 0 2rem;
 }
 
 #cache-text {
@@ -41,7 +41,7 @@
 
 	word-wrap: normal;
 
-	margin: 0 0 1.25rem 0;
+	margin: 1.25rem 0;
 }
 
 
@@ -51,7 +51,7 @@
 
 	justify-content: space-around;
 
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 }
 
 .cache-button {

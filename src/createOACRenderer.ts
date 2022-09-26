@@ -15,7 +15,7 @@ export default function createOACRenderer(offlineContext: OfflineAudioContext): 
 	let buffer: Promise<AudioBuffer>;
 
 
-	function checkProgress(resolve: Function, progressEvent: RenderCallback) {
+	function checkProgress(resolve: (buffer: Promise<AudioBuffer>) => void, progressEvent: RenderCallback) {
 		currentProgress = offlineContext.currentTime / bufferLength;
 
 		if(isPlusOrMinus(currentProgress, 0.001, 1)) {
@@ -39,10 +39,10 @@ export default function createOACRenderer(offlineContext: OfflineAudioContext): 
 		onprogress: () => {},
 
 		render: async () => new Promise<AudioBuffer>(resolve => {
-				buffer = offlineContext.startRendering();
+			buffer = offlineContext.startRendering();
 
-				requestAnimationFrame(() => checkProgress(resolve, factory.onprogress));
-			})
+			requestAnimationFrame(() => checkProgress(resolve, factory.onprogress));
+		})
 	};
 
 
