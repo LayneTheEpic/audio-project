@@ -1,4 +1,4 @@
-import { showRenderProgress } from "./renderProgress.js";
+import RenderProgressManager from "./RenderProgressManager";
 import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
 import addFrequencyInputListener from "./frequencyInput.js";
 const canvas = document.getElementById("canvas");
@@ -24,7 +24,7 @@ export default function initDOM() {
             return;
         stopVisualization();
         sidebar.classList.remove("show");
-        showRenderProgress();
+        RenderProgressManager.show();
         visualizeAudioFile(file, ctx);
     });
     addFrequencyInputListener();

@@ -13,7 +13,7 @@ export async function visualizeAudioFile(file, ctx) {
     requestAnimationFrame(visualizeAudio);
 }
 export function stopVisualization() {
-    currentAudioElement.pause();
+    currentAudioElement?.pause();
     const requestId = getCurrentRequestId();
     if (!requestId)
         return;

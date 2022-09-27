@@ -1,4 +1,4 @@
-import type {FileData} from "../types.js";
+import type {FileData} from "./types.js";
 
 
 

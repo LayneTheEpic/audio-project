@@ -1,3 +1,7 @@
+export type AudioBufferResolver = (buffer: Promise<AudioBuffer>) => void;
+
+
+
 export type AveragingBucket = {
 	occurrences: number;
 	offset: number;
@@ -30,14 +34,3 @@ export type ProcessedAudioFile = {
 
 
 export type RenderCallback = (progress: number) => any;
-
-
-
-type ProcessCallback = () => Promise<AudioBuffer>;
-
-
-
-export type RenderFactory = {
-	onprogress: RenderCallback;
-	render: ProcessCallback;
-};

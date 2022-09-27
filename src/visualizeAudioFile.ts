@@ -29,7 +29,7 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 
 
 export function stopVisualization() {
-	currentAudioElement.pause();
+	currentAudioElement?.pause();
 
 	const requestId = getCurrentRequestId();
 
