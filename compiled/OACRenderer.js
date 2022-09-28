@@ -10,7 +10,6 @@ export default class OACRenderer {
         // this.buffer = offlineContext.startRendering();
         this.bufferLength = offlineContext.length / offlineContext.sampleRate;
         this.offlineContext = offlineContext;
-        console.log(this.offlineContext);
     }
     setOnProgress(progressEvent) {
         this.progressEvent = progressEvent;

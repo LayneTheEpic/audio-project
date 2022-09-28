@@ -1,5 +1,6 @@
 import {animateBg, initializeBgAnimation} from "./animateBg.js";
 import {scale} from "../util.js";
+
 import type {BeatData} from "../types.js";
 
 

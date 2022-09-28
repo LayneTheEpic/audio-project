@@ -1,4 +1,5 @@
 import {isPlusOrMinus} from "./util.js";
+
 import type {AudioBufferResolver, RenderCallback} from "./types.js";
 
 
@@ -18,7 +19,6 @@ export default class OACRenderer {
 
 		this.bufferLength = offlineContext.length / offlineContext.sampleRate;
 		this.offlineContext = offlineContext;
-		console.log(this.offlineContext)
 	}
 
 	setOnProgress(progressEvent: RenderCallback) {

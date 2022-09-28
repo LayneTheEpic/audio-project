@@ -22,6 +22,8 @@ export default async function getBeatData(fileName: string, audioBuffer: AudioBu
 		}
 	}
 
+	RenderProgressManager.show();
+
 
 	// otherwise, recalculate
 

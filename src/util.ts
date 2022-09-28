@@ -5,6 +5,12 @@ export function averageArray(array: number[]) {
 
 
 
+export function id<T extends HTMLElement>(elementId: string) {
+	return document.getElementById(elementId)! as T;
+}
+
+
+
 export function isPlusOrMinus(baseline: number, delta: number, comparison: number) {
 	return ( // This took way too long to write
 		(comparison > baseline && comparison <= (baseline + delta)) ||

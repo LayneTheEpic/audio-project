@@ -1,6 +1,7 @@
 import { changeFrequencyCount } from "../visualization/visualizeAudio.js";
-const frequencyInput = document.getElementById("frequency-input");
-const frequenciesLabel = document.getElementById("computed-frequencies");
+import { id } from "../util.js";
+const frequencyInput = id("frequency-input");
+const frequenciesLabel = id("computed-frequencies");
 export default function addFrequencyInputListener() {
     frequencyInput.addEventListener("change", frequencyChangeListener);
 }

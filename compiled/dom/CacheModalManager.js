@@ -1,12 +1,13 @@
-const cacheModal = document.getElementById("cache-modal");
-const cacheYes = document.getElementById("cache-yes");
-const cacheNo = document.getElementById("cache-no");
+import { id } from "../util.js";
+const cacheModal = id("cache-modal");
+const cacheYes = id("cache-yes");
+const cacheNo = id("cache-no");
 export default class CacheModalManager {
-    static res;
+    static resolve;
     static async prompt() {
         cacheModal.classList.remove("hide");
-        return new Promise(res => {
-            this.res = res;
+        return new Promise(resolve => {
+            this.resolve = resolve;
             cacheYes.addEventListener("click", this.handleYes.bind(this));
             cacheNo.addEventListener("click", this.handleNo.bind(this));
         });
@@ -18,10 +19,10 @@ export default class CacheModalManager {
     }
     static handleYes() {
         this.removeListeners();
-        this.res(true);
+        this.resolve(true);
     }
     static handleNo() {
         this.removeListeners();
-        this.res(false);
+        this.resolve(false);
     }
 }

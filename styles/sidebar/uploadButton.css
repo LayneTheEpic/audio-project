@@ -13,7 +13,7 @@
 
 	background-color: var(--accent-5);
 
-	transition: opacity var(--button-time), background-color var(--button-time), box-shadow var(--button-time);
+	transition: background-color var(--button-time), box-shadow var(--button-time);
 }
 
 

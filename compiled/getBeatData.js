@@ -15,6 +15,7 @@ export default async function getBeatData(fileName, audioBuffer) {
             return cachedData;
         }
     }
+    RenderProgressManager.show();
     // otherwise, recalculate
     const offlineContext = createOfflineAudioContext(audioBuffer);
     const renderFactory = new OACRenderer(offlineContext);

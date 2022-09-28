@@ -1,11 +1,12 @@
 @import url(base.css);
 @import url(fonts.css);
 
-@import url(sidebar.css);
-@import url(button.css);
-@import url(renderProgress.css);
-@import url(frequencyInput.css);
-@import url(cacheModal.css);
+@import url(sidebar/sidebar.css);
+@import url(sidebar/frequencyInput.css);
+@import url(sidebar/uploadButton.css);
+
+@import url(floating/cacheModal.css);
+@import url(floating/renderProgress.css);
 
 
 

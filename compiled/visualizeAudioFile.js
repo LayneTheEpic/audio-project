@@ -1,7 +1,7 @@
 import { createAudioContext } from "./createAudioContexts.js";
+import getBeatData from "./getBeatData.js";
 import { getCurrentRequestId, initializeVisualization, visualizeAudio } from "./visualization/visualizeAudio.js";
 import processAudioFile from "./processAudioFile.js";
-import getBeatData from "./getBeatData.js";
 let currentAudioElement;
 export async function visualizeAudioFile(file, ctx) {
     const { audioElement, audioBuffer } = await processAudioFile(file);

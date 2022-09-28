@@ -1,16 +1,17 @@
-import RenderProgressManager from "./RenderProgressManager";
-import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
 import addFrequencyInputListener from "./frequencyInput.js";
+import {id} from "../util.js";
+import RenderProgressManager from "./RenderProgressManager.js";
+import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
 
 
 
-const canvas = document.getElementById("canvas")! as HTMLCanvasElement;
+const canvas = id<HTMLCanvasElement>("canvas");
 const ctx = canvas.getContext("2d")!;
 
-const sidebar = document.getElementById("sidebar")! as HTMLDivElement;
+const sidebar = id<HTMLDivElement>("sidebar");
 
-const uploadButton = document.getElementById("upload-button")! as HTMLButtonElement;
-const fileInput = document.getElementById("file-input")! as HTMLInputElement;
+const uploadButton = id<HTMLButtonElement>("upload-button");
+const fileInput = id<HTMLInputElement>("file-input");
 
 
 
@@ -44,8 +45,6 @@ export default function initDOM() {
 
 		stopVisualization();
 		sidebar.classList.remove("show");
-
-		RenderProgressManager.show();
 
 
 		visualizeAudioFile(file, ctx);

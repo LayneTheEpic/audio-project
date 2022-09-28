@@ -12,12 +12,13 @@
 
 	max-width: 25rem;
 
-	transition: opacity 300ms;
+	transition: visibility 300ms, opacity 300ms;
 }
 
 
 
 #cache-modal.hide {
+	visibility: hidden;
 	opacity: 0;
 
 	pointer-events: none;

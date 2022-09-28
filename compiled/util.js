@@ -2,6 +2,9 @@ export function averageArray(array) {
     const sum = array.reduce((acc, curr) => acc += curr);
     return sum / array.length;
 }
+export function id(elementId) {
+    return document.getElementById(elementId);
+}
 export function isPlusOrMinus(baseline, delta, comparison) {
     return ( // This took way too long to write
     (comparison > baseline && comparison <= (baseline + delta)) ||

@@ -1,18 +1,22 @@
-const cacheModal = document.getElementById("cache-modal")!;
-const cacheYes = document.getElementById("cache-yes")! as HTMLButtonElement;
-const cacheNo = document.getElementById("cache-no")! as HTMLButtonElement;
+import {id} from "../util.js";
+
+
+
+const cacheModal = id<HTMLDivElement>("cache-modal");
+const cacheYes = id<HTMLButtonElement>("cache-yes");
+const cacheNo = id<HTMLButtonElement>("cache-no");
 
 
 
 
 export default class CacheModalManager {
-	static res: (value: boolean) => void;
+	static resolve: (value: boolean) => void;
 
 	static async prompt() {
 		cacheModal.classList.remove("hide");
 
-		return new Promise<boolean>(res => {
-			this.res = res;
+		return new Promise<boolean>(resolve => {
+			this.resolve = resolve;
 
 			cacheYes.addEventListener("click", this.handleYes.bind(this));
 
@@ -29,11 +33,11 @@ export default class CacheModalManager {
 
 	private static handleYes() {
 		this.removeListeners();
-		this.res(true);
+		this.resolve(true);
 	}
 
 	private static handleNo() {
 		this.removeListeners();
-		this.res(false);
+		this.resolve(false);
 	}
 }

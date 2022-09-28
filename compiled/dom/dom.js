@@ -1,11 +1,11 @@
-import RenderProgressManager from "./RenderProgressManager";
-import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
 import addFrequencyInputListener from "./frequencyInput.js";
-const canvas = document.getElementById("canvas");
+import { id } from "../util.js";
+import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
+const canvas = id("canvas");
 const ctx = canvas.getContext("2d");
-const sidebar = document.getElementById("sidebar");
-const uploadButton = document.getElementById("upload-button");
-const fileInput = document.getElementById("file-input");
+const sidebar = id("sidebar");
+const uploadButton = id("upload-button");
+const fileInput = id("file-input");
 export default function initDOM() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -24,7 +24,6 @@ export default function initDOM() {
             return;
         stopVisualization();
         sidebar.classList.remove("show");
-        RenderProgressManager.show();
         visualizeAudioFile(file, ctx);
     });
     addFrequencyInputListener();

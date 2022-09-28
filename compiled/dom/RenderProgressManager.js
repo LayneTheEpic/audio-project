@@ -1,5 +1,6 @@
-const renderContainer = document.getElementById("render-container");
-const renderProgress = document.getElementById("render-bar-progress");
+import { id } from "../util.js";
+const renderContainer = id("render-container");
+const renderProgress = id("render-bar-progress");
 export default class RenderProgressManager {
     static show() {
         renderContainer.classList.remove("hide");
@@ -12,7 +13,8 @@ export default class RenderProgressManager {
         const width = `${value * 100}%`;
         renderProgress.style.width = width;
         if (value === 1) {
-            this.hide();
+            // save the binding, just call the class itself
+            RenderProgressManager.hide();
         }
     }
 }

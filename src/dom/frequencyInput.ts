@@ -1,9 +1,10 @@
 import {changeFrequencyCount} from "../visualization/visualizeAudio.js";
+import {id} from "../util.js";
 
 
 
-const frequencyInput = document.getElementById("frequency-input")! as HTMLInputElement;
-const frequenciesLabel = document.getElementById("computed-frequencies")! as HTMLSpanElement;
+const frequencyInput = id<HTMLInputElement>("frequency-input");
+const frequenciesLabel = id<HTMLSpanElement>("computed-frequencies");
 
 
 
