@@ -1,4 +1,4 @@
-import {changeFrequencyCount} from "../visualization/visualizeAudio.js";
+import WaveformAnimator from "../visualization/WaveformAnimator.js";
 import {id} from "../util.js";
 
 
@@ -46,5 +46,5 @@ function frequencyChangeListener() {
 	frequenciesLabel.innerText = `(${computedFrequencies})`;
 
 
-	changeFrequencyCount(computedFrequencies);
+	WaveformAnimator.changeFrequencyCount(computedFrequencies);
 }

@@ -1,5 +1,15 @@
 export default class AudioPlayer {
-	constructor() {
+	private audio: HTMLAudioElement;
 
+	constructor(audio: HTMLAudioElement) {
+		this.audio = audio;
+	}
+
+	start() {
+		this.audio.play();
+	}
+
+	stop() {
+		this.audio.pause();
 	}
 }

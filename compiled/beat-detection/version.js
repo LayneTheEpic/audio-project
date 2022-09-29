@@ -1,2 +1,2 @@
-const beatDetectionVersion = "1.0.1";
+const beatDetectionVersion = "1.0.0";
 export default beatDetectionVersion;
