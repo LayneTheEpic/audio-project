@@ -1,6 +1,6 @@
 #frequency-label {
 	font-size: 1.1rem;
-	margin-bottom: 0.2rem;
+	margin-bottom: 0.1rem;
 }
 
 
@@ -21,4 +21,33 @@
 
 	box-sizing: border-box;
 	padding: 0.5rem 0.6rem;
+
+	border: 1px solid var(--accent-0);
+
+	transition: border 250ms;
 }
+
+#frequency-input:invalid {
+	border: 1px solid hsl(0, 40%, 50%);
+}
+
+#frequency-input:valid {
+	animation: flashValid 1s;
+}
+
+
+
+@keyframes flashValid {
+	0% {
+		border: 1px solid hsl(0, 60%, 55%);
+	}
+
+	20% {
+		border: 1px solid hsl(120, 60%, 55%);
+	}
+
+	100% {
+		border: 1px solid var(--accent-0);
+	}
+}
+

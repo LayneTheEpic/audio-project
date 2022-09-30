@@ -1,4 +1,3 @@
-import BackgroundAnimator from "./BackgroundAnimator.js";
 import { scale } from "../util.js";
 export default class WaveformAnimator {
     static analyzer;
@@ -6,24 +5,24 @@ export default class WaveformAnimator {
     static width;
     static height;
     static barWidth;
-    static init(analyzer, beatData, ctx) {
+    static queuedFrequencyCount;
+    static init(analyzer, ctx) {
         this.analyzer = analyzer;
         this.ctx = ctx;
         this.width = ctx.canvas.width;
         this.height = ctx.canvas.height;
         this.ctx.lineWidth = 2;
         this.ctx.strokeStyle = "#eee";
-        this.changeFrequencyCount(2 ** 9);
-        BackgroundAnimator.init(beatData);
+        // it's possible that someone might change the bar factor before this is inited,
+        // if it is, it is "queued"; use the queued value if there is one,
+        // or otherwise default to 512 bars.
+        this.changeFrequencyCount(this.queuedFrequencyCount || (2 ** 9));
     }
     static draw() {
         const frequencyCount = this.analyzer.frequencyBinCount;
         // data[n] = n * 44100/fftSize (in Hz)
         const data = new Uint8Array(frequencyCount);
         this.analyzer.getByteFrequencyData(data); // this is more like a "copyByteDataToArray"
-        // change this so that Background itself draws
-        this.ctx.fillStyle = BackgroundAnimator.animate();
-        this.ctx.fillRect(0, 0, this.width, this.height);
         for (let i = 0; i < frequencyCount; i++) {
             const scaledBar = Math.round(scale(data[i], 0, 255, 0, this.height));
             if (i === 0) {
@@ -43,6 +42,11 @@ export default class WaveformAnimator {
     static changeFrequencyCount(frequencyCount) {
         let fftSize = frequencyCount * 2;
         this.barWidth = Math.floor(this.width / frequencyCount) || 1;
-        this.analyzer.fftSize = fftSize;
+        if (this.analyzer) {
+            this.analyzer.fftSize = fftSize;
+        }
+        else {
+            this.queuedFrequencyCount = frequencyCount;
+        }
     }
 }

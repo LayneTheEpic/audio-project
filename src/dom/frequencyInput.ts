@@ -1,5 +1,5 @@
-import WaveformAnimator from "../visualization/WaveformAnimator.js";
 import {id} from "../util.js";
+import WaveformAnimator from "../visualization/WaveformAnimator.js";
 
 
 

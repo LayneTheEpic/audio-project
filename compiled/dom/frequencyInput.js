@@ -1,5 +1,5 @@
-import WaveformAnimator from "../visualization/WaveformAnimator.js";
 import { id } from "../util.js";
+import WaveformAnimator from "../visualization/WaveformAnimator.js";
 const frequencyInput = id("frequency-input");
 const frequenciesLabel = id("computed-frequencies");
 export default function addFrequencyInputListener() {

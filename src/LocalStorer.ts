@@ -7,16 +7,11 @@ export default class LocalStorer {
 		localStorage.setItem(fileData.fileName, JSON.stringify(fileData));
 	}
 
-	private static hasFileData(fileName: string) {
-		// coerce to boolean
-		return !!(localStorage.getItem(fileName));
-	}
-
 	static getFileData(fileName: string) {
-		if(!this.hasFileData(fileName)) {
-			return null;
-		}
+		const fileData = localStorage.getItem(fileName);
 
-		return JSON.parse(localStorage.getItem(fileName)!) as FileData;
+		if(!fileData) return null;
+
+		return JSON.parse(fileData) as FileData;
 	}
 }

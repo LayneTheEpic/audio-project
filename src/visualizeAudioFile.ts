@@ -1,7 +1,7 @@
+import AudioVisualizer from "./visualization/AudioVisualizer.js";
 import {createAudioContext} from "./createAudioContexts.js";
 import getBeatData from "./getBeatData.js";
 import processAudioFile from "./processAudioFile.js";
-import WaveformAnimator from "./visualization/WaveformAnimator.js";
 
 
 
@@ -20,14 +20,15 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 	const beatData = await getBeatData(file.name, audioBuffer);
 
 
-	WaveformAnimator.init(audioFrequencyAnalyzer, beatData, ctx);
+	AudioVisualizer.init(audioFrequencyAnalyzer, beatData, ctx);
 
 	currentAudioElement.play();
-	requestAnimationFrame(WaveformAnimator.draw.bind(WaveformAnimator));
+
+	AudioVisualizer.start();
 }
 
 
 
 export function stopVisualization() {
-	WaveformAnimator.stop();
+	AudioVisualizer.stop();
 }

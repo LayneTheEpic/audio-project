@@ -1,7 +1,4 @@
-import BackgroundAnimator from "./BackgroundAnimator.js";
 import {scale} from "../util.js";
-
-import type {BeatData} from "../types.js";
 
 
 
@@ -14,7 +11,9 @@ export default class WaveformAnimator {
 
 	private static barWidth: number;
 
-	static init(analyzer: AnalyserNode, beatData: BeatData, ctx: CanvasRenderingContext2D) {
+	private static queuedFrequencyCount: number;
+
+	static init(analyzer: AnalyserNode, ctx: CanvasRenderingContext2D) {
 		this.analyzer = analyzer;
 		this.ctx = ctx;
 
@@ -24,9 +23,10 @@ export default class WaveformAnimator {
 		this.ctx.lineWidth = 2;
 		this.ctx.strokeStyle = "#eee";
 
-		this.changeFrequencyCount(2 ** 9);
-
-		BackgroundAnimator.init(beatData);
+		// it's possible that someone might change the bar factor before this is inited,
+		// if it is, it is "queued"; use the queued value if there is one,
+		// or otherwise default to 512 bars.
+		this.changeFrequencyCount(this.queuedFrequencyCount || (2 ** 9));
 	}
 
 	static draw() {
@@ -35,11 +35,6 @@ export default class WaveformAnimator {
 		// data[n] = n * 44100/fftSize (in Hz)
 		const data = new Uint8Array(frequencyCount);
 		this.analyzer.getByteFrequencyData(data); // this is more like a "copyByteDataToArray"
-
-
-		// change this so that Background itself draws
-		this.ctx.fillStyle = BackgroundAnimator.animate();
-		this.ctx.fillRect(0, 0, this.width, this.height);
 
 
 		for(let i = 0; i < frequencyCount; i++) {
@@ -71,6 +66,10 @@ export default class WaveformAnimator {
 
 		this.barWidth = Math.floor(this.width / frequencyCount) || 1;
 
-		this.analyzer.fftSize = fftSize;
+		if(this.analyzer) {
+			this.analyzer.fftSize = fftSize;
+		} else {
+			this.queuedFrequencyCount = frequencyCount;
+		}
 	}
 }
