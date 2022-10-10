@@ -1,16 +1,20 @@
+import AudioPlayer from "../AudioPlayer.js";
 import BackgroundAnimator from "./BackgroundAnimator.js";
+import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
 export default class AudioVisualizer {
     static requestId;
     static init(analyzer, beatData, ctx) {
-        BackgroundAnimator.init(beatData, ctx);
+        BackgroundAnimator.init(ctx);
+        TimeInterpreter.init(beatData);
         WaveformAnimator.init(analyzer, ctx);
     }
     static start() {
         requestAnimationFrame(this.loop.bind(this));
     }
     static loop() {
-        BackgroundAnimator.draw();
+        const time = AudioPlayer.getTime();
+        BackgroundAnimator.draw(time);
         WaveformAnimator.draw();
         this.requestId = requestAnimationFrame(this.loop.bind(this));
     }

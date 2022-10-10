@@ -1,4 +1,6 @@
+import AudioPlayer from "../AudioPlayer.js";
 import BackgroundAnimator from "./BackgroundAnimator.js";
+import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
 
 import type {BeatData} from "../types.js";
@@ -9,7 +11,8 @@ export default class AudioVisualizer {
 	private static requestId: number;
 
 	static init(analyzer: AnalyserNode, beatData: BeatData, ctx: CanvasRenderingContext2D) {
-		BackgroundAnimator.init(beatData, ctx);
+		BackgroundAnimator.init(ctx);
+		TimeInterpreter.init(beatData);
 		WaveformAnimator.init(analyzer, ctx);
 	}
 
@@ -18,7 +21,9 @@ export default class AudioVisualizer {
 	}
 
 	static loop() {
-		BackgroundAnimator.draw();
+		const time = AudioPlayer.getTime();
+
+		BackgroundAnimator.draw(time);
 		WaveformAnimator.draw();
 
 		this.requestId = requestAnimationFrame(this.loop.bind(this));

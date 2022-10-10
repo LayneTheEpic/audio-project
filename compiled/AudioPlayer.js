@@ -1,12 +1,15 @@
 export default class AudioPlayer {
-    audio;
-    constructor(audio) {
+    static audio;
+    static setAudio(audio) {
         this.audio = audio;
     }
-    start() {
+    static start() {
         this.audio.play();
     }
-    stop() {
+    static getTime() {
+        return this.audio.currentTime;
+    }
+    static stop() {
         this.audio.pause();
     }
 }

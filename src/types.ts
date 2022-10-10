@@ -19,6 +19,13 @@ export type BeatData = {
 
 
 
+export type FrameData = {
+	framesTo: number;
+	framesAfter: number;
+}
+
+
+
 export type FileData = BeatData & {
 	fileName: string;
 	version: string;
