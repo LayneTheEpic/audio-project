@@ -16,8 +16,8 @@ export default class TimeInterpreter {
 		this.lastFrame = 0;
 	}
 
-	static expectedRound(frame: number) {
-		// sometimes, frame numbers can be duplicated by a simple Math.round
+	private static expectedRound(frame: number) {
+		// sometimes, frame numbers can be duplicated by a simple Math.round (eg. 1 1.9 2.4 4)
 		// this function aims to figure out what the "correct" next frame is
 		// without just doing +1
 
@@ -49,12 +49,10 @@ export default class TimeInterpreter {
 	}
 
 	static interpret(time: number) {
-		while(time > this.beatData.beatDistance) {
-			time -= this.beatData.beatDistance;
-		}
+		const timeFromBeat = time % this.beatData.beatDistance;
 
-		time = toPlaces(time, 4);
+		const frame = this.expectedRound(timeFromBeat * 60);
 
-		const frame = this.expectedRound(time * 60);
+		console.log(frame)
 	}
 }

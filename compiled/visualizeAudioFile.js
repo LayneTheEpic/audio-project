@@ -13,5 +13,6 @@ export async function visualizeAudioFile(file, ctx) {
     AudioVisualizer.start();
 }
 export function stopVisualization() {
+    AudioPlayer.stop();
     AudioVisualizer.stop();
 }

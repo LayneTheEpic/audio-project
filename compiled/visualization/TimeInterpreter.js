@@ -1,4 +1,4 @@
-import { isPlusOrMinus, toPlaces } from "../util.js";
+import { isPlusOrMinus } from "../util.js";
 export default class TimeInterpreter {
     static beatData;
     static beatsPerFrame;
@@ -9,7 +9,7 @@ export default class TimeInterpreter {
         this.lastFrame = 0;
     }
     static expectedRound(frame) {
-        // sometimes, frame numbers can be duplicated by a simple Math.round
+        // sometimes, frame numbers can be duplicated by a simple Math.round (eg. 1 1.9 2.4 4)
         // this function aims to figure out what the "correct" next frame is
         // without just doing +1
         const ceil = Math.ceil(frame);
@@ -31,10 +31,8 @@ export default class TimeInterpreter {
         return round;
     }
     static interpret(time) {
-        while (time > this.beatData.beatDistance) {
-            time -= this.beatData.beatDistance;
-        }
-        time = toPlaces(time, 4);
-        const frame = this.expectedRound(time * 60);
+        const timeFromBeat = time % this.beatData.beatDistance;
+        const frame = this.expectedRound(timeFromBeat * 60);
+        console.log(frame);
     }
 }

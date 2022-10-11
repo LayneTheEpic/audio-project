@@ -26,5 +26,6 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 
 
 export function stopVisualization() {
+	AudioPlayer.stop();
 	AudioVisualizer.stop();
 }

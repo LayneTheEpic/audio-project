@@ -1,6 +1,5 @@
 import addFrequencyInputListener from "./frequencyInput.js";
 import {id} from "../util.js";
-import RenderProgressManager from "./RenderProgressManager.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
 
 
@@ -14,6 +13,9 @@ const uploadButton = id<HTMLButtonElement>("upload-button");
 const fileInput = id<HTMLInputElement>("file-input");
 
 
+let firstRun = true;
+
+
 
 export default function initDOM() {
 	canvas.width = window.innerWidth;
@@ -24,28 +26,27 @@ export default function initDOM() {
 	ctx.transform(1, 0, 0, -1, 0, height);
 
 
+	sidebar.addEventListener("click", () => sidebar.classList.add("show"));
 
-	sidebar.addEventListener("click", () => {
-		sidebar.classList.add("show");
-	});
-
-	canvas.addEventListener("click", () => {
-		sidebar.classList.remove("show");
-	});
+	canvas.addEventListener("click", () => sidebar.classList.remove("show"));
 
 
 
-	uploadButton.addEventListener("click", () => {fileInput.click()});
-
+	uploadButton.addEventListener("click", () => fileInput.click());
 
 	fileInput.addEventListener("change", () => {
 		const file = fileInput.files![0];
 
 		if(!file || !file.type.includes("audio/")) return;
 
-		stopVisualization();
-		sidebar.classList.remove("show");
+		if(!firstRun) {
+			stopVisualization();
+		}
 
+		firstRun = false;
+
+
+		sidebar.classList.remove("show");
 
 		visualizeAudioFile(file, ctx);
 	});
