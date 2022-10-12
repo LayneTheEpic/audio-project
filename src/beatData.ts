@@ -1,15 +1,15 @@
 import beatDetectionVersion from "./beat-detection/version.js";
 import CacheModalManager from "./dom/CacheModalManager.js";
-import calculateBeatData from "./beat-detection/calculateBeatData.js";
 import {createOfflineAudioContext} from "./createAudioContexts.js";
 import getMostCommonInterval from "./beat-detection/getPeakIntervals.js";
 import LocalStorer from "./LocalStorer.js";
 import OACRenderer from "./OACRenderer.js";
+import processBeatData from "./beat-detection/processBeatData.js";
 import RenderProgressManager from "./dom/RenderProgressManager.js";
 
 
 
-export default async function getBeatData(fileName: string, audioBuffer: AudioBuffer) {
+export async function checkForCachedData(fileName: string) {
 	const cachedData = LocalStorer.getFileData(fileName);
 
 	if(cachedData && cachedData.version === beatDetectionVersion) {
@@ -22,8 +22,13 @@ export default async function getBeatData(fileName: string, audioBuffer: AudioBu
 		}
 	}
 
-	RenderProgressManager.show();
+	return null;
+}
 
+
+
+export async function calculateBeatData(fileName: string, audioBuffer: AudioBuffer) {
+	RenderProgressManager.show();
 
 	// otherwise, recalculate
 
@@ -36,7 +41,7 @@ export default async function getBeatData(fileName: string, audioBuffer: AudioBu
 
 
 	const mostCommonInterval = getMostCommonInterval(processedBuffer);
-	const beatData = calculateBeatData(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
+	const beatData = processBeatData(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
 
 
 	LocalStorer.cacheFileData({

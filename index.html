@@ -12,22 +12,30 @@
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
 	<body>
-		<div id="main">
-			<div id="render-container" class="hide">
-				<span id="render-label">Rendering...</span>
-				<div id="render-bar-container">
-					<div id="render-bar-progress" class="transition"></div>
+		<div id="modals">
+			<div id="cache-modal" class="hide">
+				<p id="cache-header">File data cached</p>
+				<p id="cache-text">It looks like this file has been processed before. <br/> Do you want to use the cached data?</p>
+
+				<div id="cache-button-container">
+					<button class="cache-button" id="cache-yes">Yes</button>
+					<button class="cache-button" id="cache-no">No</button>
 				</div>
 			</div>
 
-			<canvas id="canvas"></canvas>
+			<div id="render-modal" class="hide">
+				<span id="render-label">Rendering...</span>
+				<div id="render-bar-container">
+					<div id="render-bar-progress"></div>
+				</div>
+			</div>
 		</div>
 
 		<div id="sidebar" class="show">
 			<button id="upload-button">Upload</button>
 			<input type="file" id="file-input" accept="audio/*">
 
-			<p class="nowrap" id="frequency-label">Bar factor (4—14)</p>
+			<p id="frequency-label">Bar factor (4–14)</p>
 
 			<p id="computed-frequencies">(512)</p>
 
@@ -36,14 +44,6 @@
 			<!-- add a checkbox somewhere for "always used cached data where available" -->
 		</div>
 
-		<div id="cache-modal" class="hide">
-			<p id="cache-header">File data cached</p>
-			<p id="cache-text">It looks like this file has been processed before. <br/> Do you want to use the cached data?</p>
-
-			<div id="cache-button-container">
-				<button class="cache-button" id="cache-yes">Yes</button>
-				<button class="cache-button" id="cache-no">No</button>
-			</div>
-		</div>
+		<canvas id="canvas"></canvas>
 	</body>
 </html>

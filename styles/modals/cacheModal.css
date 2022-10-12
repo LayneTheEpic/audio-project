@@ -1,27 +1,10 @@
 #cache-modal {
-	position: absolute;
-	transform: translate(-50%, -50%);
-	top: 50%;
-	left: 50%;
-
-
 	background-color: var(--accent-2);
 
 	padding: 3rem;
 	border-radius: 1.5rem;
 
 	max-width: 25rem;
-
-	transition: visibility 300ms, opacity 300ms;
-}
-
-
-
-#cache-modal.hide {
-	visibility: hidden;
-	opacity: 0;
-
-	pointer-events: none;
 }
 
 

@@ -2,7 +2,7 @@ import {id} from "../util.js";
 
 
 
-const renderContainer = id<HTMLDivElement>("render-container");
+const renderContainer = id<HTMLDivElement>("render-modal");
 const renderProgress = id<HTMLDivElement>("render-bar-progress");
 
 

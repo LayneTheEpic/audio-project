@@ -1,13 +1,26 @@
-import AudioVisualizer from "./visualization/AudioVisualizer.js";
-import { createAudioContext } from "./createAudioContexts.js";
-import getBeatData from "./getBeatData.js";
-import processAudioFile from "./processAudioFile.js";
 import AudioPlayer from "./AudioPlayer.js";
+import AudioVisualizer from "./visualization/AudioVisualizer.js";
+import { checkForCachedData, calculateBeatData } from "./beatData.js";
+import { createAudioContext } from "./createAudioContexts.js";
+import { createAudioElement, generateAudioBuffer } from "./processAudioFile.js";
+import { omit } from "./util.js";
 export async function visualizeAudioFile(file, ctx) {
-    const { audioElement, audioBuffer } = await processAudioFile(file);
+    const cachedData = await checkForCachedData(file.name);
+    const audioElement = createAudioElement(file);
     AudioPlayer.setAudio(audioElement);
+    debugger;
+    let beatData;
+    if (cachedData) {
+        beatData = omit(cachedData, ["fileName", "version"]);
+    }
+    else {
+        const buffer = await generateAudioBuffer(file); // render manager needs to include this
+        beatData = await calculateBeatData(file.name, buffer);
+    }
     const audioFrequencyAnalyzer = createAudioContext(audioElement, 512);
-    const beatData = await getBeatData(file.name, audioBuffer);
+    startVisualization(audioFrequencyAnalyzer, beatData, ctx);
+}
+function startVisualization(audioFrequencyAnalyzer, beatData, ctx) {
     AudioVisualizer.init(audioFrequencyAnalyzer, beatData, ctx);
     AudioPlayer.start();
     AudioVisualizer.start();

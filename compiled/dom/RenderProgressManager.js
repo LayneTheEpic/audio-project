@@ -1,5 +1,5 @@
 import { id } from "../util.js";
-const renderContainer = id("render-container");
+const renderContainer = id("render-modal");
 const renderProgress = id("render-bar-progress");
 export default class RenderProgressManager {
     static show() {

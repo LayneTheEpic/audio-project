@@ -5,8 +5,9 @@
 @import url(sidebar/frequencyInput.css);
 @import url(sidebar/uploadButton.css);
 
-@import url(floating/cacheModal.css);
-@import url(floating/renderProgress.css);
+@import url(modals/modals.css);
+@import url(modals/cacheModal.css);
+@import url(modals/renderProgress.css);
 
 
 

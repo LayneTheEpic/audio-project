@@ -1,20 +1,15 @@
-import type {ProcessedAudioFile} from "./types.js";
+export function createAudioElement(file: File) {
+	const audioUrl = URL.createObjectURL(file);
+	return new Audio(audioUrl);
+}
 
 
 
-export default async function processAudioFile(file: File): Promise<ProcessedAudioFile> {
-	const audioUrl = URL.createObjectURL(file); // turn the file contents into something accessible
-	const audioElement = new Audio(audioUrl);
-
-
-	const rawBuffer = await (await fetch(audioUrl)).arrayBuffer();
+export async function generateAudioBuffer(file: File) {
+	const rawBuffer = await file.arrayBuffer();
 
 	const tempContext = new AudioContext();
 	const audioBuffer = await tempContext.decodeAudioData(rawBuffer);
 
-
-	return {
-		audioElement,
-		audioBuffer
-	};
+	return audioBuffer;
 }

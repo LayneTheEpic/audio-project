@@ -1,18 +1,5 @@
-#render-container {
-	position: absolute;
-	transform: translate(-50%, -50%);
-	top: 50%;
-	left: 50%;
-
-	transition: visibility 300ms, opacity 300ms;
+#render-modal {
 	pointer-events: none;
-}
-
-
-
-#render-container.hide {
-	visibility: hidden;
-	opacity: 0;
 }
 
 

@@ -29,6 +29,17 @@ export function isPlusOrMinus(baseline: number, delta: number, comparison: numbe
 
 
 
+export function omit(obj: object, keys: string[]) {
+	const clone: {[key: string]: any} = Object.assign({}, obj);
+
+	for(const key of keys) {
+		delete clone[key];
+	}
+
+	return clone;
+}
+
+
 export function randomBetween(lower: number, upper: number) {
 	return Math.floor(scale(Math.random(), 0, 1, lower, upper));
 }
