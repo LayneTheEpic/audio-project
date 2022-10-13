@@ -1,6 +1,9 @@
 #sidebar {
-	--width: 18%;
-	--grabber: 2.5%;
+	--width: 18;
+
+	--grabber: 2.5; /* this used to be of the sidebar but I think it's become of the body... no idea */
+
+	--effective-grabber: calc(calc(calc(100% / var(--width))) * var(--grabber)); /* recalculate "of-the-sidebar" grabber */
 
 	--transition-time: 300ms;
 	--transition-curve: cubic-bezier(0.8, 0.1, 0.25, 1);
@@ -15,24 +18,26 @@
 	position: absolute;
 	top: 0;
 
-	width: var(--width);
+	width: calc(var(--width) * 1%);
 	height: 100%;
 
 
-	padding: calc(1.05 * var(--grabber));
+	padding: calc(1% * var(--grabber));
 	box-sizing: border-box;
 
 	background-color: var(--bg);
 
 
-	transition: right var(--transition), opacity var(--transition-time);
+	right: 0;
+
+	transition: transform var(--transition), opacity var(--transition-time);
 }
 
 
 
 #sidebar:not(.show) {
 	opacity: 0.7;
-	right: calc(calc(-1 * var(--width)) + var(--grabber));
+	transform: translateX(calc(100% - var(--effective-grabber)));
 }
 
 #sidebar:hover, #sidebar.show {
@@ -42,5 +47,5 @@
 
 #sidebar.show {
 	cursor: default;
-	right: 0;
+	transform: translateX(0);
 }

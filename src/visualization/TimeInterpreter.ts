@@ -51,8 +51,6 @@ export default class TimeInterpreter {
 	static interpret(time: number) {
 		const timeFromBeat = time % this.beatData.beatDistance;
 
-		const frame = this.expectedRound(timeFromBeat * 60);
-
-		console.log(frame)
+		return this.expectedRound(timeFromBeat * 60);
 	}
 }
