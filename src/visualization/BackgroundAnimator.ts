@@ -1,3 +1,4 @@
+import FrameInterpreter from "./FrameInterpreter.js";
 import TimeInterpreter from "./TimeInterpreter.js";
 
 
@@ -15,9 +16,10 @@ export default class BackgroundAnimator {
 	}
 
 	static draw(time: number) {
-		const frameData = TimeInterpreter.interpret(time);
+		const currentFrame = TimeInterpreter.interpret(time);
+		const {hue, lightness} = FrameInterpreter.interpret(currentFrame);
 
-		this.ctx.fillStyle = "#000";
+		this.ctx.fillStyle = `hsl(${hue}, 100%, ${lightness}%)`;
 
 		this.ctx.fillRect(0, 0, this.width, this.height);
 	}

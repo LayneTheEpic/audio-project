@@ -1,17 +1,15 @@
 import { isPlusOrMinus } from "../util.js";
 export default class TimeInterpreter {
     static beatData;
-    static beatsPerFrame;
     static lastFrame;
     static init(beatData) {
         this.beatData = beatData;
-        this.beatsPerFrame = 3600 / beatData.tempo;
         this.lastFrame = 0;
     }
     static expectedRound(frame) {
-        // sometimes, frame numbers can be duplicated by a simple Math.round (eg. 1 1.9 2.4 4)
+        // sometimes, frame numbers can be duplicated by a simple Math.round (eg. 1 1.9 2.4 4 = 1 2 2 4)
         // this function aims to figure out what the "correct" next frame is
-        // without just doing +1
+        // without just doing +1 every frame = can be inaccurate if not called every frame
         const ceil = Math.ceil(frame);
         const floor = Math.floor(frame);
         const round = Math.round(frame);

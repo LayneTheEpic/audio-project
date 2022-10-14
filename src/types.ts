@@ -1,3 +1,10 @@
+export type AnimatedBackground = {
+	hue: number;
+	lightness: number;
+};
+
+
+
 export type AudioBufferResolver = (buffer: Promise<AudioBuffer>) => void;
 
 
@@ -7,6 +14,15 @@ export type AveragingBucket = {
 	offset: number;
 	value: number;
 	values: number[];
+};
+
+
+
+export type BackgroundAnimation = {
+	fadeOut: number;
+	maxLightness: number;
+	rampUp: number;
+	sustain: number;
 };
 
 

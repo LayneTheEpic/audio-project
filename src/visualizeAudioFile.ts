@@ -5,7 +5,17 @@ import {createAudioContext} from "./createAudioContexts.js";
 import {createAudioElement, generateAudioBuffer} from "./processAudioFile.js";
 import {omit} from "./util.js";
 
-import type {BeatData} from "./types.js";
+import type {BackgroundAnimation, BeatData} from "./types.js";
+
+
+
+const backgroundAnimation = {
+	fadeOut: 0.4,
+	rampUp: 0.1,
+	sustain: 0.1,
+
+	maxLightness: 20
+};
 
 
 
@@ -16,7 +26,6 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 	AudioPlayer.setAudio(audioElement);
 
 
-	debugger
 	let beatData;
 
 	if(cachedData) {
@@ -29,13 +38,13 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 
 	const audioFrequencyAnalyzer = createAudioContext(audioElement, 512);
 
-	startVisualization(audioFrequencyAnalyzer, beatData, ctx);
+	startVisualization(audioFrequencyAnalyzer, backgroundAnimation, beatData, ctx);
 }
 
 
 
-function startVisualization(audioFrequencyAnalyzer: AnalyserNode, beatData: BeatData, ctx: CanvasRenderingContext2D) {
-	AudioVisualizer.init(audioFrequencyAnalyzer, beatData, ctx);
+function startVisualization(audioFrequencyAnalyzer: AnalyserNode, backgroundAnimation: BackgroundAnimation, beatData: BeatData, ctx: CanvasRenderingContext2D) {
+	AudioVisualizer.init(audioFrequencyAnalyzer, backgroundAnimation, beatData, ctx);
 
 	AudioPlayer.start();
 	AudioVisualizer.start();

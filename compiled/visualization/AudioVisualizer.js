@@ -2,12 +2,14 @@ import AudioPlayer from "../AudioPlayer.js";
 import BackgroundAnimator from "./BackgroundAnimator.js";
 import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
+import FrameInterpreter from "./FrameInterpreter.js";
 export default class AudioVisualizer {
     static requestId;
-    static init(analyzer, beatData, ctx) {
+    static init(analyzer, backgroundAnimation, beatData, ctx) {
         BackgroundAnimator.init(ctx);
-        TimeInterpreter.init(beatData);
         WaveformAnimator.init(analyzer, ctx);
+        TimeInterpreter.init(beatData);
+        FrameInterpreter.init(backgroundAnimation, beatData);
     }
     static start() {
         requestAnimationFrame(this.loop.bind(this));
