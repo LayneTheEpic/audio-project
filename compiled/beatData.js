@@ -18,7 +18,6 @@ export async function checkForCachedData(fileName) {
     return null;
 }
 export async function calculateBeatData(fileName, audioBuffer) {
-    RenderProgressManager.show();
     // otherwise, recalculate
     const offlineContext = createOfflineAudioContext(audioBuffer);
     const renderFactory = new OACRenderer(offlineContext);

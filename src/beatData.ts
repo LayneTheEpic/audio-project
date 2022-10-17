@@ -28,8 +28,6 @@ export async function checkForCachedData(fileName: string) {
 
 
 export async function calculateBeatData(fileName: string, audioBuffer: AudioBuffer) {
-	RenderProgressManager.show();
-
 	// otherwise, recalculate
 
 	const offlineContext = createOfflineAudioContext(audioBuffer);

@@ -4,18 +4,19 @@ import {id} from "../util.js";
 
 const renderContainer = id<HTMLDivElement>("render-modal");
 const renderProgress = id<HTMLDivElement>("render-bar-progress");
+const renderLabel = id<HTMLDivElement>("render-label");
 
 
 
 export default class RenderProgressManager {
 	static show() {
+		renderLabel.innerText = "Decoding...";
+		renderProgress.style.width = "0";
 		renderContainer.classList.remove("hide");
-
 	}
 
-	static hide() {
-		renderContainer.classList.add("hide");
-		renderProgress.style.width = "0";
+	static awaitRender() {
+		renderLabel.innerText = "Rendering...";
 	}
 
 	static update(value: number) {
@@ -28,4 +29,7 @@ export default class RenderProgressManager {
 			RenderProgressManager.hide();
 		}
 	}
+
+	static hide() {
+		renderContainer.classList.add("hide");	}
 }
