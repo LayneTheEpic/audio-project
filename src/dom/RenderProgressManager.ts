@@ -31,5 +31,6 @@ export default class RenderProgressManager {
 	}
 
 	static hide() {
-		renderContainer.classList.add("hide");	}
+		renderContainer.classList.add("hide");
+	}
 }

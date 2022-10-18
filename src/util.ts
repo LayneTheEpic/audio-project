@@ -40,6 +40,7 @@ export function omit(obj: object, keys: string[]) {
 }
 
 
+
 export function randomBetween(lower: number, upper: number) {
 	return Math.floor(scale(Math.random(), 0, 1, lower, upper));
 }

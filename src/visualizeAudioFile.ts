@@ -10,8 +10,8 @@ import type {BackgroundAnimation, BeatData} from "./types.js";
 
 
 const backgroundAnimation = {
-	fadeOut: 0.4,
-	rampUp: 0.1,
+	fadeOut: 0.35,
+	rampUp: 0.05,
 	sustain: 0.1,
 
 	maxLightness: 20

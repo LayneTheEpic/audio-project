@@ -1,9 +1,11 @@
 import { isPlusOrMinus } from "../util.js";
 export default class TimeInterpreter {
-    static beatData;
+    static frameOffset;
+    static frameBeatDistance;
     static lastFrame;
     static init(beatData) {
-        this.beatData = beatData;
+        this.frameOffset = 60 * beatData.offset;
+        this.frameBeatDistance = 60 * beatData.beatDistance;
         this.lastFrame = 0;
     }
     static expectedRound(frame) {
@@ -29,7 +31,12 @@ export default class TimeInterpreter {
         return round;
     }
     static interpret(time) {
-        const timeFromBeat = time % this.beatData.beatDistance;
-        return this.expectedRound(timeFromBeat * 60);
+        const frameTime = time * 60;
+        const withOffset = frameTime - this.frameOffset;
+        if (withOffset < 0) {
+            return 0;
+        }
+        // don't constantly increase frame, just wrap from 0 --> beatDist
+        return this.expectedRound(withOffset % this.frameBeatDistance);
     }
 }

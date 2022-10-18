@@ -5,8 +5,8 @@ import { createAudioContext } from "./createAudioContexts.js";
 import { createAudioElement, generateAudioBuffer } from "./processAudioFile.js";
 import { omit } from "./util.js";
 const backgroundAnimation = {
-    fadeOut: 0.4,
-    rampUp: 0.1,
+    fadeOut: 0.35,
+    rampUp: 0.05,
     sustain: 0.1,
     maxLightness: 20
 };
