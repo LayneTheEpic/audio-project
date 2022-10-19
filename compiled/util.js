@@ -5,11 +5,12 @@ export function averageArray(array) {
 export function id(elementId) {
     return document.getElementById(elementId);
 }
-export function isPlusOrMinus(baseline, delta, comparison) {
+// e.g. iPoM(7, 4, 3) = "is 7 within the range 4 +/- 3?"
+export function isPlusOrMinus(value, baseline, delta) {
     return ( // This took way too long to write
-    (comparison > baseline && comparison <= (baseline + delta)) ||
-        (comparison < baseline && comparison >= (baseline - delta)) ||
-        comparison === baseline);
+    (value > baseline && value <= (baseline + delta)) ||
+        (value < baseline && value >= (baseline - delta)) ||
+        value === baseline);
 }
 // export function neatIterate<T>(array: T[], callback: (value: T, index: number) => void) {
 // 	for(let i = 0; i < array.length; i++) {
@@ -25,12 +26,6 @@ export function omit(obj, keys) {
 }
 export function randomBetween(lower, upper) {
     return Math.floor(scale(Math.random(), 0, 1, lower, upper));
-}
-export function randomColor(lower = "000000", upper = "ffffff") {
-    const lowerDecimal = parseInt(lower, 16);
-    const upperDecimal = parseInt(upper, 16);
-    const color = randomBetween(lowerDecimal, upperDecimal);
-    return color.toString(16);
 }
 export function scale(value, min, max, newMin, newMax) {
     return ((value - min) / (max - min)) * (newMax - newMin + 1) + newMin;

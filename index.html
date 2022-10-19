@@ -7,7 +7,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="An audio visualizer.">
 
+		<link rel="stylesheet" href="styles/base.css">
+		<link rel="stylesheet" href="styles/fonts.css">
 		<link rel="stylesheet" href="styles/main.css">
+
+		<link rel="stylesheet" href="styles/sidebar/sidebar.css">
+		<link rel="stylesheet" href="styles/sidebar/input.css">
+		<link rel="stylesheet" href="styles/sidebar/label.css">
+		<link rel="stylesheet" href="styles/sidebar/frequencyInput.css">
+		<link rel="stylesheet" href="styles/sidebar/uploadButton.css">
+
+		<link rel="stylesheet" href="styles/modals/modals.css">
+		<link rel="stylesheet" href="styles/modals/cacheModal.css">
+		<link rel="stylesheet" href="styles/modals/renderProgress.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
@@ -35,11 +47,29 @@
 			<button id="upload-button">Upload</button>
 			<input type="file" id="file-input" accept="audio/*">
 
-			<p id="frequency-label">Bar factor (4–14)</p>
+			<div id="frequency-container">
+				<!-- add a header here and make this the bar animation area -->
+				<p id="frequency-label" class="sidebar-label">Bar factor (4–14)</p>
+				<p id="frequency-computed">(512)</p>
 
-			<p id="computed-frequencies">(512)</p>
+				<input type="number" id="frequency-input" class="sidebar-input input-verify" value="9" min="4" max="14" step="1" placeholder="Integer, 4-14">
+			</div>
 
-			<input type="number" id="frequency-input" value="9" min="4" max="14" step="1" placeholder="Integer, 4-14">
+			<div id="animation-container">
+				<p class="sidebar-header">Background Animation</p>
+
+				<p class="sidebar-label">Fade in time (%)</p>
+				<input type="number" id="animation-fade-input" class="sidebar-input input-verify" value="35" min="0" max="100" step="1" placeholder="Number, 1-100">
+
+				<p class="sidebar-label">Ramp up time (%)</p>
+				<input type="number" id="animation-ramp-input" class="sidebar-input input-verify" value="5" min="0" max="100" step="1" placeholder="Number, 1-100">
+
+				<p class="sidebar-label">Sustain time (%)</p>
+				<input type="number" id="animation-sustain-input" class="sidebar-input input-verify" value="10" min="0" max="100" step="1" placeholder="Number, 1-100">
+
+				<p class="sidebar-label">Maximum lightness (%)</p>
+				<input type="number" id="animation-lightness-input" class="sidebar-input input-verify" value="20" min="0" max="100" step="1" placeholder="Number, 1-100">
+			</div>
 
 			<!-- add a checkbox somewhere for "always used cached data where available" -->
 		</div>

@@ -30,7 +30,7 @@ body {
 
 input[type="text"], input[type="number"] {
 	outline: none;
-	border: none;
+	/* border: none; */
 
 	background-color: var(--accent-4);
 

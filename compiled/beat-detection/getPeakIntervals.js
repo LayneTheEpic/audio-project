@@ -30,7 +30,7 @@ function countPeakIntervals(peaks, maxDelta) {
         let didAddToBucket = false;
         for (let j = 0; j < peakBuckets.length; j++) {
             const bucket = peakBuckets[j];
-            if (isPlusOrMinus(bucket.value, maxDelta, peakValue)) { // If value is within reasonable range of bucket
+            if (isPlusOrMinus(peakValue, bucket.value, maxDelta)) { // If value is within reasonable range of bucket
                 peakBuckets[j].values.push(peakValue);
                 peakBuckets[j].value = toPlaces(averageArray(peakBuckets[j].values), 0);
                 peakBuckets[j].occurrences++;

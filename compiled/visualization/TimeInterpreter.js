@@ -15,7 +15,7 @@ export default class TimeInterpreter {
         const ceil = Math.ceil(frame);
         const floor = Math.floor(frame);
         const round = Math.round(frame);
-        if (!isPlusOrMinus(frame, 2, this.lastFrame)) { // frame might've been skipped
+        if (!isPlusOrMinus(frame, this.lastFrame, 2)) { // frame might've been skipped
             this.lastFrame = round;
             return round;
         }

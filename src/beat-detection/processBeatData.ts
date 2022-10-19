@@ -3,7 +3,7 @@ import {toPlaces} from "../util.js";
 
 
 
-export default function calculateBeatData(interval: AveragingBucket, sampleRate: number, minBPM: number, maxBPM: number, roundValues: boolean = true): BeatData {
+export default function processBeatData(interval: AveragingBucket, sampleRate: number, minBPM: number, maxBPM: number, roundValues: boolean = true): BeatData {
 	const bpmFromInterval = 60 / interval.value * sampleRate;
 	let offset = (interval.offset % interval.value) / sampleRate;
 

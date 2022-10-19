@@ -1,5 +1,5 @@
 import { toPlaces } from "../util.js";
-export default function calculateBeatData(interval, sampleRate, minBPM, maxBPM, roundValues = true) {
+export default function processBeatData(interval, sampleRate, minBPM, maxBPM, roundValues = true) {
     const bpmFromInterval = 60 / interval.value * sampleRate;
     let offset = (interval.offset % interval.value) / sampleRate;
     let tempo = bpmFromInterval;

@@ -25,7 +25,7 @@ export default class OACRenderer {
     }
     checkProgress() {
         this.currentProgress = this.offlineContext.currentTime / this.bufferLength;
-        if (isPlusOrMinus(this.currentProgress, 0.001, 1)) {
+        if (isPlusOrMinus(this.currentProgress, 1, 0.001)) {
             // not entirely precise math, just round
             this.currentProgress = 1;
             this.progressEvent(this.currentProgress);

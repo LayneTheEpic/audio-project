@@ -12,13 +12,7 @@ export default class FrameInterpreter {
     static hue = 0;
     static init(backgroundAnimation, beatData) {
         this.framesPerBeat = Math.round(60 * beatData.beatDistance);
-        this.rampFrames = Math.round(backgroundAnimation.rampUp * this.framesPerBeat);
-        this.sustainFrames = Math.round(backgroundAnimation.sustain * this.framesPerBeat);
-        this.fadeFrames = Math.round(backgroundAnimation.fadeOut * this.framesPerBeat);
-        this.sustainTime = this.sustainFrames + this.fadeFrames;
-        this.maxLightness = backgroundAnimation.maxLightness;
-        this.rampLightness = this.maxLightness / this.rampFrames;
-        this.fadeLightness = this.maxLightness / this.fadeFrames;
+        this.calculateFrameTimes(backgroundAnimation);
     }
     static interpret(frame) {
         console.log(frame);
@@ -51,5 +45,14 @@ export default class FrameInterpreter {
             hue: this.hue,
             lightness: this.lightness
         };
+    }
+    static calculateFrameTimes(backgroundAnimation) {
+        this.rampFrames = Math.round(backgroundAnimation.rampUp * this.framesPerBeat);
+        this.sustainFrames = Math.round(backgroundAnimation.sustain * this.framesPerBeat);
+        this.fadeFrames = Math.round(backgroundAnimation.fadeOut * this.framesPerBeat);
+        this.sustainTime = this.sustainFrames + this.fadeFrames;
+        this.maxLightness = backgroundAnimation.maxLightness;
+        this.rampLightness = this.maxLightness / this.rampFrames;
+        this.fadeLightness = this.maxLightness / this.fadeFrames;
     }
 }

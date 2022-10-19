@@ -11,11 +11,12 @@ export function id<T extends HTMLElement>(elementId: string) {
 
 
 
-export function isPlusOrMinus(baseline: number, delta: number, comparison: number) {
+// e.g. iPoM(7, 4, 3) = "is 7 within the range 4 +/- 3?"
+export function isPlusOrMinus(value: number, baseline: number, delta: number) {
 	return ( // This took way too long to write
-		(comparison > baseline && comparison <= (baseline + delta)) ||
-		(comparison < baseline && comparison >= (baseline - delta)) ||
-		comparison === baseline
+		(value > baseline && value <= (baseline + delta)) ||
+		(value < baseline && value >= (baseline - delta)) ||
+		value === baseline
 	);
 }
 
@@ -43,16 +44,6 @@ export function omit(obj: object, keys: string[]) {
 
 export function randomBetween(lower: number, upper: number) {
 	return Math.floor(scale(Math.random(), 0, 1, lower, upper));
-}
-
-
-
-export function randomColor(lower = "000000", upper = "ffffff") {
-	const lowerDecimal = parseInt(lower, 16);
-	const upperDecimal = parseInt(upper, 16);
-
-	const color = randomBetween(lowerDecimal, upperDecimal);
-	return color.toString(16);
 }
 
 

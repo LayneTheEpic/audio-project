@@ -1,7 +1,7 @@
 import { id } from "../util.js";
 import WaveformAnimator from "../visualization/WaveformAnimator.js";
 const frequencyInput = id("frequency-input");
-const frequenciesLabel = id("computed-frequencies");
+const frequenciesLabel = id("frequency-computed");
 export default function addFrequencyInputListener() {
     frequencyInput.addEventListener("change", frequencyChangeListener);
 }

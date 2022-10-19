@@ -27,10 +27,8 @@ Batch files are for my teacher
 - [x] Sidebar
 	- [x] Move upload function and settings into it
 - [ ] Show a little animation for drawing out the canvas
-- [ ] use delta from rAF to ensure timing accuracy
-	- [ ] this is like really important but I really uhgfduhgdjfksfgldjgldkfjgkldfgj
-	- [ ] could precompute at what points the peaks appear and just check "hey is it at this time if yes then animate peak"
-	- [ ] sum deltas from rAF, compare to starting time, and if it's within a close enough margin, animate the peak
+- [x] timing accuracy
+	- [x] this is like really important but I really uhgfduhgdjfksfgldjgldkfjgkldfgj
 - [ ] stop animating after audio file ends
 - [ ] settings as json?
 	- [ ] localStorage?
@@ -38,8 +36,8 @@ Batch files are for my teacher
 	- [x] how to checksum? not needed
 
 ### Programming todo
-- [ ] more object oriented
-	- [ ] wil need: an interface for the audio file, one for bg animation, one for line visualization
+- [x] more object oriented
+	- [x] wil need: an interface for the audio file, one for bg animation, one for line visualization
 	- [ ] stop beat animation after audio file stops
-	- [ ] yeah no like actually though I'm going to have to restructure the entire codebase (again) if I want to go OOP which I think I absolutely have to
-	- [ ] functional really just does not work here, or maybe I just suck at functional programming
+	- [x] yeah no like actually though I'm going to have to restructure the entire codebase (again) if I want to go OOP which I think I absolutely have to
+	- [x] functional really just does not work here, or maybe I just suck at functional programming
