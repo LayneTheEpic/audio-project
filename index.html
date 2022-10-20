@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="styles/sidebar/sidebar.css">
 		<link rel="stylesheet" href="styles/sidebar/input.css">
 		<link rel="stylesheet" href="styles/sidebar/label.css">
-		<link rel="stylesheet" href="styles/sidebar/frequencyInput.css">
+		<link rel="stylesheet" href="styles/sidebar/labels.css">
 		<link rel="stylesheet" href="styles/sidebar/uploadButton.css">
 
 		<link rel="stylesheet" href="styles/modals/modals.css">
@@ -50,7 +50,7 @@
 			<div id="frequency-container">
 				<!-- add a header here and make this the bar animation area -->
 				<p id="frequency-label" class="sidebar-label">Bar factor (4–14)</p>
-				<p id="frequency-computed">(512)</p>
+				<p class="sidebar-error" id="frequency-computed">(512)</p>
 
 				<input type="number" id="frequency-input" class="sidebar-input input-verify" value="9" min="4" max="14" step="1" placeholder="Integer, 4-14">
 			</div>
@@ -69,6 +69,8 @@
 
 				<p class="sidebar-label">Maximum lightness (%)</p>
 				<input type="number" id="animation-lightness-input" class="sidebar-input input-verify" value="20" min="0" max="100" step="1" placeholder="Number, 1-100">
+
+				<p id="animation-error" class="sidebar-error">(Error: amongus!)</p>
 			</div>
 
 			<!-- add a checkbox somewhere for "always used cached data where available" -->

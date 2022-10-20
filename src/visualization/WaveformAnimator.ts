@@ -2,6 +2,10 @@ import {scale} from "../util.js";
 
 
 
+const defaultFrequencyCount = 2 ** 9;
+
+
+
 export default class WaveformAnimator {
 	private static analyzer: AnalyserNode;
 	private static ctx: CanvasRenderingContext2D;
@@ -11,7 +15,7 @@ export default class WaveformAnimator {
 
 	private static barWidth: number;
 
-	private static queuedFrequencyCount: number;
+	private static queuedFrequencyCount: number | null = null;
 
 	static init(analyzer: AnalyserNode, ctx: CanvasRenderingContext2D) {
 		this.analyzer = analyzer;
@@ -26,7 +30,7 @@ export default class WaveformAnimator {
 		// it's possible that someone might change the bar factor before this is inited,
 		// if it is, it is "queued"; use the queued value if there is one,
 		// or otherwise default to 512 bars.
-		this.changeFrequencyCount(this.queuedFrequencyCount || (2 ** 9));
+		this.setFrequencyCount(this.queuedFrequencyCount ?? defaultFrequencyCount);
 	}
 
 	static draw() {
@@ -61,7 +65,7 @@ export default class WaveformAnimator {
 		}
 	}
 
-	static changeFrequencyCount(frequencyCount: number) {
+	static setFrequencyCount(frequencyCount: number) {
 		let fftSize = frequencyCount * 2;
 
 		this.barWidth = Math.floor(this.width / frequencyCount) || 1;

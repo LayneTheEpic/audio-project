@@ -5,11 +5,11 @@ import WaveformAnimator from "./WaveformAnimator.js";
 import FrameInterpreter from "./FrameInterpreter.js";
 export default class AudioVisualizer {
     static requestId;
-    static init(analyzer, backgroundAnimation, beatData, ctx) {
+    static init(analyzer, beatData, ctx) {
         BackgroundAnimator.init(ctx);
         WaveformAnimator.init(analyzer, ctx);
         TimeInterpreter.init(beatData);
-        FrameInterpreter.init(backgroundAnimation, beatData);
+        FrameInterpreter.init(beatData);
     }
     static start() {
         requestAnimationFrame(this.loop.bind(this));

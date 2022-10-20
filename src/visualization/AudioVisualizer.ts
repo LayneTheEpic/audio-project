@@ -3,7 +3,7 @@ import BackgroundAnimator from "./BackgroundAnimator.js";
 import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
 
-import type {BackgroundAnimation, BeatData} from "../types.js";
+import type {BeatData} from "../types.js";
 import FrameInterpreter from "./FrameInterpreter.js";
 
 
@@ -11,12 +11,12 @@ import FrameInterpreter from "./FrameInterpreter.js";
 export default class AudioVisualizer {
 	private static requestId: number;
 
-	static init(analyzer: AnalyserNode, backgroundAnimation: BackgroundAnimation, beatData: BeatData, ctx: CanvasRenderingContext2D) {
+	static init(analyzer: AnalyserNode, beatData: BeatData, ctx: CanvasRenderingContext2D) {
 		BackgroundAnimator.init(ctx);
 		WaveformAnimator.init(analyzer, ctx);
 
 		TimeInterpreter.init(beatData);
-		FrameInterpreter.init(backgroundAnimation, beatData);
+		FrameInterpreter.init(beatData);
 	}
 
 	static start() {

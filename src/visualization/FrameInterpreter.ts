@@ -1,5 +1,16 @@
+import {randomBetween} from "../util.js";
+
 import type {AnimatedBackground, BackgroundAnimation, BeatData} from "../types.js";
-import { randomBetween } from "../util.js";
+
+
+
+const defaultBgAnimation = {
+	fadeOut: 0.35,
+	rampUp: 0.05,
+	sustain: 0.1,
+
+	maxLightness: 20
+};
 
 
 
@@ -18,10 +29,12 @@ export default class FrameInterpreter {
 	private static lightness: number = 0;
 	private static hue: number = 0;
 
-	static init(backgroundAnimation: BackgroundAnimation, beatData: BeatData) {
+	private static queuedBgAnimation: BackgroundAnimation | null = null;
+
+	static init(beatData: BeatData) {
 		this.framesPerBeat = Math.round(60 * beatData.beatDistance);
 
-		this.calculateFrameTimes(backgroundAnimation);
+		this.calculateFrameTimes(this.queuedBgAnimation ?? defaultBgAnimation);
 	}
 
 	static interpret(frame: number): AnimatedBackground {

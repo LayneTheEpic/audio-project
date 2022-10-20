@@ -4,12 +4,6 @@ import { checkForCachedData, calculateBeatData } from "./beatData.js";
 import { createAudioContext } from "./createAudioContexts.js";
 import { createAudioElement, generateAudioBuffer } from "./processAudioFile.js";
 import { omit } from "./util.js";
-const backgroundAnimation = {
-    fadeOut: 0.35,
-    rampUp: 0.05,
-    sustain: 0.1,
-    maxLightness: 20
-};
 export async function visualizeAudioFile(file, ctx) {
     const cachedData = await checkForCachedData(file.name);
     const audioElement = createAudioElement(file);
@@ -23,10 +17,10 @@ export async function visualizeAudioFile(file, ctx) {
         beatData = await calculateBeatData(file.name, buffer);
     }
     const audioFrequencyAnalyzer = createAudioContext(audioElement, 512);
-    startVisualization(audioFrequencyAnalyzer, backgroundAnimation, beatData, ctx);
+    startVisualization(audioFrequencyAnalyzer, beatData, ctx);
 }
-function startVisualization(audioFrequencyAnalyzer, backgroundAnimation, beatData, ctx) {
-    AudioVisualizer.init(audioFrequencyAnalyzer, backgroundAnimation, beatData, ctx);
+function startVisualization(audioFrequencyAnalyzer, beatData, ctx) {
+    AudioVisualizer.init(audioFrequencyAnalyzer, beatData, ctx);
     AudioPlayer.start();
     AudioVisualizer.start();
 }
