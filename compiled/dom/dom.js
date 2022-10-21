@@ -1,3 +1,4 @@
+import addAnimationInputListeners from "./animationInput.js";
 import addFrequencyInputListener from "./frequencyInput.js";
 import { id } from "../util.js";
 import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
@@ -26,5 +27,6 @@ export default function initDOM() {
         sidebar.classList.remove("show");
         visualizeAudioFile(file, ctx);
     });
+    addAnimationInputListeners();
     addFrequencyInputListener();
 }

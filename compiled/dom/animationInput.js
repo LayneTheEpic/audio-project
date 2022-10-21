@@ -1,14 +1,10 @@
 import { id } from "../util.js";
+import FrameInterpreter from "../visualization/FrameInterpreter.js";
 const fadeInput = id("animation-fade-input");
 const rampInput = id("animation-ramp-input");
 const sustainInput = id("animation-sustain-input");
 const lightnessInput = id("animation-lightness-input");
-const backgroundAnimation = {
-    fadeOut: 0.35,
-    rampUp: 0.05,
-    sustain: 0.1,
-    maxLightness: 20
-};
+const animationLabel = id("animation-error");
 export default function addAnimationInputListeners() {
     fadeInput.addEventListener("change", animationChangeListener);
     rampInput.addEventListener("change", animationChangeListener);
@@ -20,6 +16,27 @@ function animationChangeListener() {
     const rampValue = parseFloat(rampInput.value);
     const sustainValue = parseFloat(sustainInput.value);
     const lightnessValue = parseFloat(lightnessInput.value);
-    if (isNaN(fadeValue)) {
+    if (isNaN(fadeValue) || isNaN(rampValue) || isNaN(sustainValue) || isNaN(lightnessValue)) {
+        animationLabel.innerText = "(Error: Not valid!)";
+        return;
     }
+    if (fadeValue > 100 || rampValue > 100 || sustainValue > 100 || lightnessValue > 100) {
+        animationLabel.innerText = "(Error: >100!)";
+        return;
+    }
+    if (fadeValue < 0 || rampValue < 0 || sustainValue < 0 || lightnessValue < 0) {
+        animationLabel.innerText = "(Error: <0!)";
+        return;
+    }
+    if (fadeValue + rampValue + sustainValue > 100) {
+        animationLabel.innerText = "(Error: Frame times >100%!)";
+        return;
+    }
+    animationLabel.innerHTML = "&nbsp;";
+    FrameInterpreter.calculateFrameTimes({
+        fadeOut: fadeValue / 100,
+        rampUp: rampValue / 100,
+        sustain: sustainValue / 100,
+        maxLightness: lightnessValue
+    });
 }
