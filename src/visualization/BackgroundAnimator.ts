@@ -20,7 +20,6 @@ export default class BackgroundAnimator {
 		const {hue, lightness} = FrameInterpreter.interpret(currentFrame);
 
 		this.ctx.fillStyle = `hsl(${hue}, 100%, ${lightness}%)`;
-
 		this.ctx.fillRect(0, 0, this.width, this.height);
 	}
 }

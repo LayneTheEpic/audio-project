@@ -1,5 +1,7 @@
 import RenderProgressManager from "./dom/RenderProgressManager.js";
 
+
+
 export function createAudioElement(file: File) {
 	const audioUrl = URL.createObjectURL(file);
 	return new Audio(audioUrl);

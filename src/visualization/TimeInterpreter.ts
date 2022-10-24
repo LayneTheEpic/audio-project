@@ -1,5 +1,6 @@
-import type {BeatData} from "../types.js";
 import {isPlusOrMinus} from "../util.js";
+
+import type {BeatData} from "../types.js";
 
 
 

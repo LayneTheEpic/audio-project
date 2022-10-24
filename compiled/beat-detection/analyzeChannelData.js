@@ -10,8 +10,9 @@ export function getMaximumValue(channelData) {
 }
 export function getPeaksAboveThreshold(channelData, threshold, sampleRate) {
     const length = channelData.length;
-    const maxPeakDuration = 0.4;
-    const maxPeakSamples = Math.round(sampleRate / (1 / maxPeakDuration)) - 1;
+    const maxPeakDuration = 0.3;
+    // peak seconds --> peak frames
+    const maxPeakSamples = Math.round(sampleRate * maxPeakDuration) - 1;
     const peaks = [];
     for (let i = 0; i < length; i++) {
         if (channelData[i] > threshold) {

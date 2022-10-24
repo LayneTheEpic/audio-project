@@ -17,8 +17,9 @@ export function getMaximumValue(channelData: Float32Array) {
 export function getPeaksAboveThreshold(channelData: Float32Array, threshold: number, sampleRate: number) {
 	const length = channelData.length;
 
-	const maxPeakDuration = 0.4;
-	const maxPeakSamples = Math.round(sampleRate / (1 / maxPeakDuration)) - 1;
+	const maxPeakDuration = 0.3;
+	// peak seconds --> peak frames
+	const maxPeakSamples = Math.round(sampleRate * maxPeakDuration) - 1;
 
 	const peaks: number[] = [];
 

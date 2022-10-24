@@ -19,6 +19,7 @@
 
 		<link rel="stylesheet" href="styles/modals/modals.css">
 		<link rel="stylesheet" href="styles/modals/cacheModal.css">
+		<link rel="stylesheet" href="styles/modals/inputModal.css">
 		<link rel="stylesheet" href="styles/modals/renderProgress.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
@@ -36,10 +37,14 @@
 			</div>
 
 			<div id="render-modal" class="hide">
-				<span id="render-label">Rendering...</span>
+				<p id="render-label">Rendering...</p>
 				<div id="render-bar-container">
 					<div id="render-bar-progress"></div>
 				</div>
+			</div>
+
+			<div id="input-modal">
+				<input id="input-input" type="text">
 			</div>
 		</div>
 
