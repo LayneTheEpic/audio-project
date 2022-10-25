@@ -43,8 +43,12 @@
 				</div>
 			</div>
 
-			<div id="input-modal">
-				<input id="input-input" type="text">
+			<div id="input-modal" class="hide">
+				<div id="input-dimmer"></div>
+				<div id="input-container">
+					<input id="input-input" type="text">
+					<span id="input-underline"></span>
+				</div>
 			</div>
 		</div>
 
@@ -63,11 +67,11 @@
 			<div id="animation-container">
 				<p class="sidebar-header">Background Animation</p>
 
-				<p class="sidebar-label">Fade in time (%)</p>
-				<input id="animation-fade-input" class="sidebar-input input-verify" type="number" value="35" min="0" max="100" step="1" placeholder="Number, 1-100">
-
 				<p class="sidebar-label">Ramp up time (%)</p>
 				<input id="animation-ramp-input" class="sidebar-input input-verify" type="number" value="5" min="0" max="100" step="1" placeholder="Number, 1-100">
+
+				<p class="sidebar-label">Fade out time (%)</p>
+				<input id="animation-fade-input" class="sidebar-input input-verify" type="number" value="35" min="0" max="100" step="1" placeholder="Number, 1-100">
 
 				<p class="sidebar-label">Sustain time (%)</p>
 				<input id="animation-sustain-input" class="sidebar-input input-verify" type="number" value="10" min="0" max="100" step="1" placeholder="Number, 1-100">

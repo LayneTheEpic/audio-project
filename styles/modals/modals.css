@@ -4,8 +4,12 @@
 	top: 50%;
 	left: 50%;
 
+	z-index: 100;
+
 	transition: visibility 300ms, opacity 300ms;
 }
+
+
 
 #modals > div.hide {
 	visibility: hidden;

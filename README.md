@@ -34,7 +34,8 @@ Batch files are for my teacher
 	- [ ] localStorage?
 	- [x] possibly cache BeatData in LS based on file name? or checksum
 	- [x] how to checksum? not needed
-- instead of using input boxes, turn the "Fade in time (%)" into links that create a screen-wide popup, background opacity
+- [ ] instead of using input boxes, turn the "Fade in time (%)" into links that create a screen-wide popup, background opacity
+- [ ] screen reader support (ARIA)
 
 ### Programming todo
 - [x] more object oriented
