@@ -66,6 +66,13 @@ button:active {
 
 
 
+/* Utility classes */
+
 .nowrap {
 	white-space: nowrap;
+}
+
+.inline {
+	display: inline;
+	position: relative;
 }

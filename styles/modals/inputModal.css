@@ -5,16 +5,43 @@
 
 
 
+#input-label {
+	font-size: 2rem;
+	text-align: center;
+
+	margin: 0 0 1.5rem 0;
+}
+
+
+
+#input-label-type {
+	all: inherit;
+	display: inline;
+}
+
+
+
+#input-percent {
+	font-size: 4rem;
+}
+
+
+
 #input-input {
 	position: relative;
 
 	background-color: transparent;
+	/* border: 1px solid red; */
 	border: none;
 
-	font-size: 2rem;
+	box-sizing: border-box;
+
+	font-size: 4rem;
 	text-align: center;
 
 	padding: 0;
+
+	width: 15rem;
 }
 
 
@@ -24,28 +51,26 @@
 	display: inline-block;
 
 	background-color: var(--text-color);
+	opacity: 0.5;
 
 	bottom: 0;
 
-	left: 0%;
+	left: 50%;
 
-	width: 100%;
+	width: 30%;
 	height: 0.2rem;
+
+	transition: width 200ms ease-in-out, opacity 200ms ease-in-out;
+
+	transform: translateX(-50%);
+}
+
+#input-input:focus ~ #input-underline {
+	width: 100%;
+	opacity: 1;
 }
 
 
-
-/* #input-input::after {
-	content: "";
-	position: absolute;
-
-	background-color: var(--text-color);
-
-	bottom: 10px;
-
-	width: 50%;
-	height: 0.2rem;
-} */
 
 
 
@@ -66,5 +91,5 @@
 }
 
 #input-modal.hide #input-dimmer {
-	pointer-events: all;
+	pointer-events: auto;
 }

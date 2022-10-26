@@ -18,7 +18,7 @@ Batch files are for my teacher
 - [ ] Line type
 - [ ] Line location
 - [ ] Visualizer softness (smoothing constant)
-- [ ] Controlling ramp up time, pulse length (% relative to beat time in frames)
+- [x] Controlling ramp up time, pulse length (% relative to beat time in frames)
 
 
 ## Misc ideas
