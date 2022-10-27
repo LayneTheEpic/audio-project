@@ -1,4 +1,4 @@
-.sidebar-input {
+/* .sidebar-input {
 	font-size: 1rem;
 
 	width: 100%;
@@ -7,6 +7,17 @@
 	padding: 0.5rem 0.6rem;
 
 	border: 1px solid var(--accent-0);
+} */
+
+
+
+.sidebar-input {
+	font-size: 1.1rem;
+}
+
+.sidebar-input > span {
+	font-size: inherit;
+	text-decoration: underline;
 }
 
 

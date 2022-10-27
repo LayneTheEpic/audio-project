@@ -48,14 +48,14 @@
 }
 
 #sidebar.show {
-	cursor: default;
+	cursor: unset;
 	transform: translateX(0);
 }
 
 
 
 #sidebar::-webkit-scrollbar {
-	width: 1rem;
+	width: 0.6rem;
 	background-color: var(--accent-4);
 }
 
