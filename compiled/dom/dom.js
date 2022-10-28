@@ -1,12 +1,12 @@
-import addAnimationInputListeners from "./animationInput.js";
 import addFrequencyInputListener from "./frequencyInput.js";
-import { id } from "../util.js";
+import { getClass, getId } from "../util.js";
 import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
-const canvas = id("canvas");
+import InputModalManager from "./InputModalManager.js";
+const canvas = getId("canvas");
 const ctx = canvas.getContext("2d");
-const sidebar = id("sidebar");
-const uploadButton = id("upload-button");
-const fileInput = id("file-input");
+const sidebar = getId("sidebar");
+const uploadButton = getId("upload-button");
+const fileInput = getId("file-input");
 let firstRun = true;
 export default function initDOM() {
     canvas.width = window.innerWidth;
@@ -27,6 +27,16 @@ export default function initDOM() {
         sidebar.classList.remove("show");
         visualizeAudioFile(file, ctx);
     });
-    addAnimationInputListeners();
+    // addAnimationInputListeners();
     addFrequencyInputListener();
+    addFullscreenInputListeners();
+}
+const fullScreenInputs = getClass("fullscreen-input");
+function addFullscreenInputListeners() {
+    for (const input of fullScreenInputs) {
+        const span = input.children[0].children[0];
+        span.addEventListener("click", async () => {
+            const value = await InputModalManager.prompt(input.dataset);
+        });
+    }
 }

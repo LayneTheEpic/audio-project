@@ -1,16 +1,16 @@
-import {id} from "../util.js";
+import {getId} from "../util.js";
 
 import type {BackgroundAnimation} from "../types";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
 
 
 
-const fadeInput = id<HTMLInputElement>("animation-fade-input");
-const rampInput = id<HTMLInputElement>("animation-ramp-input");
-const sustainInput = id<HTMLInputElement>("animation-sustain-input");
-const lightnessInput = id<HTMLInputElement>("animation-lightness-input");
+const fadeInput = getId<HTMLInputElement>("animation-fade-input");
+const rampInput = getId<HTMLInputElement>("animation-ramp-input");
+const sustainInput = getId<HTMLInputElement>("animation-sustain-input");
+const lightnessInput = getId<HTMLInputElement>("animation-lightness-input");
 
-const animationLabel = id<HTMLParagraphElement>("animation-error");
+const animationLabel = getId<HTMLParagraphElement>("animation-error");
 
 
 

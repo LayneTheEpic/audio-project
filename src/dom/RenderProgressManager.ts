@@ -1,18 +1,18 @@
-import {id} from "../util.js";
+import {getId} from "../util.js";
 
 
 
-const renderContainer = id<HTMLDivElement>("render-modal");
-const renderProgress = id<HTMLDivElement>("render-bar-progress");
-const renderLabel = id<HTMLDivElement>("render-label");
+const renderModal = getId<HTMLDivElement>("render-modal");
+const renderProgress = getId<HTMLDivElement>("render-bar-progress");
+const renderLabel = getId<HTMLDivElement>("render-label");
 
 
 
 export default class RenderProgressManager {
 	static show() {
+		renderModal.classList.remove("hide");
 		renderLabel.innerText = "Decoding...";
 		renderProgress.style.width = "0";
-		renderContainer.classList.remove("hide");
 	}
 
 	static awaitRender() {
@@ -31,6 +31,6 @@ export default class RenderProgressManager {
 	}
 
 	static hide() {
-		renderContainer.classList.add("hide");
+		renderModal.classList.add("hide");
 	}
 }

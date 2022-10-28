@@ -5,7 +5,11 @@ export function averageArray(array: number[]) {
 
 
 
-export function id<T extends HTMLElement>(elementId: string) {
+export function getClass<T extends HTMLElement>(elementClass: string) {
+	return Array.from(document.getElementsByClassName(elementClass)) as T[];
+}
+
+export function getId<T extends HTMLElement>(elementId: string) {
 	return document.getElementById(elementId)! as T;
 }
 

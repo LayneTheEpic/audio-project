@@ -2,7 +2,10 @@ export function averageArray(array) {
     const sum = array.reduce((acc, curr) => acc += curr);
     return sum / array.length;
 }
-export function id(elementId) {
+export function getClass(elementClass) {
+    return Array.from(document.getElementsByClassName(elementClass));
+}
+export function getId(elementId) {
     return document.getElementById(elementId);
 }
 // e.g. iPoM(7, 4, 3) = "is 7 within the range 4 +/- 3?"

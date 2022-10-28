@@ -1,10 +1,10 @@
-import {id} from "../util.js";
+import {getId} from "../util.js";
 import WaveformAnimator from "../visualization/WaveformAnimator.js";
 
 
 
-const frequencyInput = id<HTMLInputElement>("frequency-input");
-const frequenciesLabel = id<HTMLParagraphElement>("frequency-computed");
+const frequencyInput = getId<HTMLInputElement>("frequency-input");
+const frequenciesLabel = getId<HTMLParagraphElement>("frequency-computed");
 
 
 

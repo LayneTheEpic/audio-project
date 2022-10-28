@@ -1,10 +1,10 @@
-import {id} from "../util.js";
+import {getId} from "../util.js";
 
 
 
-const cacheModal = id<HTMLDivElement>("cache-modal");
-const cacheYes = id<HTMLButtonElement>("cache-yes");
-const cacheNo = id<HTMLButtonElement>("cache-no");
+const cacheModal = getId<HTMLDivElement>("cache-modal");
+const cacheYes = getId<HTMLButtonElement>("cache-yes");
+const cacheNo = getId<HTMLButtonElement>("cache-no");
 
 
 

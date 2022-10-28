@@ -1,7 +1,7 @@
-import { id } from "../util.js";
-const cacheModal = id("cache-modal");
-const cacheYes = id("cache-yes");
-const cacheNo = id("cache-no");
+import { getId } from "../util.js";
+const cacheModal = getId("cache-modal");
+const cacheYes = getId("cache-yes");
+const cacheNo = getId("cache-no");
 export default class CacheModalManager {
     static resolve;
     static async prompt() {

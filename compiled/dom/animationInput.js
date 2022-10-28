@@ -1,10 +1,10 @@
-import { id } from "../util.js";
+import { getId } from "../util.js";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
-const fadeInput = id("animation-fade-input");
-const rampInput = id("animation-ramp-input");
-const sustainInput = id("animation-sustain-input");
-const lightnessInput = id("animation-lightness-input");
-const animationLabel = id("animation-error");
+const fadeInput = getId("animation-fade-input");
+const rampInput = getId("animation-ramp-input");
+const sustainInput = getId("animation-sustain-input");
+const lightnessInput = getId("animation-lightness-input");
+const animationLabel = getId("animation-error");
 export default function addAnimationInputListeners() {
     fadeInput.addEventListener("change", animationChangeListener);
     rampInput.addEventListener("change", animationChangeListener);
