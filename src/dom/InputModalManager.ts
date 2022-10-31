@@ -4,7 +4,8 @@ import {getId} from "../util.js";
 
 const inputModal = getId<HTMLDivElement>("input-modal");
 const inputLabel = getId<HTMLSpanElement>("input-label-type");
-const inputInput = getId<HTMLInputElement>("input=input");
+const inputInput = getId<HTMLInputElement>("input-input");
+const inputError = getId<HTMLInputElement>("input-error");
 
 
 
@@ -38,17 +39,17 @@ export default class InputModalManager {
 			const parsed = parseFloat(value);
 
 			if(isNaN(parsed)) {
-				// error here
+				inputError.innerText = "Error: Not a number!";
 				return;
 			}
 
 			if(parsed < parseFloat(this.dataset.min!)) {
-				// error here
+				inputError.innerText = `Error: Value less than ${this.dataset.min!}!`;
 				return;
 			}
 
 			if(parsed > parseFloat(this.dataset.max!)) {
-				// error here
+				inputError.innerText = `Error: Value less than ${this.dataset.max!}!`;
 				return;
 			}
 		}

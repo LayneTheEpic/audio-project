@@ -1,7 +1,8 @@
 import { getId } from "../util.js";
 const inputModal = getId("input-modal");
 const inputLabel = getId("input-label-type");
-const inputInput = getId("input=input");
+const inputInput = getId("input-input");
+const inputError = getId("input-error");
 export default class InputModalManager {
     static resolve;
     static dataset;
@@ -23,15 +24,15 @@ export default class InputModalManager {
         if (this.dataset.type === "number") {
             const parsed = parseFloat(value);
             if (isNaN(parsed)) {
-                // error here
+                inputError.innerText = "Error: Not a number!";
                 return;
             }
             if (parsed < parseFloat(this.dataset.min)) {
-                // error here
+                inputError.innerText = `Error: Value less than ${this.dataset.min}!`;
                 return;
             }
             if (parsed > parseFloat(this.dataset.max)) {
-                // error here
+                inputError.innerText = `Error: Value less than ${this.dataset.max}!`;
                 return;
             }
         }

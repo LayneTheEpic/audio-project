@@ -5,7 +5,21 @@
 
 
 
-#input-container {
+#input-error {
+	/* don't ask me why, I just have to put this here to override the dimmer */
+	position: relative;
+
+	font-size: 1.5rem;
+	text-align: center;
+
+	margin: 1rem 0 0 0;
+
+	color: hsl(0, 75%, 55%);
+}
+
+
+
+#input-container > div {
 	position: relative;
 	display: inline-block;
 }
@@ -28,6 +42,11 @@
 
 
 
+#input-percent-container {
+	/* font size of error + margin-top of error + height of underline */
+	padding-bottom: calc(1.5rem + 1rem + 0.2rem);
+}
+
 #input-percent {
 	font-size: 4rem;
 
@@ -41,6 +60,9 @@
 #input-input {
 	position: relative;
 
+	left: 50%;
+	transform: translateX(-50%);
+
 	background-color: transparent;
 	border: none;
 	border-radius: 0;
@@ -50,13 +72,15 @@
 
 	padding: 0;
 
-	width: 15rem;
+	/* functions as a min-width */
+	width: 20rem;
 }
 
 
 
 /* Remove spinner */
-#input-input::-webkit-inner-spin-button, #input-input::-webkit-outer-spin-button {
+#input-input::-webkit-inner-spin-button,
+#input-input::-webkit-outer-spin-button {
 	display: none;
 }
 
