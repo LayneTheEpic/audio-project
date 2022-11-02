@@ -7,7 +7,8 @@ export async function generateAudioBuffer(file) {
     const rawBuffer = await file.arrayBuffer();
     const tempContext = new AudioContext();
     RenderProgressManager.show();
+    RenderProgressManager.statusDecode();
     const audioBuffer = await tempContext.decodeAudioData(rawBuffer);
-    RenderProgressManager.awaitRender();
+    RenderProgressManager.statusRender();
     return audioBuffer;
 }

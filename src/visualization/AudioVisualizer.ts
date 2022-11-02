@@ -1,10 +1,10 @@
 import AudioPlayer from "../AudioPlayer.js";
 import BackgroundAnimator from "./BackgroundAnimator.js";
+import FrameInterpreter from "./FrameInterpreter.js";
 import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
 
 import type {BeatData} from "../types.js";
-import FrameInterpreter from "./FrameInterpreter.js";
 
 
 

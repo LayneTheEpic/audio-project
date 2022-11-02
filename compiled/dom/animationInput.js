@@ -1,5 +1,5 @@
-import { getId } from "../util.js";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
+import { getId } from "../util.js";
 const fadeInput = getId("animation-fade-input");
 const rampInput = getId("animation-ramp-input");
 const sustainInput = getId("animation-sustain-input");

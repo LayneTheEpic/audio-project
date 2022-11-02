@@ -29,15 +29,15 @@ body {
 
 
 
-input[type="text"], input[type="number"] {
-	outline: none;
-
+input {
 	background-color: var(--accent-4);
+	font-size: 1rem;
+	outline: none;
+}
 
+input[type="text"], input[type="number"] {
 	border-radius: 0.5rem;
 	padding: 0.5rem;
-
-	font-size: 1rem;
 }
 
 

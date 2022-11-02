@@ -38,9 +38,6 @@ export default class FrameInterpreter {
 	}
 
 	static interpret(frame: number): AnimatedBackground {
-		console.log(frame);
-
-
 		let rampFrame = this.framesPerBeat - frame;
 
 

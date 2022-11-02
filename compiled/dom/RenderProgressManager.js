@@ -5,10 +5,12 @@ const renderLabel = getId("render-label");
 export default class RenderProgressManager {
     static show() {
         renderModal.classList.remove("hide");
-        renderLabel.innerText = "Decoding...";
         renderProgress.style.width = "0";
     }
-    static awaitRender() {
+    static statusDecode() {
+        renderLabel.innerText = "Decoding...";
+    }
+    static statusRender() {
         renderLabel.innerText = "Rendering...";
     }
     static update(value) {

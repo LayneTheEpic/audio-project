@@ -43,7 +43,7 @@ export async function calculateBeatData(fileName: string, audioBuffer: AudioBuff
 
 
 	LocalStorer.cacheFileData({
-		...beatData,
+		beatData,
 		fileName,
 		version: beatDetectionVersion
 	});

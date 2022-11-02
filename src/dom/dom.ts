@@ -71,6 +71,7 @@ function addFullscreenInputListeners() {
 
 		span.addEventListener("click", async () => {
 			const value = await InputModalManager.prompt(input.dataset);
+			console.log(value);
 		});
 	}
 }

@@ -26,7 +26,7 @@ export async function calculateBeatData(fileName, audioBuffer) {
     const mostCommonInterval = getMostCommonInterval(processedBuffer);
     const beatData = processBeatData(mostCommonInterval, audioBuffer.sampleRate, 40, 180, true);
     LocalStorer.cacheFileData({
-        ...beatData,
+        beatData,
         fileName,
         version: beatDetectionVersion
     });

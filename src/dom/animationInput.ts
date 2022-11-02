@@ -1,7 +1,5 @@
-import {getId} from "../util.js";
-
-import type {BackgroundAnimation} from "../types";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
+import {getId} from "../util.js";
 
 
 

@@ -35,10 +35,11 @@ export type BeatData = {
 
 
 
-export type FileData = BeatData & {
+export type FileData = {
+	beatData: BeatData;
 	fileName: string;
 	version: string;
-};
+}
 
 
 

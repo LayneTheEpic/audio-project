@@ -22,7 +22,6 @@ export default class FrameInterpreter {
         this.calculateFrameTimes(this.queuedBgAnimation ?? defaultBgAnimation);
     }
     static interpret(frame) {
-        console.log(frame);
         let rampFrame = this.framesPerBeat - frame;
         // Color ramping
         if (rampFrame === this.rampFrames) {

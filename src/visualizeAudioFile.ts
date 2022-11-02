@@ -3,7 +3,6 @@ import AudioVisualizer from "./visualization/AudioVisualizer.js";
 import {checkForCachedData, calculateBeatData} from "./beatData.js";
 import {createAudioContext} from "./createAudioContexts.js";
 import {createAudioElement, generateAudioBuffer} from "./processAudioFile.js";
-import {omit} from "./util.js";
 
 import type {BeatData} from "./types.js";
 
@@ -16,11 +15,9 @@ export async function visualizeAudioFile(file: File, ctx: CanvasRenderingContext
 	AudioPlayer.setAudio(audioElement);
 
 
-	let beatData;
+	let beatData = cachedData?.beatData;
 
-	if(cachedData) {
-		beatData = omit(cachedData, ["fileName", "version"]) as BeatData;
-	} else {
+	if(!beatData) {
 		const buffer = await generateAudioBuffer(file); // render manager needs to include this
 		beatData = await calculateBeatData(file.name, buffer);
 	}

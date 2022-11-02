@@ -3,28 +3,35 @@ import {getId} from "../util.js";
 
 
 const inputModal = getId<HTMLDivElement>("input-modal");
-const inputLabel = getId<HTMLSpanElement>("input-label-type");
+const inputLabel = getId<HTMLParagraphElement>("input-label-type");
 const inputInput = getId<HTMLInputElement>("input-input");
-const inputError = getId<HTMLInputElement>("input-error");
+const inputError = getId<HTMLParagraphElement>("input-error");
 
 
 
 export default class InputModalManager {
 	static resolve: (value: any) => void;
+	static hasListener: boolean = false;
 
-	// make this a map instead of single property
 	static dataset: DOMStringMap;
 
 	static async prompt(dataset: DOMStringMap) {
 		inputModal.classList.remove("hide");
 		inputLabel.innerText = dataset.label!;
 
+		inputInput.focus();
+
+
 		this.dataset = dataset;
+
+		if(!this.hasListener) {
+			inputInput.addEventListener("change", this.handleChange.bind(this));
+			this.hasListener = true;
+		}
+
 
 		return new Promise(resolve => {
 			this.resolve = resolve;
-
-			inputInput.addEventListener("change", this.handleChange.bind(this), {once: true});
 		});
 	}
 
@@ -32,7 +39,9 @@ export default class InputModalManager {
 		const value = inputInput.value;
 
 		if(this.dataset.type! === "string") {
-			this.resolve(value);
+			inputModal.classList.add("hide");
+			inputError.innerHTML = "&nbsp;";
+			this.resolve?.(value);
 			return;
 		}
 
@@ -40,19 +49,25 @@ export default class InputModalManager {
 			const parsed = parseFloat(value);
 
 			if(isNaN(parsed)) {
-				inputError.innerText = "Error: Not a number!";
+				inputError.innerText = "Error: Value isn't a number!";
 				return;
 			}
 
 			if(parsed < parseFloat(this.dataset.min!)) {
-				inputError.innerText = `Error: Value less than ${this.dataset.min!}!`;
+				inputError.innerText = `Error: Value is smaller than ${this.dataset.min!}!`;
 				return;
 			}
 
 			if(parsed > parseFloat(this.dataset.max!)) {
-				inputError.innerText = `Error: Value greater than ${this.dataset.max!}!`;
+				inputError.innerText = `Error: Value is greater than ${this.dataset.max!}!`;
 				return;
 			}
+
+
+			inputModal.classList.add("hide")
+			inputError.innerHTML = "&nbsp;";
+
+			this.resolve?.(parsed);
 		}
 	}
 }
