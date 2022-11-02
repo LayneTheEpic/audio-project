@@ -12,6 +12,7 @@ const inputError = getId<HTMLInputElement>("input-error");
 export default class InputModalManager {
 	static resolve: (value: any) => void;
 
+	// make this a map instead of single property
 	static dataset: DOMStringMap;
 
 	static async prompt(dataset: DOMStringMap) {
@@ -49,7 +50,7 @@ export default class InputModalManager {
 			}
 
 			if(parsed > parseFloat(this.dataset.max!)) {
-				inputError.innerText = `Error: Value less than ${this.dataset.max!}!`;
+				inputError.innerText = `Error: Value greater than ${this.dataset.max!}!`;
 				return;
 			}
 		}

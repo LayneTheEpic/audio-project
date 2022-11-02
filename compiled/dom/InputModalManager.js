@@ -5,6 +5,7 @@ const inputInput = getId("input-input");
 const inputError = getId("input-error");
 export default class InputModalManager {
     static resolve;
+    // make this a map instead of single property
     static dataset;
     static async prompt(dataset) {
         inputModal.classList.remove("hide");
@@ -32,7 +33,7 @@ export default class InputModalManager {
                 return;
             }
             if (parsed > parseFloat(this.dataset.max)) {
-                inputError.innerText = `Error: Value less than ${this.dataset.max}!`;
+                inputError.innerText = `Error: Value greater than ${this.dataset.max}!`;
                 return;
             }
         }
