@@ -4,6 +4,10 @@ import type {AnimatedBackground, BackgroundAnimation, BeatData} from "../types.j
 
 
 
+type PBackgroundAnimation = Partial<BackgroundAnimation>;
+
+
+
 const defaultBgAnimation = {
 	fadeOut: 0.35,
 	rampUp: 0.05,
@@ -29,7 +33,7 @@ export default class FrameInterpreter {
 	private static lightness: number = 0;
 	private static hue: number = 0;
 
-	private static queuedBgAnimation: BackgroundAnimation | null = null;
+	private static queuedBgAnimation: BackgroundAnimation = defaultBgAnimation;
 
 	static init(beatData: BeatData) {
 		this.framesPerBeat = Math.round(60 * beatData.beatDistance);

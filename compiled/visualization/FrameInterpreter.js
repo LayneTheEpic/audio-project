@@ -16,7 +16,7 @@ export default class FrameInterpreter {
     static fadeLightness;
     static lightness = 0;
     static hue = 0;
-    static queuedBgAnimation = null;
+    static queuedBgAnimation = defaultBgAnimation;
     static init(beatData) {
         this.framesPerBeat = Math.round(60 * beatData.beatDistance);
         this.calculateFrameTimes(this.queuedBgAnimation ?? defaultBgAnimation);

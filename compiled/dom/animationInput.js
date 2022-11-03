@@ -1,4 +1,3 @@
-import FrameInterpreter from "../visualization/FrameInterpreter.js";
 import { getId } from "../util.js";
 const fadeInput = getId("animation-fade-input");
 const rampInput = getId("animation-ramp-input");
@@ -33,10 +32,10 @@ function animationChangeListener() {
         return;
     }
     animationLabel.innerHTML = "&nbsp;";
-    FrameInterpreter.calculateFrameTimes({
-        fadeOut: fadeValue / 100,
-        rampUp: rampValue / 100,
-        sustain: sustainValue / 100,
-        maxLightness: lightnessValue
-    });
+    // FrameInterpreter.calculateFrameTimes({
+    // 	fadeOut: fadeValue / 100,
+    // 	rampUp: rampValue / 100,
+    // 	sustain: sustainValue / 100,
+    // 	maxLightness: lightnessValue
+    // });
 }

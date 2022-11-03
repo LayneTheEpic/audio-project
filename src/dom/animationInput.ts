@@ -51,10 +51,10 @@ function animationChangeListener() {
 
 
 	animationLabel.innerHTML = "&nbsp;";
-	FrameInterpreter.calculateFrameTimes({
-		fadeOut: fadeValue / 100,
-		rampUp: rampValue / 100,
-		sustain: sustainValue / 100,
-		maxLightness: lightnessValue
-	});
+	// FrameInterpreter.calculateFrameTimes({
+	// 	fadeOut: fadeValue / 100,
+	// 	rampUp: rampValue / 100,
+	// 	sustain: sustainValue / 100,
+	// 	maxLightness: lightnessValue
+	// });
 }
