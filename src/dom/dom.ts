@@ -4,6 +4,7 @@ import {getClass, getId} from "../util.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
 import InputModalManager from "./InputModalManager.js";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
+import {BackgroundAnimation} from "../types.js";
 
 
 
@@ -78,6 +79,16 @@ function addFullscreenInputListeners() {
 
 			FrameInterpreter.calculateFrameTimes(animation);
 		});
+	}
+}
+
+
+
+class BgAnimationState {
+	static internalState: BackgroundAnimation;
+
+	static construct(valueType: string, value: number) {
+
 	}
 }
 

@@ -44,3 +44,8 @@ function addFullscreenInputListeners() {
         });
     }
 }
+class BgAnimationState {
+    static internalState;
+    static construct(valueType, value) {
+    }
+}
