@@ -9,17 +9,22 @@ const inputError = getId<HTMLParagraphElement>("input-error");
 
 
 
+type InputType<T> = T extends "string" ? string : number;
+
+
+
 export default class InputModalManager {
 	static resolve: (value: any) => void;
 	static hasListener: boolean = false;
 
 	static dataset: DOMStringMap;
 
+	// this needs to become a strictly typed object
 	static async prompt(dataset: DOMStringMap) {
 		inputModal.classList.remove("hide");
 		inputLabel.innerText = dataset.label!;
-
-		inputInput.focus();
+		inputError.innerHTML = "&nbsp;";
+		inputInput.value = "";
 
 
 		this.dataset = dataset;
@@ -29,8 +34,11 @@ export default class InputModalManager {
 			this.hasListener = true;
 		}
 
+		const dataType = dataset.type;
 
-		return new Promise(resolve => {
+
+		// i have no idea how to do this
+		return new Promise<InputType<dataType>>(resolve => {
 			this.resolve = resolve;
 		});
 	}
@@ -41,11 +49,12 @@ export default class InputModalManager {
 		if(this.dataset.type! === "string") {
 			inputModal.classList.add("hide");
 			inputError.innerHTML = "&nbsp;";
-			this.resolve?.(value);
+			this.resolve(value);
 			return;
 		}
 
 		if(this.dataset.type! === "number") {
+			// what am i even writing anymore
 			const parsed = parseFloat(value);
 
 			if(isNaN(parsed)) {
@@ -65,9 +74,8 @@ export default class InputModalManager {
 
 
 			inputModal.classList.add("hide")
-			inputError.innerHTML = "&nbsp;";
 
-			this.resolve?.(parsed);
+			this.resolve(parsed);
 		}
 	}
 }

@@ -3,6 +3,7 @@ import addFrequencyInputListener from "./frequencyInput.js";
 import {getClass, getId} from "../util.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
 import InputModalManager from "./InputModalManager.js";
+import FrameInterpreter from "../visualization/FrameInterpreter.js";
 
 
 
@@ -67,11 +68,15 @@ const fullScreenInputs = getClass<HTMLDivElement>("fullscreen-input");
 
 function addFullscreenInputListeners() {
 	for(const input of fullScreenInputs) {
-		const span = input.children[0]!.children[0]!;
+		const span = input.children[0]!.children[0]! as HTMLSpanElement;
 
 		span.addEventListener("click", async () => {
 			const value = await InputModalManager.prompt(input.dataset);
-			console.log(value);
+			span.innerText = `${value}${input.dataset.unit || ""}`;
+
+			const animation = BgAnimationState.construct(input.dataset.for!, value);
+
+			FrameInterpreter.calculateFrameTimes(animation);
 		});
 	}
 }

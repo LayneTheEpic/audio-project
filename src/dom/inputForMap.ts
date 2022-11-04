@@ -2,7 +2,7 @@ import FrameInterpreter from "../visualization/FrameInterpreter.js";
 
 
 
-export const inputForMap = {
+const inputForMap = {
 	ramp: (value: number) => {
 		// FrameInterpreter.updateRamp(value / 100);
 
@@ -12,4 +12,8 @@ export const inputForMap = {
 
 		// maybe a util class for queued frame interpret values...?
 	}
-};
+} as const;
+
+
+
+export default inputForMap;

@@ -7,15 +7,19 @@ export default class InputModalManager {
     static resolve;
     static hasListener = false;
     static dataset;
+    // this needs to become a strictly typed object
     static async prompt(dataset) {
         inputModal.classList.remove("hide");
         inputLabel.innerText = dataset.label;
-        inputInput.focus();
+        inputError.innerHTML = "&nbsp;";
+        inputInput.value = "";
         this.dataset = dataset;
         if (!this.hasListener) {
             inputInput.addEventListener("change", this.handleChange.bind(this));
             this.hasListener = true;
         }
+        const dataType = dataset.type;
+        // i have no idea how to do this
         return new Promise(resolve => {
             this.resolve = resolve;
         });
@@ -25,10 +29,11 @@ export default class InputModalManager {
         if (this.dataset.type === "string") {
             inputModal.classList.add("hide");
             inputError.innerHTML = "&nbsp;";
-            this.resolve?.(value);
+            this.resolve(value);
             return;
         }
         if (this.dataset.type === "number") {
+            // what am i even writing anymore
             const parsed = parseFloat(value);
             if (isNaN(parsed)) {
                 inputError.innerText = "Error: Value isn't a number!";
@@ -43,8 +48,7 @@ export default class InputModalManager {
                 return;
             }
             inputModal.classList.add("hide");
-            inputError.innerHTML = "&nbsp;";
-            this.resolve?.(parsed);
+            this.resolve(parsed);
         }
     }
 }
