@@ -9,26 +9,26 @@ function frequencyChangeListener() {
     const value = parseFloat(frequencyInput.value);
     frequenciesLabel.classList.remove("error");
     if (isNaN(value)) {
-        frequenciesLabel.innerText = "(Error: Not valid!)";
+        frequenciesLabel.textContent = "(Error: Not valid!)";
         frequenciesLabel.classList.add("error");
         return;
     }
     if (Math.floor(value) !== value) {
-        frequenciesLabel.innerText = "(Error: Not an integer!)";
+        frequenciesLabel.textContent = "(Error: Not an integer!)";
         frequenciesLabel.classList.add("error");
         return;
     }
     const computedFrequencies = 2 ** value;
     if (computedFrequencies > 16384) {
-        frequenciesLabel.innerText = "(Error: >14!)";
+        frequenciesLabel.textContent = "(Error: >14!)";
         frequenciesLabel.classList.add("error");
         return;
     }
     if (computedFrequencies < 16) {
-        frequenciesLabel.innerText = "(Error: <4!)";
+        frequenciesLabel.textContent = "(Error: <4!)";
         frequenciesLabel.classList.add("error");
         return;
     }
-    frequenciesLabel.innerText = `(${computedFrequencies})`;
+    frequenciesLabel.textContent = `(${computedFrequencies})`;
     WaveformAnimator.setFrequencyCount(computedFrequencies);
 }

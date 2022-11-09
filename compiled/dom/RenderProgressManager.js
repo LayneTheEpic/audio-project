@@ -8,10 +8,10 @@ export default class RenderProgressManager {
         renderProgress.style.width = "0";
     }
     static statusDecode() {
-        renderLabel.innerText = "Decoding...";
+        renderLabel.textContent = "Decoding...";
     }
     static statusRender() {
-        renderLabel.innerText = "Rendering...";
+        renderLabel.textContent = "Rendering...";
     }
     static update(value) {
         const width = `${value * 100}%`;

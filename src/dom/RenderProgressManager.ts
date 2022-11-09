@@ -15,11 +15,11 @@ export default class RenderProgressManager {
 	}
 
 	static statusDecode() {
-		renderLabel.innerText = "Decoding...";
+		renderLabel.textContent = "Decoding...";
 	}
 
 	static statusRender() {
-		renderLabel.innerText = "Rendering...";
+		renderLabel.textContent = "Rendering...";
 	}
 
 	static update(value: number) {

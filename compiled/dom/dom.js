@@ -1,8 +1,9 @@
 import addFrequencyInputListener from "./frequencyInput.js";
-import { getClass, getId } from "../util.js";
-import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
-import InputModalManager from "./InputModalManager.js";
+import BackgroundAnimationState from "../visualization/BackgroundAnimationState.js";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
+import { getClass, getId } from "../util.js";
+import InputModalManager from "./InputModalManager.js";
+import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
 const canvas = getId("canvas");
 const ctx = canvas.getContext("2d");
 const sidebar = getId("sidebar");
@@ -28,24 +29,19 @@ export default function initDOM() {
         sidebar.classList.remove("show");
         visualizeAudioFile(file, ctx);
     });
-    // addAnimationInputListeners();
     addFrequencyInputListener();
     addFullscreenInputListeners();
 }
 const fullScreenInputs = getClass("fullscreen-input");
 function addFullscreenInputListeners() {
     for (const input of fullScreenInputs) {
+        const dataset = input.dataset;
         const span = input.children[0].children[0];
         span.addEventListener("click", async () => {
-            const value = await InputModalManager.prompt(input.dataset);
-            span.innerText = `${value}${input.dataset.unit || ""}`;
-            const animation = BgAnimationState.construct(input.dataset.for, value);
+            const value = await InputModalManager.prompt(dataset);
+            span.textContent = `${value}${dataset.unit || ""}`;
+            const animation = BackgroundAnimationState.construct(dataset.for, value);
             FrameInterpreter.calculateFrameTimes(animation);
         });
-    }
-}
-class BgAnimationState {
-    static internalState;
-    static construct(valueType, value) {
     }
 }

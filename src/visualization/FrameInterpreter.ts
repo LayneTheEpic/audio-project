@@ -1,20 +1,7 @@
+import {defaultBgAnimation} from "../types/consts.js";
 import {randomBetween} from "../util.js";
 
-import type {AnimatedBackground, BackgroundAnimation, BeatData} from "../types.js";
-
-
-
-type PBackgroundAnimation = Partial<BackgroundAnimation>;
-
-
-
-const defaultBgAnimation = {
-	fadeOut: 0.35,
-	rampUp: 0.05,
-	sustain: 0.1,
-
-	maxLightness: 20
-};
+import type {AnimatedBackground, BackgroundAnimation, BeatData} from "../types/types.js";
 
 
 
@@ -90,6 +77,11 @@ export default class FrameInterpreter {
 	}
 
 	static calculateFrameTimes(backgroundAnimation: BackgroundAnimation) {
+		if(!this.framesPerBeat) {
+			this.queuedBgAnimation = backgroundAnimation;
+			return;
+		}
+
 		this.rampFrames = Math.round(backgroundAnimation.rampUp * this.framesPerBeat);
 
 		this.sustainFrames = Math.round(backgroundAnimation.sustain * this.framesPerBeat);

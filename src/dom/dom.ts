@@ -1,10 +1,11 @@
-import addAnimationInputListeners from "./animationInput.js";
 import addFrequencyInputListener from "./frequencyInput.js";
-import {getClass, getId} from "../util.js";
-import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
-import InputModalManager from "./InputModalManager.js";
+import BackgroundAnimationState from "../visualization/BackgroundAnimationState.js";
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
-import {BackgroundAnimation} from "../types.js";
+import {getClass, getId} from "../util.js";
+import InputModalManager from "./InputModalManager.js";
+import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
+
+import type {AnimationProperty, InputDataset} from "../types/types.js";
 
 
 
@@ -56,8 +57,6 @@ export default function initDOM() {
 	});
 
 
-
-	// addAnimationInputListeners();
 	addFrequencyInputListener();
 	addFullscreenInputListeners();
 }
@@ -67,28 +66,19 @@ export default function initDOM() {
 const fullScreenInputs = getClass<HTMLDivElement>("fullscreen-input");
 
 
+
 function addFullscreenInputListeners() {
 	for(const input of fullScreenInputs) {
+		const dataset = input.dataset as InputDataset;
 		const span = input.children[0]!.children[0]! as HTMLSpanElement;
 
 		span.addEventListener("click", async () => {
-			const value = await InputModalManager.prompt(input.dataset);
-			span.innerText = `${value}${input.dataset.unit || ""}`;
+			const value = await InputModalManager.prompt(dataset);
+			span.textContent = `${value}${dataset.unit || ""}`;
 
-			const animation = BgAnimationState.construct(input.dataset.for!, value);
+			const animation = BackgroundAnimationState.construct(<AnimationProperty>dataset.for, <number>value);
 
 			FrameInterpreter.calculateFrameTimes(animation);
 		});
 	}
 }
-
-
-
-class BgAnimationState {
-	static internalState: BackgroundAnimation;
-
-	static construct(valueType: string, value: number) {
-
-	}
-}
-

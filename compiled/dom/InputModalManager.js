@@ -10,7 +10,7 @@ export default class InputModalManager {
     // this needs to become a strictly typed object
     static async prompt(dataset) {
         inputModal.classList.remove("hide");
-        inputLabel.innerText = dataset.label;
+        inputLabel.textContent = dataset.label;
         inputError.innerHTML = "&nbsp;";
         inputInput.value = "";
         this.dataset = dataset;
@@ -19,7 +19,6 @@ export default class InputModalManager {
             this.hasListener = true;
         }
         const dataType = dataset.type;
-        // i have no idea how to do this
         return new Promise(resolve => {
             this.resolve = resolve;
         });
@@ -36,15 +35,15 @@ export default class InputModalManager {
             // what am i even writing anymore
             const parsed = parseFloat(value);
             if (isNaN(parsed)) {
-                inputError.innerText = "Error: Value isn't a number!";
+                inputError.textContent = "Error: Value isn't a number!";
                 return;
             }
             if (parsed < parseFloat(this.dataset.min)) {
-                inputError.innerText = `Error: Value is smaller than ${this.dataset.min}!`;
+                inputError.textContent = `Error: Value is smaller than ${this.dataset.min}!`;
                 return;
             }
             if (parsed > parseFloat(this.dataset.max)) {
-                inputError.innerText = `Error: Value is greater than ${this.dataset.max}!`;
+                inputError.textContent = `Error: Value is greater than ${this.dataset.max}!`;
                 return;
             }
             inputModal.classList.add("hide");

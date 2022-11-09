@@ -1,10 +1,5 @@
+import { defaultBgAnimation } from "../types/consts.js";
 import { randomBetween } from "../util.js";
-const defaultBgAnimation = {
-    fadeOut: 0.35,
-    rampUp: 0.05,
-    sustain: 0.1,
-    maxLightness: 20
-};
 export default class FrameInterpreter {
     static framesPerBeat;
     static rampFrames;
@@ -53,6 +48,10 @@ export default class FrameInterpreter {
         };
     }
     static calculateFrameTimes(backgroundAnimation) {
+        if (!this.framesPerBeat) {
+            this.queuedBgAnimation = backgroundAnimation;
+            return;
+        }
         this.rampFrames = Math.round(backgroundAnimation.rampUp * this.framesPerBeat);
         this.sustainFrames = Math.round(backgroundAnimation.sustain * this.framesPerBeat);
         this.fadeFrames = Math.round(backgroundAnimation.fadeOut * this.framesPerBeat);

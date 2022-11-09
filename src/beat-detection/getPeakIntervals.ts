@@ -1,7 +1,7 @@
 import {averageArray, isPlusOrMinus, toPlaces} from "../util.js";
 import {getMaximumValue, getPeaksAboveThreshold} from "./analyzeChannelData.js";
 
-import type {AveragingBucket} from "../types.js";
+import type {AveragingBucket} from "../types/types.js";
 
 
 

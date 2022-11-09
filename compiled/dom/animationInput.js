@@ -16,19 +16,19 @@ function animationChangeListener() {
     const sustainValue = parseFloat(sustainInput.value);
     const lightnessValue = parseFloat(lightnessInput.value);
     if (isNaN(fadeValue) || isNaN(rampValue) || isNaN(sustainValue) || isNaN(lightnessValue)) {
-        animationLabel.innerText = "(Error: Not valid!)";
+        animationLabel.textContent = "(Error: Not valid!)";
         return;
     }
     if (fadeValue > 100 || rampValue > 100 || sustainValue > 100 || lightnessValue > 100) {
-        animationLabel.innerText = "(Error: >100!)";
+        animationLabel.textContent = "(Error: >100!)";
         return;
     }
     if (fadeValue < 0 || rampValue < 0 || sustainValue < 0 || lightnessValue < 0) {
-        animationLabel.innerText = "(Error: <0!)";
+        animationLabel.textContent = "(Error: <0!)";
         return;
     }
     if (fadeValue + rampValue + sustainValue > 100) {
-        animationLabel.innerText = "(Error: Frame times >100%!)";
+        animationLabel.textContent = "(Error: Frame times >100%!)";
         return;
     }
     animationLabel.innerHTML = "&nbsp;";

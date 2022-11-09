@@ -1,5 +1,7 @@
 import {getId} from "../util.js";
 
+import type {InputDataset} from "../types/types.js";
+
 
 
 const inputModal = getId<HTMLDivElement>("input-modal");
@@ -9,20 +11,20 @@ const inputError = getId<HTMLParagraphElement>("input-error");
 
 
 
-type InputType<T> = T extends "string" ? string : number;
+type MapType<T> = T extends "number" ? number : T extends "string" ? string : never;
 
 
 
 export default class InputModalManager {
-	static resolve: (value: any) => void;
+	static resolve: (value: string | number) => void;
 	static hasListener: boolean = false;
 
-	static dataset: DOMStringMap;
+	static dataset: InputDataset;
 
 	// this needs to become a strictly typed object
-	static async prompt(dataset: DOMStringMap) {
+	static async prompt(dataset: InputDataset) {
 		inputModal.classList.remove("hide");
-		inputLabel.innerText = dataset.label!;
+		inputLabel.textContent = dataset.label!;
 		inputError.innerHTML = "&nbsp;";
 		inputInput.value = "";
 
@@ -37,10 +39,10 @@ export default class InputModalManager {
 		const dataType = dataset.type;
 
 
-		// i have no idea how to do this
-		return new Promise<InputType<dataType>>(resolve => {
+		return new Promise<MapType<typeof dataType>>(resolve => {
 			this.resolve = resolve;
 		});
+
 	}
 
 	static handleChange() {
@@ -53,22 +55,22 @@ export default class InputModalManager {
 			return;
 		}
 
-		if(this.dataset.type! === "number") {
+		if(this.dataset.type === "number") {
 			// what am i even writing anymore
 			const parsed = parseFloat(value);
 
 			if(isNaN(parsed)) {
-				inputError.innerText = "Error: Value isn't a number!";
+				inputError.textContent = "Error: Value isn't a number!";
 				return;
 			}
 
-			if(parsed < parseFloat(this.dataset.min!)) {
-				inputError.innerText = `Error: Value is smaller than ${this.dataset.min!}!`;
+			if(parsed < parseFloat(this.dataset.min)) {
+				inputError.textContent = `Error: Value is smaller than ${this.dataset.min!}!`;
 				return;
 			}
 
-			if(parsed > parseFloat(this.dataset.max!)) {
-				inputError.innerText = `Error: Value is greater than ${this.dataset.max!}!`;
+			if(parsed > parseFloat(this.dataset.max)) {
+				inputError.textContent = `Error: Value is greater than ${this.dataset.max!}!`;
 				return;
 			}
 

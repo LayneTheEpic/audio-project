@@ -5,7 +5,7 @@ export type AnimatedBackground = {
 
 
 
-export type AudioBufferResolver = (buffer: Promise<AudioBuffer>) => void;
+export type AnimationProperty = "ramp" | "sustain" | "fade" | "lightness";
 
 
 
@@ -43,4 +43,30 @@ export type FileData = {
 
 
 
-export type RenderCallback = (progress: number) => any;
+export type InputDataset = {
+	label: string;
+	type: "string";
+	for: string;
+	unit: string;
+} | {
+	label: string;
+	type: "number";
+	for: string;
+	unit: string;
+	min: string;
+	max: string;
+};
+
+/* compacted but unreadable garbage
+export type InputDataset = ({
+	type: "string";
+} | {
+	type: "number";
+	min: string;
+	max: string;
+}) & {
+	label: string;
+	for: string;
+	unit: string;
+};
+*/

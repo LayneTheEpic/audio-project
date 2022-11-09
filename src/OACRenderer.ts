@@ -1,6 +1,10 @@
 import {isPlusOrMinus} from "./util.js";
 
-import type {AudioBufferResolver, RenderCallback} from "./types.js";
+
+
+type AudioBufferResolver = (buffer: Promise<AudioBuffer>) => any;
+
+type RenderCallback = (progress: number) => any;
 
 
 
