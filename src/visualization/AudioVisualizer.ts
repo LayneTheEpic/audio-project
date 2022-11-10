@@ -4,7 +4,7 @@ import FrameInterpreter from "./FrameInterpreter.js";
 import TimeInterpreter from "./TimeInterpreter.js";
 import WaveformAnimator from "./WaveformAnimator.js";
 
-import type {BeatData} from "../types/types.js";
+import type {BeatData} from "../types.js";
 
 
 

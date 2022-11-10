@@ -1,6 +1,6 @@
 import {getId} from "../util.js";
 
-import type {InputDataset} from "../types/types.js";
+import type {InputDataset} from "../types.js";
 
 
 

@@ -4,7 +4,7 @@ import {checkForCachedData, calculateBeatData} from "./beatData.js";
 import {createAudioContext} from "./createAudioContexts.js";
 import {createAudioElement, generateAudioBuffer} from "./processAudioFile.js";
 
-import type {BeatData} from "./types/types.js";
+import type {BeatData} from "./types.js";
 
 
 

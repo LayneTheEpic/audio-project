@@ -1,11 +1,6 @@
-import addFrequencyInputListener from "./frequencyInput.js";
-import BackgroundAnimationState from "../visualization/BackgroundAnimationState.js";
-import FrameInterpreter from "../visualization/FrameInterpreter.js";
-import {getClass, getId} from "../util.js";
-import InputModalManager from "./InputModalManager.js";
+import addFullscreenInputListeners from "./fullscreenInputListeners.js";
+import {getId} from "../util.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
-
-import type {AnimationProperty, InputDataset} from "../types/types.js";
 
 
 
@@ -56,29 +51,5 @@ export default function initDOM() {
 		visualizeAudioFile(file, ctx);
 	});
 
-
-	addFrequencyInputListener();
 	addFullscreenInputListeners();
-}
-
-
-
-const fullScreenInputs = getClass<HTMLDivElement>("fullscreen-input");
-
-
-
-function addFullscreenInputListeners() {
-	for(const input of fullScreenInputs) {
-		const dataset = input.dataset as InputDataset;
-		const span = input.children[0]!.children[0]! as HTMLSpanElement;
-
-		span.addEventListener("click", async () => {
-			const value = await InputModalManager.prompt(dataset);
-			span.textContent = `${value}${dataset.unit || ""}`;
-
-			const animation = BackgroundAnimationState.construct(<AnimationProperty>dataset.for, <number>value);
-
-			FrameInterpreter.calculateFrameTimes(animation);
-		});
-	}
 }

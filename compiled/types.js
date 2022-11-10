@@ -9,6 +9,6 @@ export type InputDataset = ({
 }) & {
     label: string;
     for: string;
-    unit: string;
+    unit?: string;
 };
 */

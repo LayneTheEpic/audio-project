@@ -1,7 +1,14 @@
-import {defaultBgAnimation} from "../types/consts.js";
+import type {AnimationProperty, BackgroundAnimation} from "../types.js";
 
-import type {AnimationProperty, BackgroundAnimation} from "../types/types.js";
 
+
+const defaultBgAnimation = {
+	fadeOut: 0.35,
+	rampUp: 0.05,
+	sustain: 0.1,
+
+	maxLightness: 20
+};
 
 
 
@@ -26,6 +33,10 @@ export default class BackgroundAnimationState {
 			this.internalState.maxLightness = value;
 		}
 
+		return this.internalState;
+	}
+
+	static get() {
 		return this.internalState;
 	}
 }

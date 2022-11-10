@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="styles/sidebar/label.css">
 		<link rel="stylesheet" href="styles/sidebar/labels.css">
 		<link rel="stylesheet" href="styles/sidebar/uploadButton.css">
+		<link rel="stylesheet" href="styles/sidebar/frequencyInput.css">
 
 		<link rel="stylesheet" href="styles/modals/modals.css">
 		<link rel="stylesheet" href="styles/modals/cacheModal.css">
@@ -26,7 +27,7 @@
 	</head>
 	<body>
 		<div id="modals">
-			<div id="cache-modal" class="hide">
+			<div id="cache-modal" class="hide" aria-modal="true">
 				<p id="cache-header">File data cached</p>
 				<p id="cache-text">It looks like this file has been processed before.<br/>Do you want to use the cached data?</p>
 
@@ -36,14 +37,14 @@
 				</div>
 			</div>
 
-			<div id="render-modal" class="hide">
+			<div id="render-modal" class="hide" aria-modal="true">
 				<p id="render-label">Rendering...</p>
 				<div id="render-bar-container">
 					<div id="render-bar-progress"></div>
 				</div>
 			</div>
 
-			<div id="input-modal" class="hide">
+			<div id="input-modal" class="hide" aria-modal="true">
 				<div id="input-dimmer"></div>
 				<div id="input-grid">
 					<p id="input-label">Enter <span id="input-label-type"></span>...</p>
@@ -65,43 +66,42 @@
 		</div>
 
 		<div id="sidebar" class="show">
-			<button id="upload-button">Upload</button>
+			<button id="upload-button" tabindex="0">Upload</button>
 			<input id="file-input" type="file" accept="audio/*">
 
 			<div id="frequency-container">
 				<!-- add a header here and make this the bar animation area -->
-				<p id="frequency-label" class="sidebar-label">Bar factor (4–14)</p>
+				<p id="frequency-label" class="sidebar-label">Bar factor (2<sup>4–14</sup>)</p>
+
+				<div id="frequency-input" data-label="a ramp-up value" data-type="number" data-min="4" data-max="14" data-for="bar-factor">
+					<p id="animation-ramp-input" class="sidebar-input">Bar factor: 2^<span id="animation-bar-factor-value">9</span></p>
+				</div>
+
+
 				<p id="frequency-computed" class="sidebar-error">(512)</p>
 
-				<input id="frequency-input" class="sidebar-input input-verify" type="number" value="9" min="4" max="14" step="1" placeholder="Integer, 4-14">
+				<!-- <input id="frequency-input" class="sidebar-input input-verify" type="number" value="9" min="4" max="14" step="1" placeholder="Integer, 4-14"> -->
 			</div>
 
 			<div id="animation-container">
 				<p class="sidebar-header">Background Animation</p>
 
-				<div class="fullscreen-input" data-label="a ramp-up value" data-type="number" data-min="0" data-max="100" data-for="ramp" data-unit="%">
+				<div class="bg-input" data-label="a ramp-up value" data-type="number" data-min="0" data-max="100" data-for="ramp" data-unit="%">
 					<p id="animation-ramp-input" class="sidebar-input">Ramp up time: <span id="animation-ramp-value">5%</span></p>
 				</div>
+
+				<div class="bg-input" data-label="a sustain duration" data-type="number" data-min="0" data-max="100" data-for="sustain" data-unit="%">
+					<p id="animation-ramp-input" class="sidebar-input">Sustain time: <span id="animation-sustain-value">10%</span></p>
+				</div>
+
+				<div class="bg-input" data-label="a fade-out time" data-type="number" data-min="0" data-max="100" data-for="fade" data-unit="%">
+					<p id="animation-ramp-input" class="sidebar-input">Fade out time: <span id="animation-fade-value">35%</span></p>
+				</div>
+
+				<div class="bg-input" data-label="the maximum lightness" data-type="number" data-min="0" data-max="100" data-for="ramp" data-unit="%">
+					<p id="animation-ramp-input" class="sidebar-input">Maximum lightness: <span id="animation-ramp-value">20%</span></p>
+				</div>
 			</div>
-
-			<!-- <div id="animation-container">
-				<p class="sidebar-header">Background Animation</p>
-
-				<p class="sidebar-label">Ramp up time (%)</p>
-				<input id="animation-ramp-input" class="sidebar-input input-verify" type="number" value="5" min="0" max="100" step="1" placeholder="Number, 1-100">
-
-				<p class="sidebar-label">Fade out time (%)</p>
-				<input id="animation-fade-input" class="sidebar-input input-verify" type="number" value="35" min="0" max="100" step="1" placeholder="Number, 1-100">
-
-				<p class="sidebar-label">Sustain time (%)</p>
-				<input id="animation-sustain-input" class="sidebar-input input-verify" type="number" value="10" min="0" max="100" step="1" placeholder="Number, 1-100">
-
-				<p class="sidebar-label">Maximum lightness (%)</p>
-				<input id="animation-lightness-input" class="sidebar-input input-verify" type="number" value="20" min="0" max="100" step="1" placeholder="Number, 1-100">
-
-				<p id="animation-error" class="sidebar-error">&nbsp;</p>
-			</div> -->
-
 
 			<!-- add a checkbox somewhere for "always used cached data where available" -->
 		</div>

@@ -1,4 +1,4 @@
-import type {AveragingBucket, BeatData} from "../types/types.js";
+import type {AveragingBucket, BeatData} from "../types.js";
 import {toPlaces} from "../util.js";
 
 

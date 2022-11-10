@@ -47,12 +47,12 @@ export type InputDataset = {
 	label: string;
 	type: "string";
 	for: string;
-	unit: string;
+	unit?: string;
 } | {
 	label: string;
 	type: "number";
 	for: string;
-	unit: string;
+	unit?: string;
 	min: string;
 	max: string;
 };
@@ -67,6 +67,6 @@ export type InputDataset = ({
 }) & {
 	label: string;
 	for: string;
-	unit: string;
+	unit?: string;
 };
 */

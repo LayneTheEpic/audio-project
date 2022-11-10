@@ -1,4 +1,4 @@
-import { defaultBgAnimation } from "../types/consts.js";
+import BackgroundAnimationState from "./BackgroundAnimationState.js";
 import { randomBetween } from "../util.js";
 export default class FrameInterpreter {
     static framesPerBeat;
@@ -11,10 +11,11 @@ export default class FrameInterpreter {
     static fadeLightness;
     static lightness = 0;
     static hue = 0;
-    static queuedBgAnimation = defaultBgAnimation;
+    static queuedBgAnimation = undefined;
     static init(beatData) {
         this.framesPerBeat = Math.round(60 * beatData.beatDistance);
-        this.calculateFrameTimes(this.queuedBgAnimation ?? defaultBgAnimation);
+        // use queued anim if it exists; otherwise fetch default
+        this.calculateFrameTimes(this.queuedBgAnimation ?? BackgroundAnimationState.get());
     }
     static interpret(frame) {
         let rampFrame = this.framesPerBeat - frame;

@@ -1,4 +1,9 @@
-import { defaultBgAnimation } from "../types/consts.js";
+const defaultBgAnimation = {
+    fadeOut: 0.35,
+    rampUp: 0.05,
+    sustain: 0.1,
+    maxLightness: 20
+};
 export default class BackgroundAnimationState {
     static internalState = defaultBgAnimation;
     static construct(valueType, value) {
@@ -15,6 +20,9 @@ export default class BackgroundAnimationState {
         if (valueType === "lightness") {
             this.internalState.maxLightness = value;
         }
+        return this.internalState;
+    }
+    static get() {
         return this.internalState;
     }
 }
