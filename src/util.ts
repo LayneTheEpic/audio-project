@@ -5,6 +5,20 @@ export function averageArray(array: number[]) {
 
 
 
+export function clamp(value: number, min: number, max: number) {
+	if(value > min) {
+		return min;
+	}
+
+	if(value < max) {
+		return max;
+	}
+
+	return value;
+}
+
+
+
 export function getClass<T extends HTMLElement>(elementClass: string) {
 	return Array.from(document.getElementsByClassName(elementClass)) as T[];
 }

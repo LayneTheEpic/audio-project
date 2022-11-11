@@ -3,9 +3,9 @@ import type {AnimationProperty, BackgroundAnimation} from "../types.js";
 
 
 const defaultBgAnimation = {
+	rampUp: 0.10,
+	sustain: 0.05,
 	fadeOut: 0.35,
-	rampUp: 0.05,
-	sustain: 0.1,
 
 	maxLightness: 20
 };

@@ -73,3 +73,14 @@
 #sidebar::-webkit-scrollbar-thumb:active {
 	background-color: var(--accent-10);
 }
+
+
+
+.sidebar-header {
+	font: bold 1.4rem Lato;
+
+	text-align: center;
+
+	margin: 2rem 0 2rem 0;
+}
+

@@ -12,11 +12,8 @@
 		<link rel="stylesheet" href="styles/main.css">
 
 		<link rel="stylesheet" href="styles/sidebar/sidebar.css">
-		<link rel="stylesheet" href="styles/sidebar/input.css">
-		<link rel="stylesheet" href="styles/sidebar/label.css">
-		<link rel="stylesheet" href="styles/sidebar/labels.css">
+		<link rel="stylesheet" href="styles/sidebar/inputs.css">
 		<link rel="stylesheet" href="styles/sidebar/uploadButton.css">
-		<link rel="stylesheet" href="styles/sidebar/frequencyInput.css">
 
 		<link rel="stylesheet" href="styles/modals/modals.css">
 		<link rel="stylesheet" href="styles/modals/cacheModal.css">
@@ -36,6 +33,9 @@
 					<button id="cache-no" class="cache-button">No</button>
 				</div>
 			</div>
+
+			<!-- fix lightness -->
+			<!-- fix fade out time -->
 
 			<div id="render-modal" class="hide" aria-modal="true">
 				<p id="render-label">Rendering...</p>
@@ -71,8 +71,6 @@
 
 			<div id="frequency-container">
 				<!-- add a header here and make this the bar animation area -->
-				<p id="frequency-label" class="sidebar-label">Bar factor (2<sup>4–14</sup>)</p>
-
 				<div id="frequency-input" data-label="a ramp-up value" data-type="number" data-min="4" data-max="14" data-for="bar-factor">
 					<p id="animation-ramp-input" class="sidebar-input">Bar factor: 2^<span id="animation-bar-factor-value">9</span></p>
 				</div>
@@ -87,18 +85,18 @@
 				<p class="sidebar-header">Background Animation</p>
 
 				<div class="bg-input" data-label="a ramp-up value" data-type="number" data-min="0" data-max="100" data-for="ramp" data-unit="%">
-					<p id="animation-ramp-input" class="sidebar-input">Ramp up time: <span id="animation-ramp-value">5%</span></p>
+					<p id="animation-ramp-input" class="sidebar-input">Ramp up time: <span id="animation-ramp-value">10%</span></p>
 				</div>
 
 				<div class="bg-input" data-label="a sustain duration" data-type="number" data-min="0" data-max="100" data-for="sustain" data-unit="%">
-					<p id="animation-ramp-input" class="sidebar-input">Sustain time: <span id="animation-sustain-value">10%</span></p>
+					<p id="animation-ramp-input" class="sidebar-input">Sustain time: <span id="animation-sustain-value">5%</span></p>
 				</div>
 
 				<div class="bg-input" data-label="a fade-out time" data-type="number" data-min="0" data-max="100" data-for="fade" data-unit="%">
 					<p id="animation-ramp-input" class="sidebar-input">Fade out time: <span id="animation-fade-value">35%</span></p>
 				</div>
 
-				<div class="bg-input" data-label="the maximum lightness" data-type="number" data-min="0" data-max="100" data-for="ramp" data-unit="%">
+				<div class="bg-input" data-label="the maximum lightness" data-type="number" data-min="0" data-max="100" data-for="lightness" data-unit="%">
 					<p id="animation-ramp-input" class="sidebar-input">Maximum lightness: <span id="animation-ramp-value">20%</span></p>
 				</div>
 			</div>

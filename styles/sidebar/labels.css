@@ -1,9 +1,0 @@
-#frequency-computed {
-	margin: -0.2rem 0 0.4rem;
-	transition: color 150ms;
-}
-
-#frequency-computed.error {
-	color: hsl(0, 60%, 55%) !important;
-}
-

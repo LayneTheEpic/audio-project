@@ -1,11 +1,11 @@
 import BackgroundAnimationState from "./BackgroundAnimationState.js";
-import { randomBetween } from "../util.js";
+import { clamp, randomBetween } from "../util.js";
 export default class FrameInterpreter {
     static framesPerBeat;
     static rampFrames;
     static sustainFrames;
     static fadeFrames;
-    static sustainTime;
+    static fadeSustain;
     static maxLightness;
     static rampLightness;
     static fadeLightness;
@@ -27,22 +27,19 @@ export default class FrameInterpreter {
             this.lightness += this.rampLightness;
         }
         // Color sustaining
-        if (frame <= this.sustainFrames) {
-            // nothing; hold value
+        if (frame <= this.sustainFrames) { // ramp is included in 0
             this.lightness = this.lightness;
             // yes this is redundant but just for clarity
         }
-        // Color fading
-        if (frame > this.sustainFrames && frame <= this.sustainTime) {
+        if (frame > this.sustainFrames && frame <= this.fadeSustain) {
             this.lightness -= this.fadeLightness;
         }
-        // sometimes due to weird frame things it doesn't fall all the way down
-        if (frame > this.sustainTime && rampFrame > this.rampFrames) {
+        if (frame > this.fadeSustain && frame < this.framesPerBeat && !(rampFrame <= this.rampFrames)) {
             this.lightness = 0;
         }
         this.lightness = (this.lightness < 0) ? 0 : this.lightness;
         this.lightness = (this.lightness > 100) ? 100 : this.lightness;
-        // uhfsjfdhfgkjdfhkgj this is so draining
+        this.lightness = clamp(this.lightness, 0, 100);
         return {
             hue: this.hue,
             lightness: this.lightness
@@ -56,7 +53,7 @@ export default class FrameInterpreter {
         this.rampFrames = Math.round(backgroundAnimation.rampUp * this.framesPerBeat);
         this.sustainFrames = Math.round(backgroundAnimation.sustain * this.framesPerBeat);
         this.fadeFrames = Math.round(backgroundAnimation.fadeOut * this.framesPerBeat);
-        this.sustainTime = this.sustainFrames + this.fadeFrames;
+        this.fadeSustain = this.sustainFrames + this.fadeFrames;
         this.maxLightness = backgroundAnimation.maxLightness;
         this.rampLightness = this.maxLightness / this.rampFrames;
         this.fadeLightness = this.maxLightness / this.fadeFrames;

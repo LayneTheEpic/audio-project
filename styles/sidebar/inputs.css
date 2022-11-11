@@ -1,0 +1,27 @@
+.sidebar-input {
+	font-size: 1.1rem;
+
+	margin: 0 0 1rem 0;
+}
+
+.sidebar-input > span {
+	font-size: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+
+#frequency-input > p {
+	margin: 0 0 0.3rem 0;
+}
+
+
+
+#frequency-computed {
+	font-size: 1rem;
+	color: var(--accent-11);
+
+	margin: 0 0 0.4rem 0;
+}
+

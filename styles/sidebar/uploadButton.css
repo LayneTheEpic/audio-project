@@ -1,19 +1,19 @@
 #upload-button {
-	padding: 1em;
+	padding: 1rem;
 	width: 100%;
 
 	border: 1px solid var(--accent-1);
-	border-radius: 16px;
+	border-radius: 1.2rem;
 	box-sizing: border-box;
 	margin: 0 0 2rem 0;
 
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 	font-weight: bold;
 	text-align: center;
 
 	background-color: var(--accent-5);
 
-	transition: background-color var(--button-time), box-shadow var(--button-time);
+	transition: background-color var(--button-time);
 }
 
 

@@ -2,9 +2,9 @@ import BackgroundAnimationState from "../visualization/BackgroundAnimationState.
 import FrameInterpreter from "../visualization/FrameInterpreter.js";
 import {getClass, getId} from "../util.js";
 import InputModalManager from "./InputModalManager.js";
+import WaveformAnimator from "../visualization/WaveformAnimator.js";
 
 import type {AnimationProperty, InputDataset} from "../types.js";
-import WaveformAnimator from "../visualization/WaveformAnimator.js";
 
 
 

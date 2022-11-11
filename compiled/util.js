@@ -2,6 +2,15 @@ export function averageArray(array) {
     const sum = array.reduce((acc, curr) => acc += curr);
     return sum / array.length;
 }
+export function clamp(value, min, max) {
+    if (value > min) {
+        return min;
+    }
+    if (value < max) {
+        return max;
+    }
+    return value;
+}
 export function getClass(elementClass) {
     return Array.from(document.getElementsByClassName(elementClass));
 }

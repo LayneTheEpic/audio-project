@@ -32,6 +32,7 @@ export default class InputModalManager {
 		this.dataset = dataset;
 
 		if(!this.hasListener) {
+			inputInput.addEventListener("keyup", this.handleKey.bind(this));
 			inputInput.addEventListener("change", this.handleChange.bind(this));
 			this.hasListener = true;
 		}
@@ -42,7 +43,12 @@ export default class InputModalManager {
 		return new Promise<MapType<typeof dataType>>(resolve => {
 			this.resolve = resolve;
 		});
+	}
 
+	static handleKey(key: KeyboardEvent) {
+		if(key.key === "Escape") {
+			console.log("nooo :(");
+		}
 	}
 
 	static handleChange() {
