@@ -27,10 +27,12 @@ export default class FrameInterpreter {
 		this.framesPerBeat = Math.round(60 * beatData.beatDistance);
 
 		// use queued anim if it exists; otherwise fetch default
-		this.calculateFrameTimes(this.queuedBgAnimation ?? BackgroundAnimationState.get());
+		this.calculateFrameTimes(this.queuedBgAnimation ?? BackgroundAnimationState.state);
 	}
 
 	static interpret(frame: number): AnimatedBackground {
+		// debugger
+
 		let rampFrame = this.framesPerBeat - frame;
 
 		// Color ramping
@@ -56,9 +58,6 @@ export default class FrameInterpreter {
 		if(frame > this.fadeSustain && frame < this.framesPerBeat && !(rampFrame <= this.rampFrames)) {
 			this.lightness = 0;
 		}
-
-		this.lightness = (this.lightness < 0) ? 0 : this.lightness;
-		this.lightness = (this.lightness > 100) ? 100 : this.lightness;
 
 
 		this.lightness = clamp(this.lightness, 0, 100);

@@ -15,8 +15,8 @@ export default class InputModalManager {
         inputInput.value = "";
         this.dataset = dataset;
         if (!this.hasListener) {
-            inputInput.addEventListener("keyup", this.handleKey.bind(this));
             inputInput.addEventListener("change", this.handleChange.bind(this));
+            inputInput.addEventListener("keyup", this.handleKey.bind(this));
             this.hasListener = true;
         }
         const dataType = dataset.type;
@@ -25,8 +25,18 @@ export default class InputModalManager {
         });
     }
     static handleKey(key) {
-        if (key.key === "Escape") {
-            console.log("nooo :(");
+        console.log(key.key);
+        if (key.key !== "Escape")
+            return;
+        if (this.dataset.type === "string") {
+            inputModal.classList.add("hide");
+            this.resolve("");
+            return;
+        }
+        if (this.dataset.type === "number") {
+            inputModal.classList.add("hide");
+            this.resolve(NaN);
+            return;
         }
     }
     static handleChange() {

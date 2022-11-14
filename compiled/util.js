@@ -3,11 +3,12 @@ export function averageArray(array) {
     return sum / array.length;
 }
 export function clamp(value, min, max) {
-    if (value > min) {
-        return min;
-    }
-    if (value < max) {
+    // how the hell did i mess up writing this before
+    if (value > max) {
         return max;
+    }
+    if (value < min) {
+        return min;
     }
     return value;
 }
@@ -24,7 +25,7 @@ export function isPlusOrMinus(value, baseline, delta) {
         (value < baseline && value >= (baseline - delta)) ||
         value === baseline);
 }
-// export function neatIterate<T>(array: T[], callback: (value: T, index: number) => void) {
+// export function neatIterate<T>(array: T[], callback: (value: T, index: number) => any) {
 // 	for(let i = 0; i < array.length; i++) {
 // 		callback(array[i], i);
 // 	}

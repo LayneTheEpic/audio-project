@@ -32,8 +32,8 @@ export default class InputModalManager {
 		this.dataset = dataset;
 
 		if(!this.hasListener) {
-			inputInput.addEventListener("keyup", this.handleKey.bind(this));
 			inputInput.addEventListener("change", this.handleChange.bind(this));
+			inputInput.addEventListener("keyup", this.handleKey.bind(this));
 			this.hasListener = true;
 		}
 
@@ -46,8 +46,19 @@ export default class InputModalManager {
 	}
 
 	static handleKey(key: KeyboardEvent) {
-		if(key.key === "Escape") {
-			console.log("nooo :(");
+		console.log(key.key)
+		if(key.key !== "Escape") return;
+
+		if(this.dataset.type === "string") {
+			inputModal.classList.add("hide");
+			this.resolve("");
+			return;
+		}
+
+		if(this.dataset.type === "number") {
+			inputModal.classList.add("hide");
+			this.resolve(NaN);
+			return;
 		}
 	}
 
@@ -81,7 +92,7 @@ export default class InputModalManager {
 			}
 
 
-			inputModal.classList.add("hide")
+			inputModal.classList.add("hide");
 
 			this.resolve(parsed);
 		}

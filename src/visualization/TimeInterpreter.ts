@@ -20,7 +20,8 @@ export default class TimeInterpreter {
 	private static expectedRound(frame: number) {
 		// sometimes, frame numbers can be duplicated by a simple Math.round (eg. 1 1.9 2.4 4 = 1 2 2 4)
 		// this function aims to figure out what the "correct" next frame is
-		// without just doing +1 every frame = can be inaccurate if not called every frame
+
+		// DOES NOT do +1 every frame; that can be inaccurate if this function isn't called every frame (desync)
 
 		const ceil = Math.ceil(frame);
 		const floor = Math.floor(frame);
@@ -33,7 +34,6 @@ export default class TimeInterpreter {
 		}
 
 
-
 		if(this.lastFrame + 1 === ceil) {
 			this.lastFrame = ceil;
 			return ceil;
@@ -43,7 +43,6 @@ export default class TimeInterpreter {
 			this.lastFrame = floor;
 			return floor;
 		}
-
 
 		this.lastFrame = round;
 		return round;

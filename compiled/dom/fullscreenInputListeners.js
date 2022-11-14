@@ -7,21 +7,27 @@ const bgInputs = getClass("bg-input");
 const frequencyInput = getId("frequency-input");
 const frequencyComputed = getId("frequency-computed");
 export default function addFullscreenInputListeners() {
-    for (const input of bgInputs) {
-        const dataset = input.dataset;
-        const span = input.children[0].children[0];
-        span.addEventListener("click", async () => {
-            const value = await InputModalManager.prompt(dataset);
-            span.textContent = `${value}${dataset.unit ?? ""}`;
-            const animation = BackgroundAnimationState.construct(dataset.for, value);
+    for (const bgInput of bgInputs) {
+        const bgDataset = bgInput.dataset;
+        const bgSpan = bgInput.children[0].children[0];
+        bgSpan.addEventListener("click", async () => {
+            const value = await InputModalManager.prompt(bgDataset);
+            if (isNaN(value)) {
+                return;
+            }
+            bgSpan.textContent = `${value}${bgDataset.unit ?? ""}`;
+            const animation = BackgroundAnimationState.construct(bgDataset.for, value);
             FrameInterpreter.calculateFrameTimes(animation);
         });
     }
-    const frequencyDataset = frequencyInput.dataset;
-    const span = frequencyInput.children[0].children[0];
-    span.addEventListener("click", async () => {
-        const value = await InputModalManager.prompt(frequencyDataset);
-        span.textContent = `${value}${frequencyDataset.unit ?? ""}`;
+    const freqDataset = frequencyInput.dataset;
+    const freqSpan = frequencyInput.children[0].children[0];
+    freqSpan.addEventListener("click", async () => {
+        const value = await InputModalManager.prompt(freqDataset);
+        if (isNaN(value)) {
+            return;
+        }
+        freqSpan.textContent = `${value}${freqDataset.unit ?? ""}`;
         const computed = 2 ** value;
         WaveformAnimator.setFrequencyCount(computed);
         frequencyComputed.innerText = `(${computed})`;

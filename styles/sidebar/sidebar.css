@@ -62,7 +62,7 @@
 
 
 #sidebar::-webkit-scrollbar-thumb {
-	border-radius: 16px;
+	border-radius: 1rem;
 	background-color: var(--accent-7);
 }
 

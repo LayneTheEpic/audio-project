@@ -22,19 +22,18 @@ Batch files are for my teacher
 
 
 ## Misc ideas
-- [ ] Separate out background color handling better
+- [x] Separate out background color handling better
 - [ ] Pulses based on volume intensity?
 - [x] Sidebar
 	- [x] Move upload function and settings into it
 - [ ] Show a little animation for drawing out the canvas
 - [x] timing accuracy
 	- [x] this is like really important but I really uhgfduhgdjfksfgldjgldkfjgkldfgj
-- [ ] stop animating after audio file ends
 - [ ] settings as json?
 	- [ ] localStorage?
 	- [x] possibly cache BeatData in LS based on file name? or checksum
 	- [x] how to checksum? not needed
-- [ ] instead of using input boxes, turn the "Fade in time (%)" into links that create a screen-wide popup, background opacity
+- [x] instead of using input boxes, turn the "Fade in time (%)" into links that create a screen-wide popup, background opacity
 - [ ] screen reader support (ARIA)
 
 ### Programming todo
@@ -43,3 +42,13 @@ Batch files are for my teacher
 	- [ ] stop beat animation after audio file stops
 	- [x] yeah no like actually though I'm going to have to restructure the entire codebase (again) if I want to go OOP which I think I absolutely have to
 	- [x] functional really just does not work here, or maybe I just suck at functional programming
+
+
+
+code dump
+```ts
+if(fadeValue + rampValue + sustainValue > 100) {
+	animationLabel.textContent = "(Error: Frame times >100%!)";
+	return;
+}
+```

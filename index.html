@@ -23,6 +23,7 @@
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
 	<body>
+		<!-- todo: accessibility :) -->
 		<div id="modals">
 			<div id="cache-modal" class="hide" aria-modal="true">
 				<p id="cache-header">File data cached</p>
@@ -33,9 +34,6 @@
 					<button id="cache-no" class="cache-button">No</button>
 				</div>
 			</div>
-
-			<!-- fix lightness -->
-			<!-- fix fade out time -->
 
 			<div id="render-modal" class="hide" aria-modal="true">
 				<p id="render-label">Rendering...</p>
@@ -71,7 +69,8 @@
 
 			<div id="frequency-container">
 				<!-- add a header here and make this the bar animation area -->
-				<div id="frequency-input" data-label="a ramp-up value" data-type="number" data-min="4" data-max="14" data-for="bar-factor">
+				<!-- <data-label="a bar factor (2<sup style='font-size: 1.5rem'>n</sup>)"> -->
+				<div id="frequency-input" data-label="a bar factor (2^n)" data-type="number" data-min="4" data-max="14" data-for="bar-factor">
 					<p id="animation-ramp-input" class="sidebar-input">Bar factor: 2^<span id="animation-bar-factor-value">9</span></p>
 				</div>
 
