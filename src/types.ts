@@ -43,30 +43,17 @@ export type FileData = {
 
 
 
-export type InputDataset = {
+type BaseInputDataset = {
 	label: string;
-	type: "string";
 	for: string;
 	unit?: string;
-} | {
-	label: string;
-	type: "number";
-	for: string;
-	unit?: string;
-	min: string;
-	max: string;
-};
+}
 
-/* compacted but unreadable garbage
-export type InputDataset = ({
+
+
+export type InputDataset = BaseInputDataset & ({
 	type: "string";
 } | {
 	type: "number";
-	min: string;
-	max: string;
-}) & {
-	label: string;
-	for: string;
-	unit?: string;
-};
-*/
+	range?: string;
+});

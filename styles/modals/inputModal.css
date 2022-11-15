@@ -27,7 +27,7 @@
 	display: grid;
 	grid-template-areas:
 		"label label .      "
-		"input input percent"
+		"input input unit"
 		"error error .      ";
 }
 
@@ -39,8 +39,8 @@
 	grid-area: input;
 }
 
-#input-percent-container {
-	grid-area: percent;
+#input-unit-container {
+	grid-area: unit;
 }
 
 #input-error {
@@ -140,6 +140,6 @@
 
 
 
-#input-percent {
+#input-unit {
 	font-size: 4rem;
 }

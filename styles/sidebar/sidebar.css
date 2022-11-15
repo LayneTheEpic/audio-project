@@ -1,7 +1,7 @@
 #sidebar {
-	--width: 20;
+	--width: 22.5;
 
-	--grabber: 2.5; /* this used to be of the sidebar but I think it's become of the body... no idea */
+	--grabber: 3; /* relative to the entire body */
 
 	--effective-grabber: calc(calc(calc(100% / var(--width))) * var(--grabber)); /* recalculate "of-the-sidebar" grabber */
 
@@ -22,7 +22,7 @@
 	height: 100%;
 
 
-	padding: calc(1% * var(--grabber));
+	padding: min(calc(1% * var(--grabber)), 5rem) calc(1% * var(--grabber));
 	box-sizing: border-box;
 
 	background-color: var(--bg);
@@ -77,10 +77,10 @@
 
 
 .sidebar-header {
-	font: bold 1.4rem Lato;
-
-	text-align: center;
-
+	display: block;
 	margin: 2rem 0 2rem 0;
+
+	font: bold 1.4rem Lato;
+	text-align: center;
 }
 

@@ -8,10 +8,7 @@ const inputModal = getId<HTMLDivElement>("input-modal");
 const inputLabel = getId<HTMLParagraphElement>("input-label-type");
 const inputInput = getId<HTMLInputElement>("input-input");
 const inputError = getId<HTMLParagraphElement>("input-error");
-
-
-
-type MapType<T> = T extends "number" ? number : T extends "string" ? string : never;
+const inputUnit = getId<HTMLSpanElement>("input-unit");
 
 
 
@@ -28,8 +25,8 @@ export default class InputModalManager {
 		inputError.innerHTML = "&nbsp;";
 		inputInput.value = "";
 
+		inputUnit.textContent = dataset.unit ?? "";
 
-		this.dataset = dataset;
 
 		if(!this.hasListener) {
 			inputInput.addEventListener("change", this.handleChange.bind(this));
@@ -37,16 +34,15 @@ export default class InputModalManager {
 			this.hasListener = true;
 		}
 
-		const dataType = dataset.type;
 
+		this.dataset = dataset;
 
-		return new Promise<MapType<typeof dataType>>(resolve => {
+		return new Promise<string | number>(resolve => {
 			this.resolve = resolve;
 		});
 	}
 
 	static handleKey(key: KeyboardEvent) {
-		console.log(key.key)
 		if(key.key !== "Escape") return;
 
 		if(this.dataset.type === "string") {
@@ -57,6 +53,8 @@ export default class InputModalManager {
 
 		if(this.dataset.type === "number") {
 			inputModal.classList.add("hide");
+			// add data-placeholder to put here?
+			// make sure to also apply it to the input if i do
 			this.resolve(NaN);
 			return;
 		}
@@ -76,18 +74,28 @@ export default class InputModalManager {
 			// what am i even writing anymore
 			const parsed = parseFloat(value);
 
+			let min = -Infinity, max = Infinity;
+
+
+			if(this.dataset.range) {
+				let [minString, maxString] = this.dataset.range.split(",");
+				min = parseFloat(minString);
+				max = parseFloat(maxString);
+			}
+
+
 			if(isNaN(parsed)) {
 				inputError.textContent = "Error: Value isn't a number!";
 				return;
 			}
 
-			if(parsed < parseFloat(this.dataset.min)) {
-				inputError.textContent = `Error: Value is smaller than ${this.dataset.min!}!`;
+			if(parsed < min) {
+				inputError.textContent = `Error: Value is smaller than ${min}!`;
 				return;
 			}
 
-			if(parsed > parseFloat(this.dataset.max)) {
-				inputError.textContent = `Error: Value is greater than ${this.dataset.max!}!`;
+			if(parsed > max) {
+				inputError.textContent = `Error: Value is greater than ${max}!`;
 				return;
 			}
 
@@ -96,5 +104,7 @@ export default class InputModalManager {
 
 			this.resolve(parsed);
 		}
+
+		// this is so terrible and i desparately need to rewrite this class
 	}
 }

@@ -27,7 +27,7 @@ export default function addFullscreenInputListeners() {
         if (isNaN(value)) {
             return;
         }
-        freqSpan.textContent = `${value}${freqDataset.unit ?? ""}`;
+        freqSpan.textContent = `${value}${freqDataset.unit || ""}`;
         const computed = 2 ** value;
         WaveformAnimator.setFrequencyCount(computed);
         frequencyComputed.innerText = `(${computed})`;

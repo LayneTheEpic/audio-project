@@ -18,7 +18,7 @@ const frequencyComputed = getId<HTMLParagraphElement>("frequency-computed");
 export default function addFullscreenInputListeners() {
 	for(const bgInput of bgInputs) {
 		const bgDataset = bgInput.dataset as InputDataset;
-		const bgSpan = bgInput.children[0]!.children[0]! as HTMLSpanElement;
+		const bgSpan = bgInput.children[0].children[0] as HTMLSpanElement;
 
 		bgSpan.addEventListener("click", async () => {
 			const value = await InputModalManager.prompt(bgDataset) as number;
@@ -35,7 +35,7 @@ export default function addFullscreenInputListeners() {
 	}
 
 	const freqDataset = frequencyInput.dataset as InputDataset;
-	const freqSpan = frequencyInput.children[0]!.children[0!] as HTMLSpanElement;
+	const freqSpan = frequencyInput.children[0].children[0] as HTMLSpanElement;
 
 	freqSpan.addEventListener("click", async () => {
 		const value = await InputModalManager.prompt(freqDataset) as number;
@@ -43,7 +43,7 @@ export default function addFullscreenInputListeners() {
 			return;
 		}
 
-		freqSpan.textContent = `${value}${freqDataset.unit ?? ""}`;
+		freqSpan.textContent = `${value}${freqDataset.unit || ""}`;
 
 		const computed = 2 ** value;
 
