@@ -1,14 +1,16 @@
-#sidebar {
-	--width: 21.5;
-
-	--grabber: 3; /* relative to the entire body */
-
-	--effective-grabber: calc(calc(calc(100% / var(--width))) * var(--grabber)); /* recalculate "of-the-sidebar" grabber */
+:root {
+	--sidebar-width: 21.5;
+	--sidebar-grabber: 3; /* relative to the entire body */
 
 	--transition-time: 300ms;
 	--transition-curve: cubic-bezier(0.8, 0.1, 0.25, 1);
-	--transition: var(--transition-time) var(--transition-curve);
+	--sidebar-transition: var(--transition-time) var(--transition-curve);
+}
 
+
+
+#sidebar {
+	--effective-grabber: calc(calc(calc(100% / var(--sidebar-width))) * var(--sidebar-grabber)); /* recalculate "of-the-sidebar" grabber */
 	--bg: var(--accent-2);
 }
 
@@ -18,11 +20,11 @@
 	position: absolute;
 	top: 0;
 
-	width: calc(var(--width) * 1%);
+	width: calc(var(--sidebar-width) * 1%);
 	height: 100%;
 
 
-	padding: min(calc(1% * var(--grabber)), 5rem) calc(1% * var(--grabber));
+	padding: min(calc(1% * var(--sidebar-grabber)), 5rem) calc(1% * var(--sidebar-grabber));
 	box-sizing: border-box;
 
 	background-color: var(--bg);
@@ -30,9 +32,11 @@
 
 	right: 0;
 
-	transition: transform var(--transition), opacity var(--transition-time);
+	transition: transform var(--sidebar-transition), opacity var(--transition-time);
 
 	overflow-y: auto;
+
+	z-index: 3;
 }
 
 

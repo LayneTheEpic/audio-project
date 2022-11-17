@@ -7,8 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="An audio visualizer.">
 
-		<link rel="stylesheet" href="styles/base.css">
 		<link rel="stylesheet" href="styles/fonts.css">
+		<link rel="stylesheet" href="styles/base.css">
 		<link rel="stylesheet" href="styles/main.css">
 
 		<link rel="stylesheet" href="styles/sidebar/sidebar.css">
@@ -19,6 +19,9 @@
 		<link rel="stylesheet" href="styles/modals/cacheModal.css">
 		<link rel="stylesheet" href="styles/modals/inputModal.css">
 		<link rel="stylesheet" href="styles/modals/renderProgress.css">
+
+		<link rel="stylesheet" href="styles/bottombar/bottombar.css">
+		<link rel="stylesheet" href="styles/bottombar/seekbar.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
 	</head>
@@ -103,5 +106,17 @@
 		</div>
 
 		<canvas id="canvas"></canvas>
+
+		<div id="bottombar">
+			<div id="seekbar-status-bar">
+				<!-- icons, current time, etc. or time on either side of seekbar? -->
+			</div>
+			<div id="seekbar-bar">
+				<div id="seekbar-container">
+					<div id="seekbar-progress"></div>
+					<div id="seekbar-grabber"></div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
