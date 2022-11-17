@@ -1,0 +1,52 @@
+#seekbar-bar {
+	width: 40%;
+	min-height: 0.8rem;
+	max-height: 0.8rem;
+}
+
+
+
+#seekbar-container {
+	background-color: var(--accent-6);
+	width: 100%;
+
+	border-radius: 0.8rem;
+	min-height: inherit;
+
+	position: relative;
+
+}
+
+
+
+#seekbar-progress {
+	background-color: var(--accent-10);
+	width: 50%;
+
+	border-radius: inherit;
+	min-height: inherit;
+}
+
+
+
+#seekbar-grabber {
+	background-color: var(--accent-10);
+	border-radius: 50%;
+
+	height: 180%;
+	aspect-ratio: 1 / 1;
+
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+
+	left: 50%;
+
+	cursor: grab;
+}
+
+
+
+#seekbar-grabber:active {
+	cursor: grabbing;
+}
