@@ -17,6 +17,7 @@ export default class InputModalManager {
         inputUnit.textContent = dataset.unit ?? "";
         if (!this.hasListener) {
             inputInput.addEventListener("change", this.handleChange.bind(this));
+            // bind this to window?
             inputInput.addEventListener("keyup", this.handleKey.bind(this));
             this.hasListener = true;
         }
@@ -29,24 +30,20 @@ export default class InputModalManager {
         if (key.key !== "Escape")
             return;
         if (this.dataset.type === "string") {
-            inputModal.classList.add("hide");
-            this.resolve("");
+            this.resolveAndClose("");
             return;
         }
         if (this.dataset.type === "number") {
-            inputModal.classList.add("hide");
             // add data-placeholder to put here?
             // make sure to also apply it to the input if i do
-            this.resolve(NaN);
+            this.resolveAndClose(NaN);
             return;
         }
     }
     static handleChange() {
         const value = inputInput.value;
         if (this.dataset.type === "string") {
-            inputModal.classList.add("hide");
-            inputError.innerHTML = "&nbsp;";
-            this.resolve(value);
+            this.resolveAndClose(value);
             return;
         }
         if (this.dataset.type === "number") {
@@ -70,9 +67,14 @@ export default class InputModalManager {
                 inputError.textContent = `Error: Value is greater than ${max}!`;
                 return;
             }
-            inputModal.classList.add("hide");
-            this.resolve(parsed);
+            this.resolveAndClose(parsed);
+            return;
         }
-        // this is so terrible and i desparately need to rewrite this class
+        // this is so terrible and i desperately need to rewrite this class
+    }
+    static resolveAndClose(value) {
+        inputModal.classList.add("hide");
+        inputError.innerHTML = "&nbsp;";
+        this.resolve(value);
     }
 }
