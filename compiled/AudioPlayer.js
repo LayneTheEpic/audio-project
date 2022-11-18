@@ -9,6 +9,9 @@ export default class AudioPlayer {
     static getTime() {
         return this.audio.currentTime;
     }
+    static getProgress() {
+        return this.getTime() / this.audio.duration;
+    }
     static stop() {
         this.audio.pause();
     }

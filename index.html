@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="styles/main.css">
 
 		<link rel="stylesheet" href="styles/sidebar/sidebar.css">
+		<link rel="stylesheet" href="styles/sidebar/chevron.css">
 		<link rel="stylesheet" href="styles/sidebar/inputs.css">
 		<link rel="stylesheet" href="styles/sidebar/uploadButton.css">
 
@@ -24,6 +25,8 @@
 		<link rel="stylesheet" href="styles/bottombar/seekbar.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
+
+		<script src="https://kit.fontawesome.com/b32c7b55a3.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<!-- todo: accessibility :) -->
@@ -67,6 +70,7 @@
 		</div>
 
 		<div id="sidebar" class="show">
+			<i id="sidebar-chevron" class="fa-solid fa-chevron-left"></i>
 			<button id="upload-button" tabindex="0">Upload</button>
 			<input id="file-input" type="file" accept="audio/*">
 
@@ -112,10 +116,8 @@
 				<!-- icons, current time, etc. or time on either side of seekbar? -->
 			</div>
 			<div id="seekbar-bar">
-				<div id="seekbar-container">
-					<div id="seekbar-progress"></div>
-					<div id="seekbar-grabber"></div>
-				</div>
+				<div id="seekbar-progress"></div>
+				<div id="seekbar-grabber"></div>
 			</div>
 		</div>
 	</body>
