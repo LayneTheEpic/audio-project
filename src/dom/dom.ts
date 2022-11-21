@@ -1,6 +1,7 @@
 import addFullscreenInputListeners from "./fullscreenInputListeners.js";
 import {getId} from "../util.js";
 import {stopVisualization, visualizeAudioFile} from "../visualizeAudioFile.js";
+import SeekbarManager from "./SeekbarManager.js";
 
 
 
@@ -16,6 +17,8 @@ const fileInput = getId<HTMLInputElement>("file-input");
 let firstRun = true;
 
 
+
+// TODO: please clean this up
 
 export default function initDOM() {
 	canvas.width = window.innerWidth;
@@ -52,4 +55,6 @@ export default function initDOM() {
 	});
 
 	addFullscreenInputListeners();
+
+	SeekbarManager.init()
 }

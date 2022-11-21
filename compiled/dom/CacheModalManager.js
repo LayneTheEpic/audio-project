@@ -2,6 +2,7 @@ import { getId } from "../util.js";
 const cacheModal = getId("cache-modal");
 const cacheYes = getId("cache-yes");
 const cacheNo = getId("cache-no");
+// TODO: please make this not terrible
 export default class CacheModalManager {
     static resolve;
     static async prompt() {

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Audio Project</title>
+		<title>Audio Visualizer</title>
 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,11 +25,9 @@
 		<link rel="stylesheet" href="styles/bottombar/seekbar.css">
 
 		<script defer src="compiled/main.js" type="module"></script>
-
-		<script src="https://kit.fontawesome.com/b32c7b55a3.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<!-- todo: accessibility :) -->
+		<!-- TODO: accessibility :) -->
 		<div id="modals">
 			<div id="cache-modal" class="hide" aria-modal="true">
 				<p id="cache-header">File data cached</p>
@@ -57,7 +55,7 @@
 						<input id="input-input" autocomplete="off">
 						<span id="input-underline"></span>
 
-						<!-- todo: make input-input adjust based on width of its content; see https://stackoverflow.com/questions/3392493/adjust-width-of-input-field-to-its-input -->
+						<!-- TODO: make input-input adjust based on width of its content; see https://stackoverflow.com/questions/3392493/adjust-width-of-input-field-to-its-input -->
 					</div>
 
 					<div id="input-unit-container">
@@ -70,18 +68,17 @@
 		</div>
 
 		<div id="sidebar" class="show">
-			<i id="sidebar-chevron" class="fa-solid fa-chevron-left"></i>
+			<i id="sidebar-chevron">&#xe801;</i>
+
 			<button id="upload-button" tabindex="0">Upload</button>
 			<input id="file-input" type="file" accept="audio/*">
 
 			<div id="frequency-container">
-				<!-- add a header here and make this the bar animation area -->
-				<!-- data-label="a bar factor (2<sup style='font-size: 1.5rem'>n</sup>)" -->
+					<!-- data-label="a bar factor (2<sup style='font-size: 1.5rem'>n</sup>)" -->
 					<div id="frequency-input" data-type="number" data-range="4,14" data-for="bar-factor" data-label="a bar factor (2^n)">
-					<!-- make these spans buttons -->
+					<!-- TODO: make these spans buttons -->
 					<p id="animation-ramp-input" class="sidebar-input">Bar factor: 2^<span id="animation-bar-factor-value">9</span></p>
 				</div>
-
 
 				<p id="frequency-computed" class="sidebar-error">(512)</p>
 			</div>
@@ -106,7 +103,7 @@
 				</div>
 			</div>
 
-			<!-- add a checkbox somewhere for "always used cached data where available" -->
+			<!-- TODO: add a checkbox somewhere for "always used cached data where available" -->
 		</div>
 
 		<canvas id="canvas"></canvas>

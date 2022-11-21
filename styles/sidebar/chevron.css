@@ -1,13 +1,22 @@
+#sidebar {
+	/* why does css hate me so */
+	/* https://stackoverflow.com/a/6433475 */
+	overflow-x: visible;
+	/* (remove this if possible) */
+	overflow-y: clip;
+}
+
+
+
 #sidebar-chevron {
 	position: absolute;
 	top: 50%;
 	left: 0;
 
-	transform: translateY(-50%);
+	transform: translate(-150%, -50%);
 	transform-origin: center;
 
-
-	font-size: 2.5rem;
+	font-size: 3rem;
 
 	transition: transform var(--sidebar-transition);
 }
@@ -15,6 +24,5 @@
 
 
 #sidebar.show #sidebar-chevron {
-	transform: translateY(-50%) rotate(180deg);
+	transform: translate(-150%, -50%) rotate(180deg);
 }
-

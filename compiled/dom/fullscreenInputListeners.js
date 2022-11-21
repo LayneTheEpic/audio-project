@@ -6,6 +6,7 @@ import WaveformAnimator from "../visualization/WaveformAnimator.js";
 const bgInputs = getClass("bg-input");
 const frequencyInput = getId("frequency-input");
 const frequencyComputed = getId("frequency-computed");
+// TODO: make this less terrible
 export default function addFullscreenInputListeners() {
     for (const bgInput of bgInputs) {
         const bgDataset = bgInput.dataset;

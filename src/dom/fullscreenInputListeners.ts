@@ -15,6 +15,8 @@ const frequencyComputed = getId<HTMLParagraphElement>("frequency-computed");
 
 
 
+// TODO: make this less terrible
+
 export default function addFullscreenInputListeners() {
 	for(const bgInput of bgInputs) {
 		const bgDataset = bgInput.dataset as InputDataset;

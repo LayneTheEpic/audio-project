@@ -8,6 +8,7 @@ const cacheNo = getId<HTMLButtonElement>("cache-no");
 
 
 
+// TODO: please make this not terrible
 
 export default class CacheModalManager {
 	static resolve: (value: boolean) => void;

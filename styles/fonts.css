@@ -7,3 +7,15 @@
 	font: 1rem Roboto;
 	color: var(--text-color);
 }
+
+
+
+@font-face {
+	font-family: fontello;
+	src: url(./fontello.ttf);
+}
+
+
+i {
+	font-family: fontello;
+}

@@ -1,12 +1,14 @@
 import addFullscreenInputListeners from "./fullscreenInputListeners.js";
 import { getId } from "../util.js";
 import { stopVisualization, visualizeAudioFile } from "../visualizeAudioFile.js";
+import SeekbarManager from "./SeekbarManager.js";
 const canvas = getId("canvas");
 const ctx = canvas.getContext("2d");
 const sidebar = getId("sidebar");
 const uploadButton = getId("upload-button");
 const fileInput = getId("file-input");
 let firstRun = true;
+// TODO: please clean this up
 export default function initDOM() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -27,4 +29,5 @@ export default function initDOM() {
         visualizeAudioFile(file, ctx);
     });
     addFullscreenInputListeners();
+    SeekbarManager.init();
 }
