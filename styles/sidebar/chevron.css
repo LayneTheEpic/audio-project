@@ -19,6 +19,9 @@
 	font-size: 3rem;
 
 	transition: transform var(--sidebar-transition);
+
+
+	cursor: pointer;
 }
 
 

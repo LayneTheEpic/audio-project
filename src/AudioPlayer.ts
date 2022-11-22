@@ -1,3 +1,7 @@
+import {scale} from "./util.js";
+
+
+
 export default class AudioPlayer {
 	private static audio: HTMLAudioElement;
 
@@ -7,6 +11,11 @@ export default class AudioPlayer {
 
 	static start() {
 		this.audio.play();
+	}
+
+	static seekTo(where: number) {
+		if(!this.audio) return;
+		this.audio.currentTime = scale(where, 0, 1, 0, this.audio.duration);
 	}
 
 	static getTime() {

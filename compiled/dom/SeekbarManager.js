@@ -1,20 +1,32 @@
-import { getId } from "../util.js";
+import AudioPlayer from "../AudioPlayer.js";
+import { clamp, getId } from "../util.js";
+const seekbarBar = getId("seekbar-bar");
 const seekbarProgress = getId("seekbar-progress");
 const seekbarGrabber = getId("seekbar-grabber");
 export default class SeekbarManager {
+    static seeking;
     static init() {
-        seekbarGrabber.addEventListener("dragstart", (e) => this.start(e));
+        seekbarGrabber.addEventListener("dragstart", () => this.start());
         seekbarGrabber.addEventListener("drag", (e) => this.move(e));
-        seekbarGrabber.addEventListener("dragend", (e) => this.stop(e));
+        seekbarGrabber.addEventListener("dragend", () => this.stop());
     }
-    static start(e) {
-        console.log(e);
+    static start() {
+        this.seeking = true;
     }
     static move(e) {
-        console.log(e);
+        const { width } = seekbarBar.getBoundingClientRect();
+        const pos = e.clientX;
+        const percent = clamp(pos / width, 0, 1);
+        this.update(percent);
+        AudioPlayer.seekTo(percent);
     }
-    static stop(e) {
-        console.log(e);
+    static stop() {
+        this.seeking = false;
+    }
+    static requestUpdate(value) {
+        if (this.seeking)
+            return;
+        this.update(value);
     }
     static update(value) {
         const percent = `${value * 100}%`;

@@ -1,32 +1,49 @@
-import {getId} from "../util.js";
+import AudioPlayer from "../AudioPlayer.js";
+import {clamp, getId} from "../util.js";
 
 
 
+const seekbarBar = getId<HTMLDivElement>("seekbar-bar");
 const seekbarProgress = getId<HTMLDivElement>("seekbar-progress");
 const seekbarGrabber = getId<HTMLDivElement>("seekbar-grabber");
 
 
 
 export default class SeekbarManager {
+	private static seeking: boolean;
+
 	static init() {
-		seekbarGrabber.addEventListener("dragstart", (e) => this.start(e));
+		seekbarGrabber.addEventListener("dragstart", () => this.start());
 		seekbarGrabber.addEventListener("drag", (e) => this.move(e));
-		seekbarGrabber.addEventListener("dragend", (e) => this.stop(e));
+		seekbarGrabber.addEventListener("dragend", () => this.stop());
 	}
 
-	private static start(e: DragEvent) {
-		console.log(e)
+	private static start() {
+		this.seeking = true;
 	}
 
 	private static move(e: DragEvent) {
-		console.log(e)
+		const {width} = seekbarBar.getBoundingClientRect();
+		const pos = e.clientX;
+
+
+		const percent = clamp(pos / width, 0, 1);
+
+		this.update(percent);
+
+		AudioPlayer.seekTo(percent);
 	}
 
-	private static stop(e: DragEvent) {
-		console.log(e)
+	private static stop() {
+		this.seeking = false;
 	}
 
-	static update(value: number) {
+	static requestUpdate(value: number) {
+		if(this.seeking) return;
+		this.update(value);
+	}
+
+	private static update(value: number) {
 		const percent = `${value * 100}%`;
 
 		seekbarProgress.style.width = percent;

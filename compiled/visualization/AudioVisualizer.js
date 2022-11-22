@@ -20,7 +20,7 @@ export default class AudioVisualizer {
         const progress = AudioPlayer.getProgress();
         BackgroundAnimator.draw(time);
         WaveformAnimator.draw();
-        SeekbarManager.update(progress);
+        SeekbarManager.requestUpdate(progress);
         this.requestId = requestAnimationFrame(this.loop.bind(this));
     }
     static stop() {
