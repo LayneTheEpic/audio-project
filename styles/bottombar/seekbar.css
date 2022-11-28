@@ -1,4 +1,7 @@
 #seekbar-bar {
+	/* this is overriden by style attribute */
+	--value: 0%;
+
 	width: 40%;
 	min-height: 0.7rem;
 	max-height: 0.7rem;
@@ -13,7 +16,7 @@
 
 #seekbar-progress {
 	background-color: var(--accent-10);
-	width: 0;
+	width: var(--value);
 
 	border-radius: inherit;
 	min-height: inherit;
@@ -32,14 +35,16 @@
 	transform: translate(-50%, -50%);
 	top: 50%;
 
-	left: 0;
+	left: var(--value);
 
 	cursor: grab;
 
 	transition: height 120ms ease-out;
 }
 
-
+#seekbar-grabber:hover {
+	height: 200%;
+}
 
 #seekbar-grabber:active {
 	cursor: grabbing;

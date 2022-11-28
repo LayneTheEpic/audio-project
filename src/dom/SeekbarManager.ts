@@ -7,35 +7,51 @@ const seekbarBar = getId<HTMLDivElement>("seekbar-bar");
 const seekbarProgress = getId<HTMLDivElement>("seekbar-progress");
 const seekbarGrabber = getId<HTMLDivElement>("seekbar-grabber");
 
+const transparentImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAJnKAACZygHjkaQiAAAADUlEQVQImWP4//8/AwAI/AL+hc2rNAAAAABJRU5ErkJggg==";
+
 
 
 export default class SeekbarManager {
 	private static seeking: boolean;
+	private static dragImage: HTMLImageElement;
+	private static seekedValue: number = 0;
+	private static recentValue: number = 0;
 
 	static init() {
-		seekbarGrabber.addEventListener("dragstart", () => this.start());
+		seekbarGrabber.addEventListener("dragstart", (e) => this.start(e));
 		seekbarGrabber.addEventListener("drag", (e) => this.move(e));
 		seekbarGrabber.addEventListener("dragend", () => this.stop());
+
+		this.dragImage = new Image(1, 1);
+		this.dragImage.src = transparentImage;
 	}
 
-	private static start() {
+	private static start(e: DragEvent) {
 		this.seeking = true;
+
+		e.dataTransfer!.effectAllowed = "move";
+		e.dataTransfer!.setDragImage(this.dragImage, 0, 0);
 	}
 
 	private static move(e: DragEvent) {
-		const {width} = seekbarBar.getBoundingClientRect();
-		const pos = e.clientX;
+		const {left, width} = seekbarBar.getBoundingClientRect();
+		const pos = e.clientX - left;
 
 
-		const percent = clamp(pos / width, 0, 1);
+		const value = clamp(pos / width, 0, 1);
 
-		this.update(percent);
 
-		AudioPlayer.seekTo(percent);
+		// whenever I let go of the dragger the value immediately jumps to 0
+		// until I figure out how to fix it, add a buffer of one value
+		this.seekedValue = this.recentValue;
+		this.recentValue = value;
+
+		this.update(this.seekedValue);
 	}
 
 	private static stop() {
 		this.seeking = false;
+		AudioPlayer.seekTo(this.seekedValue);
 	}
 
 	static requestUpdate(value: number) {
@@ -44,9 +60,7 @@ export default class SeekbarManager {
 	}
 
 	private static update(value: number) {
-		const percent = `${value * 100}%`;
-
-		seekbarProgress.style.width = percent;
-		seekbarGrabber.style.left = percent;
+		// value || 0 handles NaN
+		seekbarBar.style.setProperty("--value", `${(value || 0) * 100}%`);
 	}
 }

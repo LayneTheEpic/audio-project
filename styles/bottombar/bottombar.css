@@ -10,8 +10,8 @@
 	/* opacity: 0.7; */
 	opacity: 1;
 
-	width: calc(100% - calc(var(--sidebar-grabber) * 1%));
-	transition: width var(--sidebar-transition);
+	width: calc(100% - calc(var(--sidebar-width) * 1%));
+	transition: width var(--sidebar-transition), transform var(--sidebar-transition);
 
 	display: flex;
 	flex-direction: column;
@@ -21,6 +21,13 @@
 }
 
 
+
+#sidebar:not(.show) ~ #bottombar {
+	transform: translateY(100%);
+}
+
+
+
 #sidebar.show ~ #bottombar {
-	width: calc(100% - calc(var(--sidebar-width) * 1%));
+
 }

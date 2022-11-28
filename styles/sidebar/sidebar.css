@@ -1,6 +1,6 @@
 :root {
 	--sidebar-width: 21.5;
-	--sidebar-grabber: 3; /* relative to the entire body */
+	--sidebar-grabber: 2.5; /* relative to the entire body */
 
 	--transition-time: 300ms;
 	--transition-curve: cubic-bezier(0.8, 0.1, 0.25, 1);
