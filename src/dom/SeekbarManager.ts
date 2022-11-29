@@ -17,6 +17,8 @@ export default class SeekbarManager {
 	private static seekedValue: number = 0;
 	private static recentValue: number = 0;
 
+	private static barRect: DOMRect;
+
 	static init() {
 		seekbarGrabber.addEventListener("dragstart", (e) => this.start(e));
 		seekbarGrabber.addEventListener("drag", (e) => this.move(e));
@@ -28,18 +30,16 @@ export default class SeekbarManager {
 
 	private static start(e: DragEvent) {
 		this.seeking = true;
+		this.barRect = seekbarBar.getBoundingClientRect();
 
 		e.dataTransfer!.effectAllowed = "move";
 		e.dataTransfer!.setDragImage(this.dragImage, 0, 0);
 	}
 
 	private static move(e: DragEvent) {
-		const {left, width} = seekbarBar.getBoundingClientRect();
-		const pos = e.clientX - left;
+		const pos = e.clientX - this.barRect.left;
 
-
-		const value = clamp(pos / width, 0, 1);
-
+		const value = clamp(pos / this.barRect.width, 0, 1);
 
 		// whenever I let go of the dragger the value immediately jumps to 0
 		// until I figure out how to fix it, add a buffer of one value
@@ -60,7 +60,7 @@ export default class SeekbarManager {
 	}
 
 	private static update(value: number) {
-		// value || 0 handles NaN
+		// value || 0 handles NaN; is NaN is unwieldy
 		seekbarBar.style.setProperty("--value", `${(value || 0) * 100}%`);
 	}
 }

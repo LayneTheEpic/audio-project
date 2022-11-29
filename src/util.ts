@@ -5,19 +5,7 @@ export function averageArray(array: number[]) {
 
 
 
-export function clamp(value: number, min: number, max: number) {
-	// how the hell did i mess up writing this before
-
-	if(value > max) {
-		return max;
-	}
-
-	if(value < min) {
-		return min;
-	}
-
-	return value;
-}
+export const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(value, max));
 
 
 

@@ -31,8 +31,6 @@ export default class FrameInterpreter {
 	}
 
 	static interpret(frame: number): AnimatedBackground {
-		// debugger
-
 		let rampFrame = this.framesPerBeat - frame;
 
 		// Color ramping
