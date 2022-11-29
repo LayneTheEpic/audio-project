@@ -71,7 +71,7 @@ function countPeakIntervals(peaks: number[], maxDelta: number) {
 			}
 		}
 
-
+		// create a new bucket if there wasn't one to slot in
 		if(!didAddToBucket) { // will also run on i = 0
 			peakBuckets.push({
 				value: toPlaces(peakValue, 0),
