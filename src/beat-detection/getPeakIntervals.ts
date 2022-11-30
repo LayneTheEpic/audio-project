@@ -5,7 +5,8 @@ import type {AveragingBucket} from "../types.js";
 
 
 
-const minimumPeaks = 30;
+const minimumPeaksPerMinute = 15;
+
 const thresholdStep = 0.03;
 
 
@@ -13,6 +14,9 @@ const thresholdStep = 0.03;
 export default function getMostCommonInterval(buffer: AudioBuffer) {
 	const channelData = buffer.getChannelData(0);
 	const {sampleRate} = buffer;
+
+	const timeInMinutes = buffer.length / buffer.sampleRate / 60;
+	const minimumPeaks = minimumPeaksPerMinute * timeInMinutes;
 
 
 	const maximumValue = getMaximumValue(channelData);

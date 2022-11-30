@@ -24,29 +24,29 @@
 		<link rel="stylesheet" href="styles/bottombar/bottombar.css">
 		<link rel="stylesheet" href="styles/bottombar/seekbar.css">
 
-		<script defer src="compiled/main.js" type="module"></script>
+		<script src="compiled/main.js" type="module"></script>
 	</head>
 	<body>
-		<!-- TODO: accessibility :) -->
+		<!-- accessibility: done-ish? not perfect but I have no experience with accessibility -->
 		<div id="modals">
-			<div id="cache-modal" class="hide" aria-modal="true">
+			<div id="cache-modal" class="hide" role="form" aria-labelledby="cache-header" aria-describedby="cache-text">
 				<p id="cache-header">File data cached</p>
-				<p id="cache-text">It looks like this file has been processed before.<br/>Do you want to use the cached data?</p>
+				<p id="cache-text">It looks like this file has been processed before.<br>Do you want to use the cached data?</p>
 
-				<div id="cache-button-container">
-					<button id="cache-yes" class="cache-button">Yes</button>
-					<button id="cache-no" class="cache-button">No</button>
+				<div id="cache-buttons">
+					<button id="cache-yes">Yes</button>
+					<button id="cache-no">No</button>
 				</div>
 			</div>
 
-			<div id="render-modal" class="hide" aria-modal="true">
+			<div id="render-modal" class="hide" role="dialog" aria-labelledby="render-label">
 				<p id="render-label">Rendering...</p>
 				<div id="render-bar-container">
 					<div id="render-bar-progress"></div>
 				</div>
 			</div>
 
-			<div id="input-modal" class="hide" aria-modal="true">
+			<div id="input-modal" class="hide" role="dialog" aria-labelledby="input-label">
 				<div id="input-dimmer"></div>
 				<div id="input-grid">
 					<p id="input-label">Enter <span id="input-label-type"></span>...</p>
@@ -77,7 +77,7 @@
 					<!-- data-label="a bar factor (2<sup style='font-size: 1.5rem'>n</sup>)" -->
 					<div id="frequency-input" data-type="number" data-range="4,14" data-for="bar-factor" data-label="a bar factor (2^n)">
 					<!-- TODO: make these spans buttons -->
-					<p id="animation-ramp-input" class="sidebar-input">Bar factor: 2^<span id="animation-bar-factor-value">9</span></p>
+					<p class="sidebar-input">Bar factor: 2^<span>9</span></p>
 				</div>
 
 				<p id="frequency-computed" class="sidebar-error">(512)</p>
@@ -86,20 +86,20 @@
 			<div id="animation-container">
 				<p class="sidebar-header">Background Animation</p>
 
-				<div data-type="number" data-range="0,100" data-unit="%" data-for="ramp" data-label="a ramp-up value" class="bg-input">
-					<p id="animation-ramp-input" class="sidebar-input">Ramp up time: <span id="animation-ramp-value">10%</span></p>
+				<div class="bg-input" data-type="number" data-range="0,100" data-unit="%" data-for="ramp" data-label="a ramp-up value">
+					<p class="sidebar-input">Ramp up time: <span>10%</span></p>
 				</div>
 
-				<div data-type="number" data-range="0,100" data-unit="%" data-for="sustain" data-label="a sustain duration" class="bg-input">
-					<p id="animation-ramp-input" class="sidebar-input">Sustain time: <span id="animation-sustain-value">5%</span></p>
+				<div class="bg-input" data-type="number" data-range="0,100" data-unit="%" data-for="sustain" data-label="a sustain duration">
+					<p class="sidebar-input">Sustain time: <span>5%</span></p>
 				</div>
 
-				<div data-type="number" data-range="0,100" data-unit="%" data-for="fade" data-label="a fade-out time" class="bg-input">
-					<p id="animation-ramp-input" class="sidebar-input">Fade out time: <span id="animation-fade-value">35%</span></p>
+				<div class="bg-input" data-type="number" data-range="0,100" data-unit="%" data-for="fade" data-label="a fade-out time">
+					<p class="sidebar-input">Fade out time: <span>35%</span></p>
 				</div>
 
-				<div data-type="number" data-range="0,100" data-unit="%" data-for="lightness" data-label="the maximum lightness" class="bg-input">
-					<p id="animation-ramp-input" class="sidebar-input">Maximum lightness: <span id="animation-ramp-value">20%</span></p>
+				<div class="bg-input" data-type="number" data-range="0,100" data-unit="%" data-for="lightness" data-label="the maximum lightness">
+					<p class="sidebar-input">Maximum lightness: <span>20%</span></p>
 				</div>
 			</div>
 

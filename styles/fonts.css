@@ -1,5 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap"); */
+
+
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+
+	src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
+}
+
+
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+
+	src: url(https://fonts.gstatic.com/s/lato/v23/S6uyw4BMUTPHjx4wXg.woff2) format("woff2");
+}
+
+
+
+@font-face {
+	font-family: fontello;
+	font-display: swap;
+	src: url(../assets/fontello.ttf);
+}
 
 
 
@@ -7,14 +34,6 @@
 	font: 1rem Roboto;
 	color: var(--text-color);
 }
-
-
-
-@font-face {
-	font-family: fontello;
-	src: url(../assets/fontello.ttf);
-}
-
 
 i {
 	font-family: fontello;

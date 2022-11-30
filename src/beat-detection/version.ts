@@ -1,4 +1,4 @@
-const beatDetectionVersion = "1.0.2";
+const beatDetectionVersion = "1.0.3";
 
 
 

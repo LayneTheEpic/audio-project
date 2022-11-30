@@ -14,12 +14,11 @@ export async function generateAudioBuffer(file: File) {
 
 	const tempContext = new AudioContext();
 
-
 	RenderProgressManager.show();
-	RenderProgressManager.statusDecode();
+	RenderProgressManager.status = "DECODE";
 
 	const audioBuffer = await tempContext.decodeAudioData(rawBuffer);
-	RenderProgressManager.statusRender();
+	RenderProgressManager.status = "RENDER";
 
 
 	return audioBuffer;

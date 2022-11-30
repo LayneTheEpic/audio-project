@@ -23,7 +23,7 @@ export default class AudioPlayer {
 	}
 
 	static getProgress() {
-		return this.getTime() / this.audio.duration;
+		return (this.getTime() / this.audio.duration) || 0;
 	}
 
 	static stop() {

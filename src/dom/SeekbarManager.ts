@@ -60,7 +60,6 @@ export default class SeekbarManager {
 	}
 
 	private static update(value: number) {
-		// value || 0 handles NaN; is NaN is unwieldy
-		seekbarBar.style.setProperty("--value", `${(value || 0) * 100}%`);
+		seekbarBar.style.setProperty("--value", `${value * 100}%`);
 	}
 }

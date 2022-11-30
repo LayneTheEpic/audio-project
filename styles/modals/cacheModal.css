@@ -20,17 +20,14 @@
 
 #cache-text {
 	font-size: 1rem;
-
 	text-align: center;
 
-	word-wrap: normal;
-
-	margin: 1.25rem 0;
+	margin: 1.25rem 0 2rem;
 }
 
 
 
-#cache-button-container {
+#cache-buttons {
 	display: flex;
 
 	justify-content: space-around;
@@ -38,7 +35,7 @@
 	margin: 0 0 1rem 0;
 }
 
-.cache-button {
+#cache-buttons > button {
 	font-size: 1.25rem;
 	font-weight: bold;
 
@@ -48,10 +45,10 @@
 	background-color: var(--accent-5);
 }
 
-.cache-button:hover {
+#cache-buttons > button:hover {
 	background-color: var(--accent-8);
 }
 
-.cache-button:active {
+#cache-buttons > button:active {
 	background-color: var(--accent-10);
 }

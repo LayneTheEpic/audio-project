@@ -2,6 +2,10 @@ import {getId} from "../util.js";
 
 
 
+type RenderStatus = "DECODE" | "RENDER";
+
+
+
 const renderModal = getId<HTMLDivElement>("render-modal");
 const renderProgress = getId<HTMLDivElement>("render-bar-progress");
 const renderLabel = getId<HTMLDivElement>("render-label");
@@ -14,12 +18,9 @@ export default class RenderProgressManager {
 		renderProgress.style.width = "0";
 	}
 
-	static statusDecode() {
-		renderLabel.textContent = "Decoding...";
-	}
-
-	static statusRender() {
-		renderLabel.textContent = "Rendering...";
+	static set status(text: RenderStatus) {
+		if(text === "DECODE") renderLabel.textContent = "Decoding...";
+		if(text === "RENDER") renderLabel.textContent = "Rendering...";
 	}
 
 	static update(value: number) {
@@ -28,7 +29,7 @@ export default class RenderProgressManager {
 		renderProgress.style.width = width;
 
 		if(value === 1) {
-			// save the binding, just call the class itself
+			// save the binding, just call the class itself lmao
 			RenderProgressManager.hide();
 		}
 	}
