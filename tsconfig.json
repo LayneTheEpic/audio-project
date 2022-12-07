@@ -17,7 +17,7 @@
 		"forceConsistentCasingInFileNames": true,
 
 		"rootDir": "./src",
-		"outDir": "./compiled",
+		"outDir": "./js",
 
 		"moduleResolution": "node",
 
